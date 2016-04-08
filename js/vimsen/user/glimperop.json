@@ -1,0 +1,65 @@
+[
+    {
+    	"id":1,
+    	"type":"home",
+        "group":"glimperop",
+        "name":"George House", 
+        "lat":"38.14465",
+        "lng":"23.85891",
+        "city":"Marousi",
+        "country":"Greece",
+        "mqtt":"glimperop",
+    	"mac":"b827eb4c14af",
+    	"ip":"0.0.0.0",
+        "url":"http://gmtls.mooo.com",
+    	"port":8888,
+    	"consumptionNaming":"Plug",
+    	"productionNaming":"production_power",
+    	"meterNaming":"meter",
+    	"powerNaming":"power",
+    	"energyNaming":"energy"
+
+    },
+    {
+        "id":2,
+        "type":"home",
+        "group":"glimperop",
+        "name":"Farmer", 
+        "lat":"38.14883298",
+        "lng":"23.28831058",
+        "city":"Chalandri",
+        "country":"Greece",
+        "mqtt":"glimperop",
+        "mac":"b827eb725029",
+        "ip":"0.0.0.0",
+        "url":"http://10.8.0.18",
+        "port":8888,
+        "consumptionNaming":"Plug",
+        "productionNaming":"production_power",
+        "meterNaming":"meter",
+        "powerNaming":"power",
+        "energyNaming":"energy"
+
+    },
+     {
+    	"id":3,
+    	"type":"home",
+        "group":"glimperop",
+        "name":"Work", 
+    	"lat":"38.04883298",
+        "lng":"23.78831058",
+        "city":"Chalandri",
+        "country":"Greece",
+        "mqtt":"glimperop",
+        "mac":"b827ebb47c1b",
+    	"ip":"0.0.0.0",
+        "url":"http://94.70.239.216",
+    	"port":8888,
+    	"consumptionNaming":"Plug",
+    	"productionNaming":"production_power",
+    	"meterNaming":"meter",
+    	"powerNaming":"power",
+    	"energyNaming":"energy"
+
+    }
+]

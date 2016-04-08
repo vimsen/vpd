@@ -1,0 +1,423 @@
+/* body {
+  background-color: rgba(66,197,36,0.2) !important;
+} */
+
+body {
+  background-color: rgba(0,0,0,0.7) !important;
+}
+
+[data-current-skin="black"] {
+  background-color: rgba(0,0,0,0.6);
+}
+
+[data-current-skin="black"] .ss-icon {
+  color: #03a9f4;
+}
+
+@media (max-width: 767px) {
+  [data-current-skin="black"] .ha-menu {
+    background: rgba(0,0,0,0.6);
+  }
+}
+
+
+.pie-title {
+  color:rgba(255,255,255,0.9) !important;
+}
+
+
+.appliancesConsumptionDetails {
+	color:rgba(255,255,255,0.9) !important;
+}
+
+.consumptionApplianceItem {
+	min-height: 300px !important;
+	min-width: 250px !important;
+	color:rgba(255,255,255,0.9) !important;
+}
+
+.consumptionHeader {
+	background-color: rgba(0,150,136,0.9) !important;
+}
+
+
+.appliancesSwitchDetails {
+  color:rgba(255,255,255,0.9) !important;
+}
+
+.switchApplianceItem {
+  min-height: 100px !important;
+  min-width: 250px !important;
+  color:rgba(255,255,255,0.9) !important;
+}
+
+.switchHeader {
+  background-color: rgba(0,150,136,0.9) !important;
+}
+
+
+.appliancesProductionDetails {
+  color:rgba(255,255,255,0.9) !important;
+}
+
+.productionApplianceItem {
+  min-height: 300px !important;
+  min-width: 250px !important;
+  color:rgba(255,255,255,0.9) !important;
+}
+
+.productionHeader {
+  background-color: rgba(93,135,44,0.9) !important;
+}
+
+
+.appliancesBuildingDetails {
+ color:rgba(255,255,255,0.9) !important;
+}
+
+.buildingApplianceItem {
+  min-height: 300px !important;
+  min-width: 250px !important;
+  color:rgba(255,255,255,0.9) !important;
+}
+
+.buildingHeader {
+ background-color: rgba(0,150,136,0.9) !important;
+}
+
+
+
+
+.power_valueB, .energy_valueB, .state_valueB {
+   background: #159f8f !important;
+   border: 1px solid rgba(255,255,255,0.1);
+   color:rgba(255,255,255,0.9) !important;
+}
+
+.power_valueP, .energy_valueP, .state_valueP {
+   background: #92df38 !important;
+   border: 1px solid rgba(255,255,255,0.1);
+   color:rgba(255,255,255,0.9) !important;
+}
+
+
+.power_value, .energy_value, .state_value {
+   background: #159f8f !important;
+   border: 1px solid rgba(255,255,255,0.1);
+   color:rgba(255,255,255,0.9) !important;
+}
+
+
+.Tpower {
+  /* background: rgb(51,177,193) !important; */
+   border: 1px solid rgba(143,205,255,0.3);
+   color:rgba(255,255,255,0.9) !important;
+   display:inline-block;
+   min-width: 100%;
+}
+
+.Tenergy {
+  /* background: rgb(62,193,198) !important;*/
+   border: 1px solid rgba(255,255,255,0.3);
+   color:rgba(255,255,255,0.9) !important;
+}
+
+.Tpower_value, .Tenergy_value{
+  display:inline-block;
+}
+
+.Ppower {
+  /* background: rgb(51,177,193) !important; */
+   border: 1px solid rgba(143,205,255,0.3);
+   color:rgba(255,255,255,0.9) !important;
+   display:inline-block;
+   min-width: 100%;
+}
+
+/*for the mini-chart class to show the transition (darker color) in the middle of the element*/
+.mini-charts-item:before {
+  -webkit-transition: width;
+  -o-transition: width;
+  transition: width;
+  -webkit-transition-duration: 500ms;
+  transition-duration: 500ms;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  backface-visibility: hidden;
+  content: "";
+  width: 50%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.1);
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.mini-charts-item:hover .count {
+  color: #fff !important;
+}
+
+.mini-charts-item .count > h2, .mini-charts-item .count > small {
+  overflow: visible !important;
+}
+.mini-charts-item:hover:before {
+  width: 100%;
+}
+
+.wind {
+  background-image: url("../../img/vimsen/wind.png");
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2/1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
+.wind {
+    background-image: url("../../img/vimsen/wind.png");
+    background-size: 125px 125px;
+  }
+}
+
+.weather-forecast {
+  /*height: 37px !important; */
+  background: rgba(0, 0, 0, 0) !important;
+ /*  font-size: 14px !important;  */
+ margin-right:20px !important;
+}
+
+.weather-forecast-2 {
+ /* height: 28px !important; */
+ /*  font-size: 12px !important; */
+}
+
+.weatherSpan {
+  /*line-height: 27px !important;  */
+  color:rgba(255,255,255,0.8) !important;
+
+}
+
+.weatherUpDown {
+  padding-top: 10px !important;
+}
+
+#containerWeather {
+    height:300px !important;   
+}
+
+#weatherForecast {
+   height:300px !important; 
+   padding: 20px !important;  
+}
+
+#forecastHeader, #weatherDetailsHeader {
+  background: rgba(0, 0, 0, 0.08) !important;
+  margin-left: 0px !important;
+  margin-right: 0px !important;
+}
+
+#weather-widget {
+  padding:0px !important;
+}
+
+.weatherDiv {
+  min-height: 375px !important;
+  background: none !important;
+   background: 
+    linear-gradient(
+      rgba(0, 0, 0, 0.65), 
+      rgba(0, 0, 0, 0.65)
+    ),
+    url("../../img/vimsen/backgroundWeatherWidget.jpg") !important;
+}
+
+.weatherDivIn {
+  min-height: 375px !important;
+}
+
+.weatherColor {
+ /*  background: #0091c2 !important; */
+ /*  background-image: url("../../img/vimsen/backgroundWeatherWidget.jpg") !important;  */
+  background-color: rgba(16,35,65,0.9) !important;
+    
+}
+
+
+.todayWeatherDiv {
+    border-right:1px solid rgba(25,25,25,0.7);
+}
+
+.weatherP {
+  margin-bottom: 10px !important;
+}
+
+.spanBorder {
+  border: 1px solid rgba(255, 255, 255, 0.39);
+  padding: 2px 10px 3px;
+  margin-right: 15px;
+}
+
+.showHide {
+  display:none;
+}
+
+#floating-panel {
+  position: absolute !important;
+  top: 100px  !important;
+  left: 25%  !important;
+  z-index: 5  !important;
+  background-color: #fff  !important;
+  padding: 5px  !important;
+  border: 1px solid #999  !important;
+  text-align: center  !important;
+  font-family: 'Roboto','sans-serif'  !important;
+  line-height: 30px;
+  padding-left: 10px;
+}
+
+.login-content {
+  background: url("../../img/vimsen/backgroundVimsen.jpg") no-repeat center center fixed !important; 
+  -webkit-background-size: cover !important;
+  -moz-background-size: cover !important;
+  -o-background-size: cover !important; 
+}
+
+.login-content:before {
+   background: none !important; 
+ 
+ 
+}
+
+.weather-list {
+  height: 125px !important;
+  background: rgba(0, 20, 70, 0.4) !important;
+}
+
+#l-login, #l-username, #l-password {
+  background:  rgba(255, 255, 255, 0.7) !important;
+}
+
+#i-username, #i-password {
+  background:  none !important;
+}
+
+.maxTemp {
+ color: rgba(255,95,36,0.8) !important;
+ font-size: 90px !important;
+}
+
+.minTemp:after, .maxTemp:after {
+    content: "\00b0"
+}
+
+.minTemp {
+ color: rgba(0,188,212,0.8) !important;
+ font-size: 60px !important;
+}
+
+.minMaxDiv {
+ color: rgba(255,255,255,0.8) !important;
+ font-size: 75px !important;
+}
+
+.currently {
+  font-size: 16px !important;
+}
+
+.tomorrow {
+  background: rgba(0, 20, 70, 0.4) !important;
+  min-height: 105px !important;
+}
+
+.selectVGW {
+  height: 30px;
+  font-size: 16px;
+}
+
+.overFlowText {
+  overflow: visible !important;
+  white-space: initial !important
+}
+
+.productionTotal {
+    padding: 1px 16px 1px 12px  !important;
+   background: rgba(0, 200, 70, 0.3) !important;
+
+}
+
+.vgwinfoColor {
+ /*  background: #0091c2 !important; */
+ /*  background-image: url("../../img/vimsen/backgroundWeatherWidget.jpg") !important;  
+  background-color: rgba(16,135,65,0.7) !important;*/
+    
+}
+
+/*
+ * Site Visits
+ */
+.vgwWidget {
+  color: rgba(255, 255, 255, 0.9);
+}
+.vgwWidget .dash-widget-header {
+  padding-bottom: 38px;
+  background-color: rgba(0, 0, 0, 0.13);
+}
+.vgwWidget .dash-widget-title {
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.15);
+  color: rgba(255, 255, 255, 0.9);
+}
+.vgwWidget h3 {
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.vgwText {
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+    color: rgba(255, 255, 255, 0.9) !important;
+    font-size: 12px !important;
+    background: #159f8f !important;
+    border: 1px solid rgba(255,255,255,0.1);
+
+}
+
+#containerVGWInfoChart {
+
+}
+
+.vgw-header {
+  background: rgba(0, 20, 70, 0.2) !important;
+}
+
+.vgw-list {
+  /* height: 125px !important; */
+  background: rgba(0, 20, 70, 0.2) !important;
+}
+
+#progressBar {
+  height: 10px !important;
+  border-radius: 10px !important;
+}
+
+.elementHeader {
+  background: rgba(0, 20, 70, 0.2) !important;
+}
+
+.cpuElements {
+ /* color: rgba(33,150,243,1) !important; */
+ font-size: 70px !important;
+ color: rgba(255, 255, 255, 0.8) !important;
+ background: #159f8f !important;
+ border: 1px solid rgba(255,255,255,0.1);
+}
+
+.ram:after {
+  /*   content: "MB" */
+}
+
+/* .highcharts-container {
+  margin-left:10px !important;
+} */
+
+.freeBar {
+  background: rgba(0, 120, 200, 0.8) !important;
+}
+
+.usedBar {
+  background: rgba(200, 20, 70, 0.8) !important;
+}

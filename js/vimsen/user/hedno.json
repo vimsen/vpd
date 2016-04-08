@@ -1,0 +1,23 @@
+[
+    {
+        "id":1,
+        "type":"building",
+        "group":"hedno",
+        "name":"VGW@Hedno", 
+        "lat":"37.884625",
+        "lng":"23.918223",
+        "city":"Mesogeia",
+        "country":"Greece",
+        "mqtt":"hedno",
+        "mac":"b827eb19fcf5",
+        "ip":"192.168.1.52",
+        "url":"js/vimsen/hedno/hednoItems.json",
+        "port":0,
+        "consumptionNaming":"plug",
+        "productionNaming":"production_power",
+        "meterNaming":"meter",
+        "powerNaming":"_active_power_",
+        "energyNaming":"energy"
+
+    }
+]

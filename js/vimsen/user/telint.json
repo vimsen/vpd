@@ -1,0 +1,44 @@
+[
+      {
+    	"id":1,
+    	"type":"home",
+        "group":"telint",
+        "name":"TELINT's VGW", 
+        "lat":"37.9774112",
+        "lng":"23.7324013",
+    	"city":"Athens",
+        "country":"Greece",
+        "mqtt":"telint",
+        "mac":"b827ebf9b703",
+    	"ip":"0.0.0.0",
+        "url":"http://194.219.116.194",
+    	"port":8888,
+    	"consumptionNaming":"plug",
+    	"productionNaming":"production_power",
+    	"meterNaming":"meter",
+    	"powerNaming":"power",
+    	"energyNaming":"energy"
+
+    },
+      {
+        "id":2,
+        "type":"home",
+        "group":"telint",
+        "name":"EFFIE's VGW", 
+        "lat":"37.8774112",
+        "lng":"23.6324013",
+        "city":"Athens",
+        "country":"Greece",
+        "mqtt":"telint",
+        "mac":"b827ebb0ebbd",
+        "ip":"0.0.0.0",
+        "url":"http://effiemak.dyndns.org",
+        "port":8888,
+        "consumptionNaming":"plug",
+        "productionNaming":"production_power",
+        "meterNaming":"meter",
+        "powerNaming":"power",
+        "energyNaming":"energy"
+
+    }     
+]
