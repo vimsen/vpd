@@ -1,16 +1,44 @@
 $(document).ready(function () {
     console.log("edmsAppliances:::::");
+     
+    //daterangepicker
+    function cb(start, end) {
+        $('#reportrange span').html(start.format('MMMM DD, YYYY') + ' - ' + end.format('MMMM DD, YYYY'));
+    }
+    cb(moment().subtract(1, 'days'), moment());
+
+    $('#reportrange').daterangepicker({
+        ranges: {
+           'Today': [moment(), moment()],
+           'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+           'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+           'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+           'This Month': [moment().startOf('month'), moment().endOf('month')],
+           'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+        },
+           'minDate': moment().subtract(1, 'years'),
+           'maxDate': moment()
+    }, cb);
+    //on change dates call edms
+    $('#reportrange').on('apply.daterangepicker', function(ev, picker) {
+      console.log(picker.startDate.format('YYYY-MM-DD'));
+      console.log(picker.endDate.format('YYYY-MM-DD'));
+      getAllItemsEDMS(picker.startDate.format('YYYY-MM-DDT23:59:59.000'),picker.endDate.format('YYYY-MM-DDT23:59:59.000'));
+    });
+    //end of daterangepicker
 
     initConsumptionChart("containerConsumptionHighcharts", "Consumption");
 
     
-  getAllItemsEDMS();
+  getAllItemsEDMS(moment().subtract(1, 'days').format('YYYY-MM-DDT23:59:59.000'), moment().format('YYYY-MM-DDT23:59:59.000'));
+   
 
       
 });
 
 
-function getAllItemsEDMS() {
+function getAllItemsEDMS(dateFrom,dateTo) {
+    console.log("dateTo:::"+dateTo);
 /*    var AvailabilityRequest = JSON.stringify({
                  'prosumers' : 'b827eb4c14af', 
                  'startdate' : '2016-04-03T06:30:00.000+02:00', 
@@ -41,7 +69,7 @@ xmlhttp.open("GET", "https://beta.intelen.com/vimsenapi/EDMS_DSS/index.php/intel
 xmlhttp.send();
       */
        $.ajax({
-              url: 'https://beta.intelen.com/vimsenapi/EDMS_DSS/index.php/intelen/dataVGWHistorical?prosumers=b827ebb47c1b&startdate=2016-04-03T06:30:00.000+02:00&enddate=2016-04-22T07:15:00.000+02:00&interval=900',
+              url: 'https://beta.intelen.com/vimsenapi/EDMS_DSS/index.php/intelen/dataVGWHistorical?prosumers=b827ebb47c1b&startdate='+dateFrom+'&enddate='+dateTo+'&interval=900',
               type: 'GET',
               dataType: "json",
               success: function(result) {
@@ -63,7 +91,7 @@ xmlhttp.send();
                                console.log(groupByTopicName);
 
                                //create Series for power consumption
-                                addToChart("containerConsumptionHighcharts",groupByTopicName);
+                                addToChart("containerConsumptionHighcharts",groupByTopicName, dateFrom, dateTo);
            
                            },
               error: function(data) {

@@ -10,7 +10,7 @@ function initConsumptionChart(divId, prosumption) {
           //  backgroundColor: 'rgba(4,5,2,0.2)'
          },
          title: {
-            text: 'Real Time '+prosumption+' (W) per Device for all VGWs'
+            text: 'Historical '+prosumption+' (W) per Device for all VGWs'
             
        },
        xAxis: {
@@ -36,11 +36,20 @@ function initConsumptionChart(divId, prosumption) {
 
 }
 
-function addToChart(divId, object) {
+function addToChart(divId, object, dateFrom, dateTo) {
    // console.log(":::::::::::::createLiveChart:object ::::::::::::"+JSON.stringify(object) );
     
   //add serie to series
      var chart = $('#'+divId+'').highcharts();
+
+     //remove all series
+      var seriesLength = chart.series.length;
+        for(var i = seriesLength -1; i > -1; i--) {
+            chart.series[i].remove();
+        }
+
+    //change title
+    chart.setTitle({ text: 'Historical Consumption (W) per Device for all VGWs from '+moment(dateFrom).format('DD/MM/YYYY') +' to '+moment(dateTo).format('DD/MM/YYYY')});
 
 //iterate to each item in object
   $.each(object, function(index, element) {

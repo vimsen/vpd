@@ -178,7 +178,14 @@ function updateComponents(applianceName, applianceValue){
     //add power and energy
      if(newtextApplianceName.search("meter") !=-1) {
        	//console.log("meter::"+newtextApplianceName);
-       	 $("#"+macAddress+newtextApplianceName).text((parseFloat(applianceValue)/1000).toFixed(4));
+        //for power in KW
+        if(newtextApplianceName.search("power") !=-1) {
+          $("#"+macAddress+newtextApplianceName).text((parseFloat(applianceValue)/1000).toFixed(4));
+        } else {
+          //for energy kWh
+           $("#"+macAddress+newtextApplianceName).text((parseFloat(applianceValue)).toFixed(4));
+        }
+       	
          //update totals for each appliance
          $("#"+macAddress+"_totalPower").text((parseFloat($("#"+macAddress+"meter1_power").text())+parseFloat($("#"+macAddress+"meter2_power").text())+parseFloat($("#"+macAddress+"meter3_power").text())).toFixed(4));
          $("#"+macAddress+"_totalEnergy").text((parseFloat($("#"+macAddress+"meter1_energy").text())+parseFloat($("#"+macAddress+"meter2_energy").text())+parseFloat($("#"+macAddress+"meter3_energy").text())).toFixed(4));
