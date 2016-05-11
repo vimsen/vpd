@@ -54,14 +54,38 @@ function updateComponents(applianceName, applianceValue){
 
                 $("#"+newtextApplianceName+macAddress).text((parseFloat(applianceValue)*1000).toFixed(4));
 
-                //UPDATE PEODUCTION PIE CHART
+                //UPDATE PRODUCTION PIE CHART
+                //update production meterX totals
+                //update totalpowerproduction
+                var sum = 0;
+                 //get all values for class 
+                  $('.'+macAddress+'_powerValue').each(function()
+                   {
+                 // console.log("$(this) here:"+this.id);
+                    sum += parseFloat($(this).text());
+                   });
+                 // console.log("ID::"+newtextApplianceName+"sum:"+sum);
+                  //put new sum value
+                  $("#"+macAddress+"_totalPowerProduction").text((parseFloat(sum)/1000).toFixed(4));
+
+                 //update total production
+                   var totalProduction = 0;
+                 //get all values for class 
+                  // console.log("totalProduction:"+totalProduction);
+                 $('.productionPower').each(function()
+                 {
+                 // console.log("$(this) here:"+this.id);
+                   totalProduction += parseFloat($(this).text());
+                 });
+                $("#totalPowerProduction").text((totalProduction).toFixed(4));
+                //end update totalpowerproduction
                 //update pie charts inside appliance widget
                 var percentage = 100*(parseFloat(applianceValue).toFixed(0) /parseFloat($("#totalPowerProduction").text()).toFixed(0));
           
                 $("#"+newtextApplianceName+"_percent"+macAddress).text(parseInt(percentage).toFixed(0));
                if ( $( "#"+newtextApplianceName+"_percent"+macAddress).length>0 ) { 
-                // console.log("percentage()::"+ percentage );
-              //update pie chart!!
+                 //console.log("percentage()::"+ newtextApplianceName );
+              //update pie chart for production!!
                  $("#"+newtextApplianceName+"_pie_percent"+macAddress).data('easyPieChart').update(percentage);
                 }
               //END UPDATE PIE CHART
@@ -71,34 +95,33 @@ function updateComponents(applianceName, applianceValue){
                }
           }
 
-        //update production meterX totals
-         var sum = 0;
-         //get all values for class 
+        /*//update production meterX totals
+        var sum = 0;
+        //get all values for class 
         $('.'+macAddress+'_powerValue').each(function()
         {
-         // console.log("$(this) here:"+this.id);
+        // console.log("$(this) here:"+this.id);
            sum += parseFloat($(this).text());
         });
-       // console.log("ID::"+newtextApplianceName+"sum:"+sum);
-       //put new sum value
+        // console.log("ID::"+newtextApplianceName+"sum:"+sum);
+        //put new sum value
         $("#"+macAddress+"_totalPowerProduction").text((parseFloat(sum)/1000).toFixed(4));
 
         //update total production
          var totalProduction = 0;
-      //get all values for class 
-     // console.log("totalProduction:"+totalProduction);
-      $('.productionPower').each(function()
+        //get all values for class 
+       // console.log("totalProduction:"+totalProduction);
+       $('.productionPower').each(function()
         {
          // console.log("$(this) here:"+this.id);
            totalProduction += parseFloat($(this).text());
-
-        });
+        });*/
        
       //  console.log("ID::"+newtextApplianceName+"sum:"+sum);
        //put new sum value
        // $("#totalPowerProduction").text((parseFloat(sum)/1000).toFixed(4));
        // console.log("totalProduction Final:"+totalProduction);
-       $("#totalPowerProduction").text((totalProduction).toFixed(4));
+      // $("#totalPowerProduction").text((totalProduction).toFixed(4));
           
 
        } else if(newtextApplianceName.search("_active_power_") !=-1) {
@@ -119,7 +142,7 @@ function updateComponents(applianceName, applianceValue){
            // console.log("UPDATED percentage tp()::"+parseFloat($("#totalPower").text()).toFixed(4));          
           $("#"+newtextApplianceName+"_percent"+macAddress).text(parseInt(percentage).toFixed(0));
           if ( $( "#"+newtextApplianceName+"_percent"+macAddress).length>0 ) { 
-              //console.log("percentage()::"+ element.name );
+             // console.log("percentage()::"+ element.name );
               //update pie chart!!
              $("#"+newtextApplianceName+"_pie_percent"+macAddress).data('easyPieChart').update(percentage);
           }
@@ -160,8 +183,8 @@ function updateComponents(applianceName, applianceValue){
            // console.log("UPDATED percentage tp()::"+parseFloat($("#totalPower").text()).toFixed(4));          
           $("#"+newtextApplianceName+"_percent"+macAddress).text(parseInt(percentage).toFixed(0));
           if ( $( "#"+newtextApplianceName+"_percent"+macAddress).length>0 ) { 
-              //console.log("percentage()::"+ element.name );
-              //update pie chart!!
+             // console.log("percentage()::"+ newtextApplianceName );
+              //update pie chart for consumption devices!!
              $("#"+newtextApplianceName+"_pie_percent"+macAddress).data('easyPieChart').update(percentage);
           }
        }

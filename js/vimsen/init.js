@@ -11,6 +11,10 @@ MY.UTC = 0;// 2 * 60 * 60 * 1000;
 
 MY.file = "";
 
+MY.dateFrom;
+MY.dateTo;
+MY.selectedVGWs;
+
 function authenticate() {
     console.log("authenticate");
     var un = document.getElementById("i-username").value;

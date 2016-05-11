@@ -88,7 +88,7 @@ function addVGWInfoWidget(vgwObject) {
                 html += '<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">ppp0_IP6:<span  class="m-l-5" topicid="'+path+'/ppp0_IP6/">Loading...</span></div>';
                 html += '</div>';
                 html += '<div class="weatherP row f-12 m-5">';
-                html += '<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">tun0_IPv4:<span  class="m-l-5" topicid="'+path+'/tun0_IPv4">Loading...</span></div>';
+                html += '<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">tun0_IPv4:<span  class="m-l-5" topicid="'+path+'/tun0_IPv4/">Loading...</span></div>';
                 html += '<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">tun0_IPv6:<span  class="m-l-5" topicid="'+path+'/tun0_IPv6/">Loading...</span></div>';
                 html += '</div>';
                 html += '</div></div>';

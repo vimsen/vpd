@@ -32,7 +32,7 @@
         "mqtt":"glimperop",
         "mac":"b827eb725029",
         "ip":"0.0.0.0",
-        "url":"http://10.8.0.18",
+        "url":"http://10.8.0.38",
         "port":8888,
         "consumptionNaming":"Plug",
         "productionNaming":"production_power",

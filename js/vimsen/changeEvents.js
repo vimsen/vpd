@@ -151,3 +151,27 @@ function hideVGWDivs(controllerId) {
      
    }
 }
+
+$("#controllerSelectionHistorical").change(function () {
+  //console.log("controllerSelectionHistorical:"+$("#controllerSelectionHistorical").val());
+  MY.selectedVGWs= $("#controllerSelectionHistorical").val();
+   // console.log(MY.selectedVGWs);
+                
+ });
+
+$("#submitHistoricalData").click(function () {
+  console.log("submitHistoricalData controllerSelectionHistorical:"+$("#controllerSelectionHistorical").val());
+
+    initProsumptionChart("containerTotalVGWConsumptionHighcharts", "Total Consumption per VGW");
+    initProsumptionChart("containerConsumptionHighcharts", "Consumption");
+    initProsumptionChart("containerProductionHighcharts", "Production");
+                
+  $.each(MY.selectedVGWs, function( index, value ) {
+  //console.log( index + ": " + value );
+  getAllItemsEDMS(value,MY.dateFrom,MY.dateTo, $("#intervalSelection").val());
+  });
+
+  $(window).load(function () {
+   console.log("LOADED");
+});
+});

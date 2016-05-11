@@ -21,23 +21,89 @@ $(document).ready(function () {
     }, cb);
     //on change dates call edms
     $('#reportrange').on('apply.daterangepicker', function(ev, picker) {
-      console.log(picker.startDate.format('YYYY-MM-DD'));
-      console.log(picker.endDate.format('YYYY-MM-DD'));
-      getAllItemsEDMS(picker.startDate.format('YYYY-MM-DDT23:59:59.000'),picker.endDate.format('YYYY-MM-DDT23:59:59.000'));
+      //add values to date from datet
+      MY.dateFrom = picker.startDate.format('YYYY-MM-DDT00:00:00.000');
+      MY.dateTo = picker.endDate.format('YYYY-MM-DDT23:59:59.000');
+
+      console.log(MY.dateFrom);
+      console.log(MY.dateTo);
+
+
+     // getAllItemsEDMS(MY.dateFrom,MY.dateTo);
     });
     //end of daterangepicker
 
-    initConsumptionChart("containerConsumptionHighcharts", "Consumption");
+    /* jQuery(document).on('change','#controllerSelection',function() {
+                    console.log("marker:"+$("#controllerSelection").val());                    
+                   
+      });   */  
+              
+    //initProsumptionChart("containerTotalVGWConsumptionHighcharts", "Total Consumption per VGW");
+    //initProsumptionChart("containerConsumptionHighcharts", "Consumption");
+   // initProsumptionChart("containerProductionHighcharts", "Production");
+
+    var vgwFile = localStorage.getItem("vgwFile");
+    console.log("edmsAppliances:::: container:: vgw file::"+vgwFile);
+     //get appliances for each controller
+     var jqxhr = $.getJSON(vgwFile, function(data) {
+     // console.log( "success:"+JSON.stringify(data));
+    })
+    .success(function(data) {
+       
+       // console.log( "second success Length"+JSON.stringify(data.item.length));
+       $.each(data, function(index, element) {
+              console.log( "index:"+index);
+              console.log( "element:"+JSON.stringify(element.name));
+              
+
+         //add option to selection of controllers dropdown
+          $('#controllerSelectionHistorical').append($('<option>', {
+            value: element.mac,
+            text: element.name
+          }));
+         //$('#controllerSelectionHistorical').selectpicker('refresh');
+        });  
+       $('#controllerSelectionHistorical').append($('<option>', {
+            value: "all",
+            text: "All VGWs"
+          }));
+       $('#controllerSelectionHistorical').selectpicker('refresh');
+
+
+     })
+    .then(function() {
+      // console.log(" then objItem15555555555::"+JSON.stringify(objItem));
+     })
+    .fail(function(message) {
+      console.log( "error:::" +message);
+     })
+     .always(function(data) {
+     // console.log( "finished"+JSON.stringify(data));
+    });
 
     
-  getAllItemsEDMS(moment().subtract(1, 'days').format('YYYY-MM-DDT23:59:59.000'), moment().format('YYYY-MM-DDT23:59:59.000'));
+   MY.dateFrom = moment().subtract(1, 'days').format('YYYY-MM-DDT00:00:00.000');
+   MY.dateTo = moment().format('YYYY-MM-DDT23:59:59.000');
+    //getAllItemsEDMS(moment().subtract(1, 'days').format('YYYY-MM-DDT00:00:00.000'), moment().format('YYYY-MM-DDT23:59:59.000'));
    
 
       
 });
 
 
-function getAllItemsEDMS(dateFrom,dateTo) {
+function getAllItemsEDMS(vgw, dateFrom,dateTo, interval) {
+
+      /* --------------------------------------------------------
+     Page Loader
+     -----------------------------------------------------------*/
+    if(!$('html').hasClass('ismobile')) {
+        if($('.page-loader')[0]) {
+            setTimeout (function () {
+                $('.page-loader').fadeIn();
+            }, 500);
+
+        }
+    }
     console.log("dateTo:::"+dateTo);
 /*    var AvailabilityRequest = JSON.stringify({
                  'prosumers' : 'b827eb4c14af', 
@@ -69,18 +135,19 @@ xmlhttp.open("GET", "https://beta.intelen.com/vimsenapi/EDMS_DSS/index.php/intel
 xmlhttp.send();
       */
        $.ajax({
-              url: 'https://beta.intelen.com/vimsenapi/EDMS_DSS/index.php/intelen/dataVGWHistorical?prosumers=b827ebb47c1b&startdate='+dateFrom+'&enddate='+dateTo+'&interval=900',
+              url: 'https://beta.intelen.com/vimsenapi/EDMS_DSS/index.php/intelen/dataVGWHistorical?prosumers='+vgw+'&startdate='+dateFrom+'&enddate='+dateTo+'&interval='+interval+'',
               type: 'GET',
               dataType: "json",
               success: function(result) {
                               // console.log(JSON.stringify(result[0].HistoricalData));
-                                   if (result[0].HistoricalData.length > 0) {
+                               if (result[0].HistoricalData.length > 0) {
                                     $.each(result[0].HistoricalData, function (i, n) {
                                         // graphSeries = new Array();
                                         //get key for date 
-                                       // console.log("value:: i"+i+"::::" + Object.keys(n)[0]);
+                                       // console.log("n:"+JSON.stringify(n));
+                                        //console.log("value:: i"+i+"::::" + Object.keys(n)[0]);
                                         //get value for key date
-                                      // console.log("value:: i"+i+"::::" + n[Object.keys(n)[0]]);
+                                       //console.log("value:: i"+i+"::::" + n[Object.keys(n)[0]]);
                                       
 
                                     });
@@ -90,13 +157,45 @@ xmlhttp.send();
                                var groupByTopicName = _.groupBy(result[0].HistoricalData, 'TopicName');
                                console.log(groupByTopicName);
 
+                              /* //sum all values of same topic
+                               var out = _(groupByTopicName).map(function(g, key) {
+                                  return { 
+                                     type: key, 
+                                     val: _(g).reduce(function(m,x) { 
+                                       return m + x.val;
+                                     }, 0) 
+                                  };
+                                });
+                                console.log("SUM PIE:"+JSON.stringify(out));
+                                //*/
+                               //create Series for power total consumption per VGW
+                                addToChart("containerTotalVGWConsumptionHighcharts",groupByTopicName,"total_power", dateFrom, dateTo, "Total Consumption");
+                                
                                //create Series for power consumption
-                                addToChart("containerConsumptionHighcharts",groupByTopicName, dateFrom, dateTo);
+                                addToChart("containerConsumptionHighcharts",groupByTopicName,"plug", dateFrom, dateTo, "Consumption");
+                               //create Series for power production
+                                addToChart("containerProductionHighcharts",groupByTopicName,"production", dateFrom, dateTo,"Production");
            
-                           },
+              },
               error: function(data) {
                console.log(data.status);
+              },
+              complete: function() {
+                /* --------------------------------------------------------
+                Page Loader
+                 -----------------------------------------------------------*/
+                if(!$('html').hasClass('ismobile')) {
+                 if($('.page-loader')[0]) {
+                   setTimeout (function () {
+                   $('.page-loader').fadeOut();
+                    }, 500);
+                 }
                 }
+              }
              });
 
 }
+
+$(window).load(function () {
+   console.log("LOADED");
+});

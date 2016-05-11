@@ -19,5 +19,26 @@
         "powerNaming":"_active_power_",
         "energyNaming":"energy"
 
+    },
+     {
+        "id":2,
+        "type":"home",
+        "group":"hedno",
+        "name":"Hedno C1", 
+        "lat":"38.14883298",
+        "lng":"23.28831058",
+        "city":"Chalandri",
+        "country":"Greece",
+        "mqtt":"hedno",
+        "mac":"b827eb32267e",
+        "ip":"0.0.0.0",
+        "url":"http://10.8.0.30",
+        "port":8888,
+        "consumptionNaming":"Plug",
+        "productionNaming":"production_power",
+        "meterNaming":"meter",
+        "powerNaming":"power",
+        "energyNaming":"energy"
+
     }
 ]

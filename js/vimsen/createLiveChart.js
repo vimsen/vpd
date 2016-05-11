@@ -28,9 +28,18 @@ function initLiveChart(divId, prosumption) {
         },
         credits: {
          enabled: false
+        },        
+        series: [],
+        lang: {
+            noData: "No data to display"
         },
-        
-        series: []
+        noData: {
+            style: {
+                fontWeight: 'bold',
+                fontSize: '18px',
+                color: '#fff'
+            }
+        }
     });
      
  intervalLive(divId);
@@ -82,7 +91,7 @@ function createLiveChart(divId, object, parameterToCheck, prosumption, dateFrom,
          }
     } else if(element.name.search(parameterToCheck) != -1 && element.name.search(prosumption) != -1 && $.isNumeric(element.state) !=false  ){
 
-      
+     // $("#"+element.name+element.vgw).val(element.state);
      
      //console.log(":::::::::::::createLiveChart:name ::::::::::::"+element.name+" element::"+element.vgw );
     //add initiail points for real time

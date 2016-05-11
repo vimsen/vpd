@@ -64,7 +64,7 @@ $(document).ready(function () {
        // console.log( "second success Length"+JSON.stringify(data.item.length));
          $.each(data, function(index, element) {
              // console.log( "index:"+index);
-              // console.log( "element:"+JSON.stringify(element));
+             //  console.log( "element:"+JSON.stringify(element));
               //  $.when( getAppliances(element) ).done(function() {
                //   console.log("objItem1::"+JSON.stringify(objItem));
               //  });
@@ -284,14 +284,14 @@ $(document).ready(function () {
     }
 
      var jqxhr = $.getJSON( jsonURL, function(data) {
-     //console.log( "success:"+JSON.stringify(data));
+    // console.log( "success:"+JSON.stringify(data));
     })
      .success(function(data) {
        // var obj = jQuery.parseJSON( data.item );
 
        // console.log( "second success Length"+JSON.stringify(data.item.length));
          $.each(data.item, function(index, element) {
-           // console.log("getAppliances Index::"+index+" element:"+element.type);
+            //console.log("getAppliances Index::"+index+" element:"+element.type);
             //for each element check if it switchitem and contains fibaro(consumption) (or production item like itm_uber)
             //for test we ll put fibaro inestead of consumption
             //and itm_uber instead of production
@@ -359,7 +359,7 @@ $(document).ready(function () {
   }
 
   function addItemToList(parameterTocheck,typeOfControl, element, prosumption,objItem, vgwMac, drUrl, ipaddress, group) {
-   // console.log("addItemToList::"+element);
+   // console.log("addItemToList::"+JSON.stringify(element));
     if(element.type.search(parameterTocheck) != -1 && element.name.search(typeOfControl) != -1){
         //contains
         //create appliances items
@@ -448,7 +448,7 @@ $(document).ready(function () {
   }
 
    function addAttributesToList(parameterTocheck,typeOfControl, element,objAttributes, vgwMac, group) {
-   // console.log("addItemToList::"+element);
+     //console.log("addAttributesToList::"+JSON.stringify(objAttributes));
     if(element.type.search(parameterTocheck) != -1 && element.name.search(typeOfControl) != -1){
         //contains
       // console.log("addAttributesToList::"+element.name+"::"+element.state);
@@ -465,7 +465,7 @@ $(document).ready(function () {
             vgw: vgwMac
          }*/
          if(element.name.search("production_battery_percentage") !=-1){
-          console.log("addAttributesToList::"+element.name+"::"+element.state);
+         // console.log("addAttributesToList::"+element.name+"::"+element.state);
            var applianceAttributes = {
             name: element.name,
             itemType: parameterTocheck,
@@ -473,7 +473,7 @@ $(document).ready(function () {
             vgw: vgwMac,
             group: group
            }
-        } else  {
+         } else  {
          var applianceAttributes = {
             name: element.name,
             itemType: parameterTocheck,
@@ -670,7 +670,8 @@ $(document).ready(function () {
    
 
      } else {
-
+      //console.log(" element:"+element.name+" prosumption:"+element.prosumption+" group:"+group);
+   
       var topicMeasurement = group+'/'+macaddress+'/state/'+applianceName+'_active_power_total/state';            
       var topicON_OFF = group+'/'+macaddress+'/state/'+applianceName+'/state';
     
@@ -716,6 +717,29 @@ $(document).ready(function () {
 
     } else {
     //consumption
+     //console.log(" applianceObject:"+JSON.stringify(element));
+     //console.log(" applianceObject:"+JSON.stringify(element.name));
+     //console.log(" objAttributes:"+JSON.stringify(objAttributes));
+
+     //find objattributes that includes power in their names
+    /* var arr = jQuery.grep(objAttributes, function( a ) {
+       //console.log(" a:"+a.name+'_power');
+        return a.name === element.name+'_power' && a.vgw === element.vgw;
+     });*/
+    //console.log(" array :"+JSON.stringify(arr[0].name));
+    //find objattributes that includes power in their names
+   var obj = {} ;
+   var powerState = 0;
+    if (objAttributes != null) {     
+     obj = _.find(objAttributes, function(obj) { return obj.name === element.name+'_power' })
+       if (typeof obj !== "undefined") {
+        powerState = obj.state;
+      }
+    
+    }
+   
+
+
     var topicMeasurementP = group+'/'+macaddress+'/state/'+applianceName+'_power/state';   
     var topicMeasurementE = group+'/'+macaddress+'/state/'+applianceName+'_energy/state';            
     var topicON_OFF = group+'/'+macaddress+'/state/'+applianceName+'/state';
@@ -726,7 +750,7 @@ $(document).ready(function () {
     +'<input id="ts-'+applianceName+'" type="checkbox" hidden="hidden" class="switchON_OFF" item="'+element.type+'" dr="'+drUrl+'" ip="'+ipaddress+'" topicid="'+topicON_OFF+'"> <label for="ts-'+applianceName+'" class="ts-helper"></label> </div> </div> </div>'
     +' <div class="clearfix"></div> </div> <div class="bgm-teal p-20"> <div class="row"> '
     +'<div class="appliancesConsumptionDetails col-xs-6 m-t-30"> <small>'+element.prosumption+' (W)</small> '
-    +'<h3 id= "'+applianceName+'_power'+macaddress+'" topicid="'+topicMeasurementP+'" class="m-0 f-400 c-white power_value">0</h3> <br/> <small>'+element.prosumption+' (Wh)</small>'
+    +'<h3 id= "'+applianceName+'_power'+macaddress+'" topicid="'+topicMeasurementP+'" class="m-0 f-400 c-white power_value">'+powerState+'</h3> <br/> <small>'+element.prosumption+' (Wh)</small>'
     +' <h3 id= "'+applianceName+'_energy" topicid="'+topicMeasurementE+'" class="m-0 f-400 c-white energy_value">0</h3> <br/>'
     +' <small>STATE</small> <h3 id= "'+applianceName+'_state" topicid="'+topicON_OFF+'" class="m-0 f-400 c-white state_value">'+element.state+'</h3> </div> <div class="col-xs-6"> '
     +'<div class="p-t-20 p-b-20 text-center c-white"> <div class="easy-pie '+applianceName+macaddress+' m-b-10" id= "'+applianceName+'_power_pie_percent'+macaddress+'" data-percent="0">'
@@ -825,7 +849,7 @@ $(document).ready(function () {
 
            //update battery /health chart!!
           if(element.name.search("production_battery_percentage") !=-1){
-            console.log("applianceAttributes name::"+element.name+" element state:"+element.state);
+            //console.log("applianceAttributes name::"+element.name+" element state:"+element.state);
              //update attributes
            $("#"+element.name+element.vgw).text(parseFloat(element.state).toFixed(0));
             $("#"+element.name+"_pie"+element.vgw).data('easyPieChart').update(parseFloat(element.state).toFixed(4));

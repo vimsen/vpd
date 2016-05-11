@@ -421,3 +421,11 @@ body {
 .usedBar {
   background: rgba(200, 20, 70, 0.8) !important;
 }
+
+html:not(.ismobile) .page-loader {
+  background: rgba(50, 50, 50, 0.8) !important;
+}
+
+.calendarRange {
+   background: rgba(250, 250, 250, 0.8) !important;
+}

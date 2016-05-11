@@ -1,0 +1,65 @@
+[
+    {
+        "id":1,
+        "type":"building",
+        "group":"sedini",
+        "name":"14060241CH8C@Sedini", 
+        "lat":"39.884625",
+        "lng":"20.918223",
+        "city":"Sedini",
+        "country":"Italy",
+        "mqtt":"sedini",
+        "mac":"14060241CH8C",
+        "ip":"0.0.0.0",
+        "url":"js/vimsen/sedini/sediniItems14060241CH8C.json",
+        "port":0,
+        "consumptionNaming":"plug",
+        "productionNaming":"production_power",
+        "meterNaming":"meter",
+        "powerNaming":"_active_power_",
+        "energyNaming":"energy"
+
+    },
+    {
+        "id":2,
+        "type":"building",
+        "group":"sedini",
+        "name":"14060241CH2ABC@Sedini", 
+        "lat":"39.884625",
+        "lng":"22.918223",
+        "city":"Sedini",
+        "country":"Italy",
+        "mqtt":"sedini",
+        "mac":"14060241CH2ABC",
+        "ip":"0.0.0.0",
+        "url":"js/vimsen/sedini/sediniItems14060241CH2ABC.json",
+        "port":0,
+        "consumptionNaming":"plug",
+        "productionNaming":"production_power",
+        "meterNaming":"meter",
+        "powerNaming":"_active_power_",
+        "energyNaming":"energy"
+
+    },
+     {
+        "id":3,
+        "type":"building",
+        "group":"sedini",
+        "name":"14060241CH1ABC@Sedini", 
+        "lat":"39.884625",
+        "lng":"21.918223",
+        "city":"Sedini",
+        "country":"Italy",
+        "mqtt":"sedini",
+        "mac":"14060241CH1ABC",
+        "ip":"0.0.0.0",
+        "url":"js/vimsen/sedini/sediniItems14060241CH1ABC.json",
+        "port":0,
+        "consumptionNaming":"plug",
+        "productionNaming":"production_power",
+        "meterNaming":"meter",
+        "powerNaming":"_active_power_",
+        "energyNaming":"energy"
+
+    }
+]

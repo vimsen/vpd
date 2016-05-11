@@ -145,15 +145,29 @@
             <section id="content">
                 <div class="container">
                     <div class="block-header p-5">
-                        <h2>Historical Data Monitoring</h2>                        
-                
-
-                        
+                        <h2>Historical Data Monitoring</h2>                         
                     <div>
                         <div class="row">
-                            <div id="reportrange" class="pull-right" >
-                              <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>&nbsp;
-                              <span></span> <b class="caret"></b>
+                            <div class="col-sm-6 m-b-15 p-5">
+                             <select id="controllerSelectionHistorical" class="selectpicker" data-width="100%" data-style="btn-primary" multiple title="Choose VGWs..." data-selected-text-format="count > 3">
+                             </select>
+                            </div>
+                            <div class="col-sm-3 m-b-15 p-5">
+                             <select id="intervalSelection" class="selectpicker" data-width="100%" data-style="btn-primary"  title="Choose interval...">
+                                  <option value="900">15 minutes</option>   
+                                  <option value="1800">30 minutes</option>   
+                                  <option value="3600">1 hour</option>   
+                             </select>
+                            </div>
+
+                            <div id="reportrange" class="col-sm-3 m-b-15 p-b-10 m-t-5 calendarRange" >
+                                  <i class="btn-primary glyphicon glyphicon-calendar fa fa-calendar"></i>&nbsp;
+                                  <span></span> <b class="caret"></b>                                
+                            </div>
+                            <div class="m-b-15 p-5">                             
+                                 <div class="pull-right" >
+                                   <button id="submitHistoricalData" class="btn bgm-teal">View results</button>
+                                </div>
                             </div>
                            <!--  <div id="totalPowerEnergy">
                                <input id="totalPowerInput" class="showHide" />
@@ -161,12 +175,14 @@
                         
                            <!--  <div class="chart-edge col-md-8 col-sm-6"> -->
                             <div class="card-body card-padding-sm">
-                                    <div id="containerConsumptionHighcharts" class="m-b-25"></div>                                     
+                                    <div id="containerTotalVGWConsumptionHighcharts" class="m-b-25"></div>
+                                    <div id="containerConsumptionHighcharts" class="m-b-25"></div>
+                                    <div id="containerProductionHighcharts" class="m-b-25"></div>                                     
                              </div>
                         
                         </div>
 
-                    </div>
+                     </div>
                     </div>
                     
                 </div>
@@ -187,7 +203,7 @@
 
         <!-- Page Loader -->
         <div class="page-loader">
-            <div class="preloader pls-blue">
+            <div class="preloader pls-green">
                 <svg class="pl-circular" viewBox="25 25 50 50">
                     <circle class="plc-path" cx="50" cy="50" r="20" />
                 </svg>
@@ -286,19 +302,19 @@
          <!--highcharts -->
          <script src="js/highcharts/highcharts.js"></script>
          <script src="js/highcharts/exporting.js"></script>
+         <script src="js/highcharts/no-data-to-display.js"></script>
          <!-- underscore library -->
          <script src="js/underscore-min.js"></script>
 
          <!--highcharts theme -->
          <script src="css/vimsen/dark-unica.js"></script>
 
-         <!--googlemaps-->
-         <script src="js/vimsen/mapStyles/googleMapStyles.js"></script>
-          <script src="https://maps.googleapis.com/maps/api/js"></script>
-         <!--<script src="js/vimsen/googleMapApi.js"></script> -->
+        
 
           <!--date range picker -->
          <script src="js/daterangepicker.js"></script>
+
+
 
          <!-- for timezone 
          <script type="text/javascript" src="js/vimsen/momentTimeZone/moment-timezone-with-data-2010-2020.js"></script>-->
