@@ -19,7 +19,7 @@ function addWeatherWidget(vgwObject, skycons) {
                
                 html += '<div class="col-sm-12 col-md-12 col-lg-4">';
                 html += '<div class="card weatherDiv weatherColor">';
-                html += '<div class="weather-status"><span topicid="'+path+'/current/temperature" class="p-l-10">'+0+'</span><span>'+weatherMeasurement+'</span></div>';
+                html += '<div class="weather-status p-t-5"><span topicid="'+path+'/current/temperature" class="p-l-10">'+0+'</span><span>'+weatherMeasurement+'</span></div>';
                 html += '<ul class="weather-info m-10">';
                 html += '<li>'+vgwObject.city+', '+vgwObject.country+'</li>';
                 html += '<li>Current:<span topicid="'+path+'/current/summary">'+0+'</span></li>';
@@ -51,7 +51,7 @@ function addWeatherWidget(vgwObject, skycons) {
                 html += '<div class="col-sm-12 col-md-12 col-lg-8">';
                 html += '<div class="card weatherColor">';
                 html += '<div class="col-md-12 col-sm-12 col-lg-6 p-l-0 p-r-0 todayWeatherDiv weatherColor weatherDivIn">';
-                html += '<div class="weather-status weatherColor col-xs-12">Today</div>';
+                html += '<div class="weather-status weatherHeader col-xs-12 p-t-5 m-b-5">Today</div>';
                 html += '<div class="text-center p-t-10 p-b-25 m-0 p-l-0 p-r-0 row">';
                 html += '<div class="col-xs-9 p-t-10">';
                 html += '<span topicid="'+path+'/today/temperatureMax" class="weather-status text-left p-t-10 maxTemp">'+0+'</span>';
@@ -80,7 +80,7 @@ function addWeatherWidget(vgwObject, skycons) {
                 html += '</div></div>';
                 
                 html += '<div class="col-md-12 col-sm-12 col-lg-6 p-l-0 p-r-0 todayWeatherDiv weatherColor weatherDivIn">';
-                html += '<div class="weather-status weatherColor col-xs-12">Tomorrow</div>';
+                html += '<div class="weather-status weatherHeader col-xs-12 p-t-5 m-b-5">Tomorrow</div>';
                 html += '<div class="text-center p-t-10 p-b-25 m-0 p-l-0 p-r-0 row">';
                 html += '<div class="col-xs-9 p-t-10">';
                 html += '<span topicid="'+path+'/tomorrow/temperatureMax" class="weather-status text-left p-t-10 maxTemp">'+0+'</span>';

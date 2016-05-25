@@ -550,74 +550,74 @@ $(document).ready(function () {
    var html;
    if(controllerObject.type.toUpperCase() === "BUILDING") {
 
-          html =  '<div class="mini-charts-item bgm-blue m-b-15">';
+          html =  '<div class="mini-charts-item m-b-15">';
          //
           html +='<div class="clearfix">';
-          html +='<div class="count col-sm-6 col-xs-12 col-md-6 productionTotal">';
-          html +='<small class="overFlowText">Total Power Production(KW)</small>';
-          html +='<h2 id="'+controllerObject.mac+'_totalPowerProduction" class="Ppower productionPower">0</h2>';
+          html +='<div class="count col-sm-6 col-xs-12 col-md-6 productionCurrent">';
+          html +='<small class="overFlowText">Total Power Production(kW)</small>';
+          html +='<h2 id="'+controllerObject.mac+'_totalPowerProduction" class="Ppower productionPower">0.0000</h2>';
           html +='</div>';
-          html +='<div class="count col-sm-6 col-xs-12 col-md-6 productionTotal">';
-          html +='<small class="overFlowText">Total Energy Production(KWh)</small>';
+          html +='<div class="count col-sm-6 col-xs-12 col-md-6 productionCurrent">';
+          html +='<small class="overFlowText">Total Energy Production(kWh)</small>';
           html +='<h2 id="'+controllerObject.mac+'_totalEnergyProduction" class="Ppower">0</h2>';
           html +='</div>';                                       
           html +='</div>';
           //
           html += '<div class="clearfix">';
-          html += '<div class="count col-sm-3 col-xs-6 col-md-3">';
-          html += '<small class="overFlowText">'+controllerObject.name+' Total Power Consumption(KW)</small>';
+          html += '<div class="count col-sm-3 col-xs-6 col-md-3 consumptionCurrent">';
+          html += '<small class="overFlowText">'+controllerObject.name+' Total Power Consumption(kW)</small>';
           html += '<h2 id="GPXT_active_power_total" class="Tpower">0</h2>';
           html += '</div>';
-          html += '<div class="count col-sm-3 col-md-3">';
-          html += '<small class="Tpower">Phase 1 (KW): <div id="GPXT_active_power_phaseA" class="Tpower_value meter1_powerClass">0</div></small>';
-          html += '<small class="Tpower">Phase 2 (KW): <div id="GPXT_active_power_phaseB" class="Tpower_value meter2_powerClass">0</div></small>';
-          html += '<small class="Tpower">Phase 3 (KW): <div id="GPXT_active_power_phaseC" class="Tpower_value meter3_powerClass">0</div></small>';
+          html += '<div class="count col-sm-3 col-md-3 consumptionCurrent">';
+          html += '<small class="Tpower">Phase 1 (kW): <div id="GPXT_active_power_phaseA" class="Tpower_value meter1_powerClass">0.0000</div></small>';
+          html += '<small class="Tpower">Phase 2 (kW): <div id="GPXT_active_power_phaseB" class="Tpower_value meter2_powerClass">0.0000</div></small>';
+          html += '<small class="Tpower">Phase 3 (kW): <div id="GPXT_active_power_phaseC" class="Tpower_value meter3_powerClass">0.0000</div></small>';
           html += '</div>';
-          html += '<div class="count col-sm-3 col-xs-6 col-md-3">';
-          html += '<small class="overFlowText">'+controllerObject.name+' Total Energy Consumption(KWh)</small>';
+          html += '<div class="count col-sm-3 col-xs-6 col-md-3 consumptionCurrent">';
+          html += '<small class="overFlowText">'+controllerObject.name+' Total Energy Consumption(kWh)</small>';
           html += '<h2 id="'+controllerObject.mac+'_totalEnergy" class="Tenergy">0</h2>';
           html += '</div>';
-          html += '<div class="count col-sm-3 col-md-3">';
-          html += '<small class="Tenergy">Phase 1 (KWh): <div id="'+controllerObject.mac+'meter1_energy" class="Tenergy_value meter1_energyClass">0</div></small>';
-          html += '<small class="Tenergy">Phase 2 (KWh): <div id="'+controllerObject.mac+'meter2_energy" class="Tenergy_value meter2_energyClass">0</div></small>';
-          html += '<small class="Tenergy">Phase 3 (KWh): <div id="'+controllerObject.mac+'meter3_energy" class="Tenergy_value meter3_energyClass">0</div></small>';
+          html += '<div class="count col-sm-3 col-md-3 consumptionCurrent">';
+          html += '<small class="Tenergy">Phase 1 (kWh): <div id="'+controllerObject.mac+'meter1_energy" class="Tenergy_value meter1_energyClass">0.0000</div></small>';
+          html += '<small class="Tenergy">Phase 2 (kWh): <div id="'+controllerObject.mac+'meter2_energy" class="Tenergy_value meter2_energyClass">0.0000</div></small>';
+          html += '<small class="Tenergy">Phase 3 (kWh): <div id="'+controllerObject.mac+'meter3_energy" class="Tenergy_value meter3_energyClass">0.0000</div></small>';
           html += '</div>';
           html += '</div>';
           html += '</div>';
 
    } else {
 
-          html =  '<div class="mini-charts-item bgm-blue m-b-15">';
+          html =  '<div class="mini-charts-item m-b-15">';
            //
           html +='<div class="clearfix">';
-          html +='<div class="count col-sm-6 col-xs-12 col-md-6 productionTotal">';
-          html +='<small class="overFlowText">Total Power Production(KW)</small>';
-          html +='<h2 id="'+controllerObject.mac+'_totalPowerProduction" class="Ppower productionPower">0</h2>';
+          html +='<div class="count col-sm-6 col-xs-12 col-md-6 productionCurrent">';
+          html +='<small class="overFlowText">Total Power Production(kW)</small>';
+          html +='<h2 id="'+controllerObject.mac+'_totalPowerProduction" class="Ppower productionPower">0.0000</h2>';
           html +='</div>';
-          html +='<div class="count col-sm-6 col-xs-12 col-md-6 productionTotal">';
-          html +='<small class="overFlowText">Total Energy Production(KWh)</small>';
-          html +='<h2 id="'+controllerObject.mac+'_totalEnergyProduction" class="Ppower">0</h2>';
+          html +='<div class="count col-sm-6 col-xs-12 col-md-6 productionCurrent">';
+          html +='<small class="overFlowText">Total Energy Production(kWh)</small>';
+          html +='<h2 id="'+controllerObject.mac+'_totalEnergyProduction" class="Ppower">0.0000</h2>';
           html +='</div>';                                       
           html +='</div>';
           //
           html += '<div class="clearfix">';
-          html += '<div class="count col-sm-3 col-xs-6 col-md-3">';
-          html += '<small class="overFlowText">'+controllerObject.name+' Total Power Consumption(KW)</small>';
-          html += '<h2 id="'+controllerObject.mac+'_totalPower" class="Tpower">0</h2>';
+          html += '<div class="count col-sm-3 col-xs-6 col-md-3 p-b-15 consumptionCurrent">';
+          html += '<small class="overFlowText">'+controllerObject.name+' Total Power Consumption(kW)</small>';
+          html += '<h2 id="'+controllerObject.mac+'_totalPower" class="Tpower">0.0000</h2>';
           html += '</div>';
-          html += '<div class="count col-sm-3 col-md-3">';
-          html += '<small class="Tpower">Phase 1 (KW): <div id="'+controllerObject.mac+'meter1_power" class="Tpower_value meter1_powerClass">0</div></small>';
-          html += '<small class="Tpower">Phase 2 (KW): <div id="'+controllerObject.mac+'meter2_power" class="Tpower_value meter2_powerClass">0</div></small>';
-          html += '<small class="Tpower">Phase 3 (KW): <div id="'+controllerObject.mac+'meter3_power" class="Tpower_value meter3_powerClass">0</div></small>';
+          html += '<div class="count col-sm-3 col-md-3 consumptionCurrent">';
+          html += '<small class="Tpower">Phase 1 (kW): <div id="'+controllerObject.mac+'meter1_power" class="Tpower_value meter1_powerClass">0.0000</div></small>';
+          html += '<small class="Tpower">Phase 2 (kW): <div id="'+controllerObject.mac+'meter2_power" class="Tpower_value meter2_powerClass">0.0000</div></small>';
+          html += '<small class="Tpower">Phase 3 (kW): <div id="'+controllerObject.mac+'meter3_power" class="Tpower_value meter3_powerClass">0.0000</div></small>';
           html += '</div>';
-          html += '<div class="count col-sm-3 col-xs-6 col-md-3">';
-          html += '<small class="overFlowText">'+controllerObject.name+' Total Energy Consumption(KWh)</small>';
-          html += '<h2 id="'+controllerObject.mac+'_totalEnergy" class="Tenergy">0</h2>';
+          html += '<div class="count col-sm-3 col-xs-6 col-md-3 p-b-15 consumptionCurrent">';
+          html += '<small class="overFlowText">'+controllerObject.name+' Total Energy Consumption(kWh)</small>';
+          html += '<h2 id="'+controllerObject.mac+'_totalEnergy" class="Tenergy">0.0000</h2>';
           html += '</div>';
-          html += '<div class="count col-sm-3 col-md-3">';
-          html += '<small class="Tenergy">Phase 1 (KWh): <div id="'+controllerObject.mac+'meter1_energy" class="Tenergy_value meter1_energyClass">0</div></small>';
-          html += '<small class="Tenergy">Phase 2 (KWh): <div id="'+controllerObject.mac+'meter2_energy" class="Tenergy_value meter2_energyClass">0</div></small>';
-          html += '<small class="Tenergy">Phase 3 (KWh): <div id="'+controllerObject.mac+'meter3_energy" class="Tenergy_value meter3_energyClass">0</div></small>';
+          html += '<div class="count col-sm-3 col-md-3 consumptionCurrent">';
+          html += '<small class="Tenergy">Phase 1 (kWh): <div id="'+controllerObject.mac+'meter1_energy" class="Tenergy_value meter1_energyClass">0.0000</div></small>';
+          html += '<small class="Tenergy">Phase 2 (kWh): <div id="'+controllerObject.mac+'meter2_energy" class="Tenergy_value meter2_energyClass">0.0000</div></small>';
+          html += '<small class="Tenergy">Phase 3 (kWh): <div id="'+controllerObject.mac+'meter3_energy" class="Tenergy_value meter3_energyClass">0.0000</div></small>';
           html += '</div>';
           html += '</div>';
           html += '</div>';
@@ -646,6 +646,8 @@ $(document).ready(function () {
     
         var ali = document.createElement('div');
 
+        var barColor = '#04A5BA';
+
         
             //create different widgets for consumption and production items
     if(element.prosumption.toUpperCase() === "ACTIVEPOWER" ) {
@@ -660,10 +662,10 @@ $(document).ready(function () {
     
 
       ali.innerHTML = '<div  class="dash-widget-item switchApplianceItem"> <div class="switchHeader"> '
-    +'<div class="dash-widget-header"> <div class="dash-widget-title"> '+applianceName+' <br/> <small>'+vgwname+'</small> </div>'
+    +'<div class="dash-widget-header"> <div class="dash-widget-title f-14"> '+applianceName+' <br/> <small>'+vgwname+'</small> </div>'
     +' <div class="pull-right m-t-15 m-r-5 m-b-15"> <div class="toggle-switch" data-ts-color="red"> '
     +'<input id="ts-'+applianceName+'" type="checkbox" hidden="hidden" class="switchON_OFF" item="'+element.type+'" dr="'+drUrl+'" ip="'+ipaddress+'"> <label for="ts-'+applianceName+'" class="ts-helper"></label> </div> </div> </div>'
-    +' <div class="clearfix"></div> </div> <div class="bgm-teal p-20"> <div class="row"> '
+    +' <div class="clearfix"></div> </div> <div class="bgm-lime p-20 text-right"> <div class="row"> '
     +'<div class="appliancesSwitchDetails col-xs-6 m-t-10">'
     +' <small>STATE</small> <h3 id= "'+applianceName+'_state" class="m-0 f-400 c-white state_value" topicid="'+topicON_OFF+'">'+element.state+'</h3> </div> <div class="col-xs-6"> '
     +'</div> </div> </div> </div>';
@@ -676,19 +678,19 @@ $(document).ready(function () {
       var topicON_OFF = group+'/'+macaddress+'/state/'+applianceName+'/state';
     
     ali.innerHTML = '<div  class="dash-widget-item buildingApplianceItem"> <div class="buildingHeader p-b-20"> '
-    +'<div class="dash-widget-header"> <div class="dash-widget-title"> '+applianceName+' <br/> <small>'+vgwname+'</small> </div>'
+    +'<div class="dash-widget-header"> <div class="dash-widget-title  f-14"> '+applianceName+' <br/> <small>'+vgwname+'</small> </div>'
     +' <div class="pull-right m-t-15 m-r-5 m-b-15"> '
     +' </div> </div>'
-    +' <div class="clearfix"></div> </div> <div class="bgm-teal p-20"> <div class="row"> '
+    +' <div class="clearfix"></div> </div> <div class="bgm-lime p-20 text-right"> <div class="row"> '
     +'<div class="appliancesBuildingDetails col-xs-6 m-t-30"> <small>'+element.prosumption+' (W)</small> '
-    +'<h3 id= "'+applianceName+element.powerNaming+'total" class="m-0 f-400 c-white power_valueB" topicid="'+topicMeasurement+'">0</h3> <br/> <small>'+element.prosumption+' (Wh)</small>'
-    +' <h3 id= "'+applianceName+'_energy"class="m-0 f-400 c-white energy_valueB">0</h3> <br/>'
+    +'<h3 id= "'+applianceName+element.powerNaming+'total" class="m-0 f-400 c-white power_valueB" topicid="'+topicMeasurement+'">0.0000</h3> <br/> <small>'+element.prosumption+' (Wh)</small>'
+    +' <h3 id= "'+applianceName+'_energy"class="m-0 f-400 c-white energy_valueB">0.0000</h3> <br/>'
     +'<small>STATE</small> <h3 id= "'+applianceName+'_state" class="m-0 f-400 c-white state_valueB">'+element.state+'</h3> </div> <div class="col-xs-6"> '
     +'<div class="p-t-20 p-b-20 text-center c-white"> <div id= "'+applianceName+'_active_power_total_pie_percent'+macaddress+'" class="easy-pie '+applianceName+macaddress+' m-b-10" data-percent="0">'
     +' <div class="percent" id= "'+applianceName+'_active_power_total_percent'+macaddress+'">0</div> <div class="pie-title">'+element.prosumption+' %</div> </div> '
-    +'<br/><small>Phase A (W)</small> <h5 id= "'+applianceName+element.powerNaming+'phaseA" class="m-0 f-400 c-white power_valueB">0</h5>'
-    +'<small>Phase B (W)</small> <h5 id= "'+applianceName+element.powerNaming+'phaseB" class="m-0 f-400 c-white power_valueB">0</h5>'
-    +'<small>Phase C (W)</small> <h5 id= "'+applianceName+element.powerNaming+'phaseC" class="m-0 f-400 c-white power_valueB">0</h5>'
+    +'<br/><small>Phase A (W)</small> <h5 id= "'+applianceName+element.powerNaming+'phaseA" class="m-0 f-400 c-white power_valueB">0.0000</h5>'
+    +'<small>Phase B (W)</small> <h5 id= "'+applianceName+element.powerNaming+'phaseB" class="m-0 f-400 c-white power_valueB">0.0000</h5>'
+    +'<small>Phase C (W)</small> <h5 id= "'+applianceName+element.powerNaming+'phaseC" class="m-0 f-400 c-white power_valueB">0.0000</h5>'
     +'</div> </div> </div> </div> </div>';
      }
     } 
@@ -701,16 +703,16 @@ $(document).ready(function () {
     
     //production
     ali.innerHTML = '<div  class="dash-widget-item productionApplianceItem"> <div class="productionHeader p-b-20"> '
-    +'<div class="dash-widget-header"> <div class="dash-widget-title"> '+applianceName+' <br/> <small>'+vgwname+'</small> </div>'
+    +'<div class="dash-widget-header"> <div class="dash-widget-title  f-14"> '+applianceName+' <br/> <small>'+vgwname+'</small> </div>'
     +' <div class="pull-right m-t-15 m-r-5 m-b-15"> '
     +' </div> </div>'
-    +' <div class="clearfix"></div> </div> <div class="bgm-lightgreen p-20"> <div class="row"> '
+    +' <div class="clearfix"></div> </div> <div class="bgm-cyan p-20 text-right"> <div class="row"> '
     +'<div class="appliancesProductionDetails col-xs-6 m-t-30"> <small>'+element.prosumption+' (W)</small> '
-    +'<h3 id= "'+applianceName+'_power'+macaddress+'" class="m-0 f-400 c-white power_valueP '+macaddress+'_powerValue" topicid="'+topicMeasurementP+'">0</h3> <br/> <small>'+element.prosumption+' (Wh)</small>'
-    +' <h3 id= "'+applianceName+'_energy"class="m-0 f-400 c-white energy_valueP">0</h3> <br/>'
+    +'<h3 id= "'+applianceName+'_power'+macaddress+'" class="m-0 f-400 c-white power_valueP '+macaddress+'_powerValue" topicid="'+topicMeasurementP+'">0.0000</h3> <br/> <small>'+element.prosumption+' (Wh)</small>'
+    +' <h3 id= "'+applianceName+'_energy"class="m-0 f-400 c-white energy_valueP">0.0000</h3> <br/>'
     +' <small>STATE</small> <h3 id= "'+applianceName+'_state" topicid="'+topicON_OFF+'" class="m-0 f-400 c-white state_valueP">'+element.state+'</h3> </div> <div class="col-xs-6"> '
     +'<div class="p-t-20 p-b-20 text-center c-white"> <div id= "'+applianceName+'_power_pie_percent'+macaddress+'" class="easy-pie '+applianceName+macaddress+' m-b-10" data-percent="0">'
-    +' <div class="percent" id= "'+applianceName+'_power_percent'+macaddress+'">0</div> <div class="pie-title">'+element.prosumption+' %</div> </div> '
+    +' <div class="percent" id= "'+applianceName+'_power_percent'+macaddress+'">0.0000</div> <div class="pie-title">'+element.prosumption+' %</div> </div> '
     +'<div  id= "'+applianceName+'_battery_percentage_pie'+macaddress+'" class="easy-pie '+batterypie+macaddress+'" data-percent="0"> '
     +'<div id= "'+applianceName+'_battery_percentage'+macaddress+'" class="percent">0</div> <div class="pie-title">Battery %</div> </div> </div> </div> </div> </div> </div>';
    
@@ -745,19 +747,20 @@ $(document).ready(function () {
     var topicON_OFF = group+'/'+macaddress+'/state/'+applianceName+'/state';
 
     ali.innerHTML = '<div  class="dash-widget-item consumptionApplianceItem"> <div class="consumptionHeader"> '
-    +'<div class="dash-widget-header"> <div class="dash-widget-title"> '+applianceName+' <br/> <small>'+vgwname+'</small> </div>'
+    +'<div class="dash-widget-header"> <div class="dash-widget-title  f-14"> '+applianceName+' <br/> <small>'+vgwname+'</small> </div>'
     +' <div class="pull-right m-t-15 m-r-5 m-b-15"> <div class="toggle-switch" data-ts-color="red"> '
     +'<input id="ts-'+applianceName+'" type="checkbox" hidden="hidden" class="switchON_OFF" item="'+element.type+'" dr="'+drUrl+'" ip="'+ipaddress+'" topicid="'+topicON_OFF+'"> <label for="ts-'+applianceName+'" class="ts-helper"></label> </div> </div> </div>'
-    +' <div class="clearfix"></div> </div> <div class="bgm-teal p-20"> <div class="row"> '
+    +' <div class="clearfix"></div> </div> <div class="bgm-lime p-20 text-right"> <div class="row"> '
     +'<div class="appliancesConsumptionDetails col-xs-6 m-t-30"> <small>'+element.prosumption+' (W)</small> '
     +'<h3 id= "'+applianceName+'_power'+macaddress+'" topicid="'+topicMeasurementP+'" class="m-0 f-400 c-white power_value">'+powerState+'</h3> <br/> <small>'+element.prosumption+' (Wh)</small>'
-    +' <h3 id= "'+applianceName+'_energy" topicid="'+topicMeasurementE+'" class="m-0 f-400 c-white energy_value">0</h3> <br/>'
+    +' <h3 id= "'+applianceName+'_energy" topicid="'+topicMeasurementE+'" class="m-0 f-400 c-white energy_value">0.0000</h3> <br/>'
     +' <small>STATE</small> <h3 id= "'+applianceName+'_state" topicid="'+topicON_OFF+'" class="m-0 f-400 c-white state_value">'+element.state+'</h3> </div> <div class="col-xs-6"> '
     +'<div class="p-t-20 p-b-20 text-center c-white"> <div class="easy-pie '+applianceName+macaddress+' m-b-10" id= "'+applianceName+'_power_pie_percent'+macaddress+'" data-percent="0">'
     +' <div class="percent" id= "'+applianceName+'_power_percent'+macaddress+'">0</div> <div class="pie-title">'+element.prosumption+' %</div> </div> '
     +'<div class="easy-pie '+healthpie+macaddress+'"  data-percent="100"> '
     +'<div class="percent">100</div> <div class="pie-title">Health %</div> </div> </div> </div> </div> </div> </div>';
    
+    barColor = 'rgb(0,203,146)';
     }
 
      
@@ -770,9 +773,9 @@ $(document).ready(function () {
 
 
     appliancesContainer.appendChild(measureContainer);
-    easyPieChart(applianceName, macaddress, 'prosumption', '#eee', '#ccc', '#00bcd4', 7, 'butt', 95);
-    easyPieChart(healthpie, macaddress, 'health', '#eee', '#ccc', '#00bcd4', 7, 'butt', 95);
-    easyPieChart(batterypie, macaddress, 'battery', '#eee', '#ccc', '#00bcd4', 7, 'butt', 95);
+    easyPieChart(applianceName, macaddress, 'prosumption', '#eee', '#ccc', barColor, 7, 'butt', 95);
+    easyPieChart(healthpie, macaddress, 'health', '#eee', '#ccc', barColor, 7, 'butt', 95);
+    easyPieChart(batterypie, macaddress, 'battery', '#eee', '#ccc', barColor, 7, 'butt', 95);
 
     //toggle swtich on or off depending the state
     var checked = element.state==='OFF'?true:false;
