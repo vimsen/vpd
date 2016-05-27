@@ -16,40 +16,40 @@ function addVGWInfoWidget(vgwObject) {
                 html += '<div class="vgw-header col-xs-12 p-b-10"><span  class="m-l-15 f-20" topicid="'+path+'/name/">Clear the </span></div>';
                 html += '<div class="row">';
 
-                html += '<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">';
-                html += '<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 m-b-5">';
+                html += '<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 m-t-10">';
+                html += '<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 m-b-10">';
                 html += '<small>Activation Date</small> <h3  class="m-0 vgwText" topicid="'+path+'/Activation_Date/">Loading...</h3>';
                 html += '</div>';                
-                html += '<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 m-b-5">';
+                html += '<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 m-b-10">';
                 html += '<small>MAC Address</small> <h3  class="m-0 vgwText" topicid="'+path+'/MAC/">Loading...</h3>';
                 html += '</div>';                
-                 html += '<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 m-b-5">';
+                 html += '<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 m-b-10">';
                 html += '<small>Firmware Version</small> <h3  class="m-0 vgwText" topicid="'+path+'/firmware_version/">Loading...</h3>';
                 html += '</div>';                
-                 html += '<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 m-b-5">';
+                 html += '<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 m-b-10">';
                 html += '<small>Firmware Update</small> <h3  class="m-0 vgwText" topicid="'+path+'/firmware_update/">Loading...</h3>';
                 html += '</div>';                
                 html += '<div id="'+vgwObject.mac+'_Chart" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 m-0 p-0 cpuChart"></div>';
                 html += '</div>'; 
 
-                html += '<div class="col-sm-6 col-md-6 col-lg-6">';
-                html += '<div class="col-sm-6 col-md-6 col-lg-6 m-b-5">';
+                html += '<div class="col-sm-6 col-md-6 col-lg-6 m-t-10">';
+                html += '<div class="col-sm-6 col-md-6 col-lg-6 m-b-10">';
                 html += '<small>Uptime</small> <h3  class="m-0 vgwText" topicid="'+path+'/uptime/">Loading...</h3>';
                 html += '</div>';                
-                html += '<div class="col-sm-6 col-md-6 col-lg-6 m-b-5 ">';
+                html += '<div class="col-sm-6 col-md-6 col-lg-6 m-b-10 ">';
                 html += '<small>Last Ping</small> <h3  class="m-0 vgwText" topicid="'+path+'/LastPing/">Loading...</h3>';
                 html += '</div>';                
                 html += '</div>';
 
                 html += '<div class="col-sm-6 col-md-6 col-lg-6">';
                 html += '<div class="col-sm-12 col-md-12 col-lg-12 m-t-5 p-0 f-20 elementHeader">RAM</div>';
-                html += '<div class="col-sm-4 col-md-4 col-lg-4 m-b-5">';
+                html += '<div class="col-sm-4 col-md-4 col-lg-4 m-b-10">';
                 html += '<small>Free</small> <span class="badge freeBar"> </span> <h3 id="'+vgwObject.mac+'_RAMfree" class="m-0 vgwText ram" topicid="'+path+'/RAM/free/">0</h3>';
                 html += '</div>';                
-                html += '<div class="col-sm-4 col-md-4 col-lg-4 m-b-5">';
+                html += '<div class="col-sm-4 col-md-4 col-lg-4 m-b-10">';
                 html += '<small>Used</small> <span class="badge usedBar"> </span> <h3 id="'+vgwObject.mac+'_RAMused" class="m-0 vgwText ram" topicid="'+path+'/RAM/used/">0</h3>';
                 html += '</div>';   
-                html += '<div class="col-sm-4 col-md-4 col-lg-4 m-b-5">';
+                html += '<div class="col-sm-4 col-md-4 col-lg-4 m-b-10">';
                 html += '<small>Total</small> <h3 id="'+vgwObject.mac+'_RAMtotal" class="m-0 vgwText ram" topicid="'+path+'/RAM/total/">1</h3>';
                 html += '</div>';       
 
@@ -65,10 +65,10 @@ function addVGWInfoWidget(vgwObject) {
 
                 html += '<div class="col-sm-6 col-md-6 col-lg-6 m-t-5">';
                 html += '<div class="col-sm-12 col-md-12 col-lg-12 m-t-10 p-0 f-20 elementHeader">CPU</div>';
-                html += '<div class="col-sm-6 col-md-6 col-lg-6 m-b-5">';
+                html += '<div class="col-sm-6 col-md-6 col-lg-6 m-b-10">';
                 html += '<small>Usage</small> <h3  id="'+vgwObject.mac+'_CPUload" class="m-0 cpuElements" topicid="'+path+'/CPUload/">0</h3>';
                 html += '</div>';                
-                html += '<div class="col-sm-6 col-md-6 col-lg-6 m-b-5">';
+                html += '<div class="col-sm-6 col-md-6 col-lg-6 m-b-10">';
                 html += '<small>Temperature</small> <h3  class="m-0 cpuElements maxTemp" topicid="'+path+'/CPUtemp/">0</h3>';
                 html += '</div>';  
                 html += '</div>';

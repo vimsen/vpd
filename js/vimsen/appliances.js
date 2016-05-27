@@ -662,12 +662,12 @@ $(document).ready(function () {
     
 
       ali.innerHTML = '<div  class="dash-widget-item switchApplianceItem"> <div class="switchHeader"> '
-    +'<div class="dash-widget-header"> <div class="dash-widget-title f-14"> '+applianceName+' <br/> <small>'+vgwname+'</small> </div>'
+    +'<div class="dash-widget-header"> <div class="dash-widget-title f-14 f-500"> '+applianceName+' <br/> <small>'+vgwname+'</small> </div>'
     +' <div class="pull-right m-t-15 m-r-5 m-b-15"> <div class="toggle-switch" data-ts-color="red"> '
     +'<input id="ts-'+applianceName+'" type="checkbox" hidden="hidden" class="switchON_OFF" item="'+element.type+'" dr="'+drUrl+'" ip="'+ipaddress+'"> <label for="ts-'+applianceName+'" class="ts-helper"></label> </div> </div> </div>'
     +' <div class="clearfix"></div> </div> <div class="bgm-lime p-20 text-right"> <div class="row"> '
     +'<div class="appliancesSwitchDetails col-xs-6 m-t-10">'
-    +' <small>STATE</small> <h3 id= "'+applianceName+'_state" class="m-0 f-400 c-white state_value" topicid="'+topicON_OFF+'">'+element.state+'</h3> </div> <div class="col-xs-6"> '
+    +' <small class="f-12">STATE</small> <h3 id= "'+applianceName+'_state" class="p-5 m-0 f-400 c-white state_value" topicid="'+topicON_OFF+'">'+element.state+'</h3> </div> <div class="col-xs-6"> '
     +'</div> </div> </div> </div>';
    
 
@@ -678,19 +678,19 @@ $(document).ready(function () {
       var topicON_OFF = group+'/'+macaddress+'/state/'+applianceName+'/state';
     
     ali.innerHTML = '<div  class="dash-widget-item buildingApplianceItem"> <div class="buildingHeader p-b-20"> '
-    +'<div class="dash-widget-header"> <div class="dash-widget-title  f-14"> '+applianceName+' <br/> <small>'+vgwname+'</small> </div>'
+    +'<div class="dash-widget-header"> <div class="dash-widget-title  f-14 f-500"> '+applianceName+' <br/> <small>'+vgwname+'</small> </div>'
     +' <div class="pull-right m-t-15 m-r-5 m-b-15"> '
     +' </div> </div>'
     +' <div class="clearfix"></div> </div> <div class="bgm-lime p-20 text-right"> <div class="row"> '
-    +'<div class="appliancesBuildingDetails col-xs-6 m-t-30"> <small>'+element.prosumption+' (W)</small> '
-    +'<h3 id= "'+applianceName+element.powerNaming+'total" class="m-0 f-400 c-white power_valueB" topicid="'+topicMeasurement+'">0.0000</h3> <br/> <small>'+element.prosumption+' (Wh)</small>'
+    +'<div class="appliancesBuildingDetails col-xs-6 m-t-30"> <small class="f-12">'+element.prosumption+' (W)</small> '
+    +'<h3 id= "'+applianceName+element.powerNaming+'total" class="p-5 m-0 f-400 c-white power_valueB" topicid="'+topicMeasurement+'">0.0000</h3> <br/> <small class="f-12">'+element.prosumption+' (Wh)</small>'
     +' <h3 id= "'+applianceName+'_energy"class="m-0 f-400 c-white energy_valueB">0.0000</h3> <br/>'
-    +'<small>STATE</small> <h3 id= "'+applianceName+'_state" class="m-0 f-400 c-white state_valueB">'+element.state+'</h3> </div> <div class="col-xs-6"> '
+    +'<small class="f-12">STATE</small> <h3 id= "'+applianceName+'_state" class="p-5 m-0 f-400 c-white state_valueB">'+element.state+'</h3> </div> <div class="col-xs-6"> '
     +'<div class="p-t-20 p-b-20 text-center c-white"> <div id= "'+applianceName+'_active_power_total_pie_percent'+macaddress+'" class="easy-pie '+applianceName+macaddress+' m-b-10" data-percent="0">'
     +' <div class="percent" id= "'+applianceName+'_active_power_total_percent'+macaddress+'">0</div> <div class="pie-title">'+element.prosumption+' %</div> </div> '
-    +'<br/><small>Phase A (W)</small> <h5 id= "'+applianceName+element.powerNaming+'phaseA" class="m-0 f-400 c-white power_valueB">0.0000</h5>'
-    +'<small>Phase B (W)</small> <h5 id= "'+applianceName+element.powerNaming+'phaseB" class="m-0 f-400 c-white power_valueB">0.0000</h5>'
-    +'<small>Phase C (W)</small> <h5 id= "'+applianceName+element.powerNaming+'phaseC" class="m-0 f-400 c-white power_valueB">0.0000</h5>'
+    +'<br/><small>Phase A (W)</small> <h5 id= "'+applianceName+element.powerNaming+'phaseA" class="p-5 m-0 f-400 c-white power_valueB">0.0000</h5>'
+    +'<small>Phase B (W)</small> <h5 id= "'+applianceName+element.powerNaming+'phaseB" class="p-5 m-0 f-400 c-white power_valueB">0.0000</h5>'
+    +'<small>Phase C (W)</small> <h5 id= "'+applianceName+element.powerNaming+'phaseC" class="p-5 m-0 f-400 c-white power_valueB">0.0000</h5>'
     +'</div> </div> </div> </div> </div>';
      }
     } 
@@ -703,14 +703,14 @@ $(document).ready(function () {
     
     //production
     ali.innerHTML = '<div  class="dash-widget-item productionApplianceItem"> <div class="productionHeader p-b-20"> '
-    +'<div class="dash-widget-header"> <div class="dash-widget-title  f-14"> '+applianceName+' <br/> <small>'+vgwname+'</small> </div>'
+    +'<div class="dash-widget-header"> <div class="dash-widget-title  f-14 f-500"> '+applianceName+' <br/> <small>'+vgwname+'</small> </div>'
     +' <div class="pull-right m-t-15 m-r-5 m-b-15"> '
     +' </div> </div>'
     +' <div class="clearfix"></div> </div> <div class="bgm-cyan p-20 text-right"> <div class="row"> '
-    +'<div class="appliancesProductionDetails col-xs-6 m-t-30"> <small>'+element.prosumption+' (W)</small> '
-    +'<h3 id= "'+applianceName+'_power'+macaddress+'" class="m-0 f-400 c-white power_valueP '+macaddress+'_powerValue" topicid="'+topicMeasurementP+'">0.0000</h3> <br/> <small>'+element.prosumption+' (Wh)</small>'
-    +' <h3 id= "'+applianceName+'_energy"class="m-0 f-400 c-white energy_valueP">0.0000</h3> <br/>'
-    +' <small>STATE</small> <h3 id= "'+applianceName+'_state" topicid="'+topicON_OFF+'" class="m-0 f-400 c-white state_valueP">'+element.state+'</h3> </div> <div class="col-xs-6"> '
+    +'<div class="appliancesProductionDetails col-xs-6 m-t-30"> <small class="f-12">'+element.prosumption+' (W)</small> '
+    +'<h3 id= "'+applianceName+'_power'+macaddress+'" class="p-5 m-0 f-400 c-white power_valueP '+macaddress+'_powerValue" topicid="'+topicMeasurementP+'">0.0000</h3> <br/> <small class="f-12">'+element.prosumption+' (Wh)</small>'
+    +' <h3 id= "'+applianceName+'_energy"class="p-5 m-0 f-400 c-white energy_valueP">0.0000</h3> <br/>'
+    +' <small class="f-12">STATE</small> <h3 id= "'+applianceName+'_state" topicid="'+topicON_OFF+'" class="p-5 m-0 f-400 c-white state_valueP">'+element.state+'</h3> </div> <div class="col-xs-6"> '
     +'<div class="p-t-20 p-b-20 text-center c-white"> <div id= "'+applianceName+'_power_pie_percent'+macaddress+'" class="easy-pie '+applianceName+macaddress+' m-b-10" data-percent="0">'
     +' <div class="percent" id= "'+applianceName+'_power_percent'+macaddress+'">0.0000</div> <div class="pie-title">'+element.prosumption+' %</div> </div> '
     +'<div  id= "'+applianceName+'_battery_percentage_pie'+macaddress+'" class="easy-pie '+batterypie+macaddress+'" data-percent="0"> '
@@ -747,14 +747,14 @@ $(document).ready(function () {
     var topicON_OFF = group+'/'+macaddress+'/state/'+applianceName+'/state';
 
     ali.innerHTML = '<div  class="dash-widget-item consumptionApplianceItem"> <div class="consumptionHeader"> '
-    +'<div class="dash-widget-header"> <div class="dash-widget-title  f-14"> '+applianceName+' <br/> <small>'+vgwname+'</small> </div>'
+    +'<div class="dash-widget-header"> <div class="dash-widget-title  f-14 f-500"> '+applianceName+' <br/> <small>'+vgwname+'</small> </div>'
     +' <div class="pull-right m-t-15 m-r-5 m-b-15"> <div class="toggle-switch" data-ts-color="red"> '
     +'<input id="ts-'+applianceName+'" type="checkbox" hidden="hidden" class="switchON_OFF" item="'+element.type+'" dr="'+drUrl+'" ip="'+ipaddress+'" topicid="'+topicON_OFF+'"> <label for="ts-'+applianceName+'" class="ts-helper"></label> </div> </div> </div>'
     +' <div class="clearfix"></div> </div> <div class="bgm-lime p-20 text-right"> <div class="row"> '
-    +'<div class="appliancesConsumptionDetails col-xs-6 m-t-30"> <small>'+element.prosumption+' (W)</small> '
-    +'<h3 id= "'+applianceName+'_power'+macaddress+'" topicid="'+topicMeasurementP+'" class="m-0 f-400 c-white power_value">'+powerState+'</h3> <br/> <small>'+element.prosumption+' (Wh)</small>'
-    +' <h3 id= "'+applianceName+'_energy" topicid="'+topicMeasurementE+'" class="m-0 f-400 c-white energy_value">0.0000</h3> <br/>'
-    +' <small>STATE</small> <h3 id= "'+applianceName+'_state" topicid="'+topicON_OFF+'" class="m-0 f-400 c-white state_value">'+element.state+'</h3> </div> <div class="col-xs-6"> '
+    +'<div class="appliancesConsumptionDetails col-xs-6 m-t-30"> <small class="f-12">'+element.prosumption+' (W)</small> '
+    +'<h3 id= "'+applianceName+'_power'+macaddress+'" topicid="'+topicMeasurementP+'" class="p-5 m-0 f-400 c-white power_value">'+powerState+'</h3> <br/> <small class="f-12">'+element.prosumption+' (Wh)</small>'
+    +' <h3 id= "'+applianceName+'_energy" topicid="'+topicMeasurementE+'" class="p-5 m-0 f-400 c-white energy_value">0.0000</h3> <br/>'
+    +' <small class="f-12">STATE</small> <h3 id= "'+applianceName+'_state" topicid="'+topicON_OFF+'" class="p-5 m-0 f-400 c-white state_value">'+element.state+'</h3> </div> <div class="col-xs-6"> '
     +'<div class="p-t-20 p-b-20 text-center c-white"> <div class="easy-pie '+applianceName+macaddress+' m-b-10" id= "'+applianceName+'_power_pie_percent'+macaddress+'" data-percent="0">'
     +' <div class="percent" id= "'+applianceName+'_power_percent'+macaddress+'">0</div> <div class="pie-title">'+element.prosumption+' %</div> </div> '
     +'<div class="easy-pie '+healthpie+macaddress+'"  data-percent="100"> '

@@ -169,12 +169,12 @@ xmlhttp.send();
                                 console.log("SUM PIE:"+JSON.stringify(out));
                                 //*/
                                //create Series for power total consumption per VGW
-                                addToChart("containerTotalVGWConsumptionHighcharts",groupByTopicName,"total_power", dateFrom, dateTo, "Total Consumption");
+                                addToChart("containerTotalVGWConsumptionHighcharts","pieTotalVGWConsumptionHighchart", groupByTopicName,"total_power", dateFrom, dateTo, "Total Consumption");
                                 
                                //create Series for power consumption
-                                addToChart("containerConsumptionHighcharts",groupByTopicName,"plug", dateFrom, dateTo, "Consumption");
+                                addToChart("containerConsumptionHighcharts", "pieConsumptionHighchart", groupByTopicName,"plug", dateFrom, dateTo, "Consumption");
                                //create Series for power production
-                                addToChart("containerProductionHighcharts",groupByTopicName,"production", dateFrom, dateTo,"Production");
+                                addToChart("containerProductionHighcharts", "pieProductionHighchart", groupByTopicName,"production", dateFrom, dateTo,"Production");
            
               },
               error: function(data) {

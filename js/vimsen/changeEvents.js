@@ -165,6 +165,11 @@ $("#submitHistoricalData").click(function () {
     initProsumptionChart("containerTotalVGWConsumptionHighcharts", "Total Consumption per VGW");
     initProsumptionChart("containerConsumptionHighcharts", "Consumption");
     initProsumptionChart("containerProductionHighcharts", "Production");
+
+    initPieChart("pieTotalVGWConsumptionHighchart", "Total Consumption per VGW");
+    initPieChart("pieConsumptionHighchart", "Total Consumption per Appliance");
+    initPieChart("pieProductionHighchart", "Total Production per Appliance");
+
                 
   $.each(MY.selectedVGWs, function( index, value ) {
   //console.log( index + ": " + value );
