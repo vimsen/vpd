@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Material Admin</title>
+        <title>VP Profile</title>
 
         <!-- Vendor CSS -->
         <link href="vendors/bower_components/fullcalendar/dist/fullcalendar.min.css" rel="stylesheet">
@@ -22,10 +22,6 @@
          
          <!--select css -->
           <link href="vendors/bower_components/bootstrap-select/dist/css/bootstrap-select.css" rel="stylesheet">
-
-         <!--daterange puicker css -->
-         <link href="css/daterangepicker.css" rel="stylesheet">
-         
 
        
     </head>
@@ -109,92 +105,31 @@
                         </div>
                     </a>
 
-                   <ul class="main-menu">
+                    <ul class="main-menu">
                         <li>
                             <a href="vp-profile.html"><i class="zmdi zmdi-account"></i> View Profile</a>
                         </li>
                         <li>
-                            <a href="vp-settings.html"><i class="zmdi zmdi-settings"></i> Settings</a>
+                            <a href=""><i class="zmdi zmdi-settings"></i> Settings</a>
                         </li>
                         <li>
-                          <a href="login.html" title="Log out" onclick="logout();" target="_self"><i class="zmdi zmdi-devices-off"></i> Logout</a>
+                          <a href="login.html" title="Log out" onclick="logout();" target="_self"><i class="zmdi zmdi-time-restore"></i> Logout</a>
                         </li>
                     </ul>
                 </div>
 
-                 <ul class="main-menu">
+                <ul class="main-menu">
                     <li><a href="dashboard.html"><i class="zmdi zmdi-view-dashboard"></i> Dashboard</a></li>
-                    <li class="active"><a href="historicalData.html"><i class="zmdi zmdi-time-restore"></i> Historical Data</a></li>
+                    <li><a href="historicalData.html"><i class="zmdi zmdi-time-restore"></i> Historical Data</a></li>
                     <li><a href="weather.html"><i class="zmdi zmdi-sun"></i> Weather</a></li>
                     <li><a href="vgwinfo.html"><i class="zmdi zmdi-cast-connected"></i> VGWs Info</a></li>
                     
                 </ul>
-            </aside>
+            </aside>           
             
+          <img  class="m-t-30 underconstruction" src="img/underconstruction.png" alt="">
             
-            
-            <section id="content">
-                <div class="container">
-                    <div class="block-header p-5">
-                        <h2>Historical Data Monitoring</h2>                         
-                    <div>
-                        <div class="row">
-                            <div class="col-sm-6 m-b-15 p-5">
-                             <select id="controllerSelectionHistorical" class="selectpicker" data-width="100%" data-style="btn-primary" multiple title="Choose VGWs..." data-selected-text-format="count > 3" required>
-                             </select>
-                            </div>
-                            <div class="col-sm-3 m-b-15 p-5">
-                             <select id="intervalSelection" class="selectpicker" data-width="98%" data-style="btn-primary"  title="Choose interval..." required>
-                                  <option value="900">15 minutes</option>   
-                                  <option value="1800">30 minutes</option>   
-                                  <option value="3600">1 hour</option>   
-                             </select>
-                            </div>
-
-                            <div id="reportrange" class="col-sm-3 p-5 m-b-5 m-t-5 calendarRange" >
-                                  <i class="btn-primary glyphicon glyphicon-calendar fa fa-calendar"></i>
-                                  <span></span> <b class="caret"></b>                                
-                            </div>
-                          <!--  <div id="totalPowerEnergy">
-                               <input id="totalPowerInput" class="showHide" />
-                           </div> -->
-                            <div class="row">
-                              <div class="m-b-25 p-5">                             
-                                 <div class="pull-right p-10" >
-                                   <button id="submitHistoricalData" class="btn bgm-teal">View results</button>
-                                </div>
-                            </div>
-                           </div>
-                        
-                           <!--  <div class="chart-edge col-md-8 col-sm-6"> -->
-                        <div class="row m-t-20">
-                           <!--  <div id="totalPowerEnergy">
-                               <input id="totalPowerInput" class="showHide" />
-                           </div> -->
-                         <div  class="col-md-4 col-sm-6">
-                             <div id="pieTotalVGWConsumptionHighchart" class="m-b-25"></div>
-                             <div id="pieProductionHighchart" class="m-b-25"></div>  
-                             <div id="pieConsumptionHighchart" class="m-b-25"></div>  
-
-                         </div>
-                           <!--  <div class="chart-edge col-md-8 col-sm-6"> -->
-                            <div class="col-md-8 col-sm-6">
-                            <div class="card-body card-padding-sm">
-                                    <div id="containerTotalVGWConsumptionHighcharts" class="m-b-25"></div>
-                                    <div id="containerProductionHighcharts" class="m-b-25"></div>
-                                    <div id="containerConsumptionHighcharts" class="m-b-25"></div>
-                                                                         
-                             </div>
-                           </div>
-                        </div>
-                        
-                        </div>
-
-                     </div>
-                    </div>
-                    
-                </div>
-            </section>
+          
         </section>
         
         <footer id="footer">
@@ -209,59 +144,9 @@
             </ul>
         </footer>
 
-        <!-- Page Loader -->
-        <div class="page-loader">
-            <div class="preloader pls-green">
-                <svg class="pl-circular" viewBox="25 25 50 50">
-                    <circle class="plc-path" cx="50" cy="50" r="20" />
-                </svg>
-
-                <p>Please wait...</p>
-            </div>
-        </div>
+      
         
-        <!-- Older IE warning message -->
-        <!--[if lt IE 9]>
-            <div class="ie-warning">
-                <h1 class="c-white">Warning!!</h1>
-                <p>You are using an outdated version of Internet Explorer, please upgrade <br/>to any of the following web browsers to access this website.</p>
-                <div class="iew-container">
-                    <ul class="iew-download">
-                        <li>
-                            <a href="http://www.google.com/chrome/">
-                                <img src="img/browsers/chrome.png" alt="">
-                                <div>Chrome</div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://www.mozilla.org/en-US/firefox/new/">
-                                <img src="img/browsers/firefox.png" alt="">
-                                <div>Firefox</div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="http://www.opera.com">
-                                <img src="img/browsers/opera.png" alt="">
-                                <div>Opera</div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://www.apple.com/safari/">
-                                <img src="img/browsers/safari.png" alt="">
-                                <div>Safari</div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="http://windows.microsoft.com/en-us/internet-explorer/download-ie">
-                                <img src="img/browsers/ie.png" alt="">
-                                <div>IE (New)</div>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                <p>Sorry for the inconvenience!</p>
-            </div>   
-        <![endif]-->
+       
         
            <!-- Javascript Libraries -->
         <script src="vendors/bower_components/jquery/dist/jquery.min.js"></script>
@@ -289,7 +174,6 @@
             <script src="vendors/bower_components/jquery-placeholder/jquery.placeholder.min.js"></script>
         <![endif]-->
 
-         <script src="js/vimsen/init.js"></script>
         
         <script src="js/flot-charts/curved-line-chart.js"></script>
         <script src="js/flot-charts/line-chart.js"></script>
@@ -298,34 +182,6 @@
         <script src="js/charts.js"></script>
         <script src="js/functions.js"></script>
         <script src="js/demo.js"></script>
-        <script src="js/vimsen/createHistoricalChart.js"></script>
-        
-        
-         <!--edms appliances-->
-         <script src="js/vimsen/edmsappliances.js"></script>
-
-          <!--events change-->
-         <script src="js/vimsen/changeEvents.js"></script>
-
-         <!--highcharts -->
-         <script src="js/highcharts/highcharts.js"></script>
-         <script src="js/highcharts/exporting.js"></script>
-         <script src="js/highcharts/no-data-to-display.js"></script>
-         <!-- underscore library -->
-         <script src="js/underscore-min.js"></script>
-
-         <!--highcharts theme -->
-         <script src="css/vimsen/dark-unica.js"></script>
-
-        
-
-          <!--date range picker -->
-         <script src="js/daterangepicker.js"></script>
-
-
-
-         <!-- for timezone 
-         <script type="text/javascript" src="js/vimsen/momentTimeZone/moment-timezone-with-data-2010-2020.js"></script>-->
-              
+      
     </body>
   </html>

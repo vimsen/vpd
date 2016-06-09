@@ -128,6 +128,9 @@ function initPieChart(divId, prosumption) {
         tooltip: {
             pointFormat: '{series.name}: <b>{point.y:.1f} Watts</b>'
         },
+        credits: {
+         enabled: false
+        },        
         plotOptions: {
             pie: {
                 allowPointSelect: true,
@@ -236,8 +239,11 @@ function addToChart(divId, pieDivId, object,prosumptionType, dateFrom, dateTo,ti
     };
 
      //chaet for Consumption DEVICES to show ON/OFF states
-    if(index.toLowerCase().search(prosumptionType) != -1  &&index.toLowerCase().search("power") == -1){
+    if(index.toLowerCase().search(prosumptionType) != -1  && index.toLowerCase().search("power") == -1 &&index.toLowerCase().search("production") == -1){
       //add serie to series
+      console.log("prosumptionType"+index);
+      console.log("prosumptionType"+index.toLowerCase().search("plug") );
+       console.log("prosumptionType"+index.toLowerCase().search("power"));
      var chart2 = $('#'+divId+'STATE').highcharts();
      // chart2.showLoading();
     //change title

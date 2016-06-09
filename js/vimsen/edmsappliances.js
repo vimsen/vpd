@@ -63,10 +63,10 @@ $(document).ready(function () {
           }));
          //$('#controllerSelectionHistorical').selectpicker('refresh');
         });  
-       $('#controllerSelectionHistorical').append($('<option>', {
+      /* $('#controllerSelectionHistorical').append($('<option>', {
             value: "all",
             text: "All VGWs"
-          }));
+          }));*/
        $('#controllerSelectionHistorical').selectpicker('refresh');
 
 
