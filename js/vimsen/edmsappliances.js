@@ -172,9 +172,9 @@ xmlhttp.send();
                                 addToChart("containerTotalVGWConsumptionHighcharts","pieTotalVGWConsumptionHighchart", groupByTopicName,"total_power", dateFrom, dateTo, "Total Consumption");
                                 
                                //create Series for power consumption
-                                addToChart("containerConsumptionHighcharts", "pieConsumptionHighchart", groupByTopicName,"plug", dateFrom, dateTo, "Consumption");
+                                addToChart("containerConsumptionHighcharts", "pieConsumptionHighchart", groupByTopicName,"plug", dateFrom, dateTo, "Consumption per Device");
                                //create Series for power production
-                                addToChart("containerProductionHighcharts", "pieProductionHighchart", groupByTopicName,"production", dateFrom, dateTo,"Production");
+                                addToChart("containerProductionHighcharts", "pieProductionHighchart", groupByTopicName,"production", dateFrom, dateTo,"Production per Device");
            
               },
               error: function(data) {

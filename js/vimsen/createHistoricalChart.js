@@ -16,7 +16,7 @@ function initProsumptionChart(divId, prosumption) {
           //  backgroundColor: 'rgba(4,5,2,0.2)'
          },
          title: {
-            text: 'Historical '+prosumption+' (W) per Device for all VGWs'
+            text: 'Historical '+prosumption+' (W) for all VGWs'
             
        },
        xAxis: {
@@ -165,7 +165,7 @@ function addToChart(divId, pieDivId, object,prosumptionType, dateFrom, dateTo,ti
       //  }
       chart.showLoading();
     //change title
-    chart.setTitle({ text: 'Historical ' +titleText+' (W) per Device for all VGWs from '+moment(dateFrom).format('DD/MM/YYYY') +' to '+moment(dateTo).format('DD/MM/YYYY')});
+    chart.setTitle({ text: 'Historical ' +titleText+' (W) for all VGWs from '+moment(dateFrom).format('DD/MM/YYYY') +' to '+moment(dateTo).format('DD/MM/YYYY')});
 
    //add pie serie to series
      var pieChart = $('#'+pieDivId+'').highcharts();
