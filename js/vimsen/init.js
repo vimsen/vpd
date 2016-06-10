@@ -15,19 +15,65 @@ MY.dateFrom;
 MY.dateTo;
 MY.selectedVGWs;
 
+//users list. This must be changes with secure login from the DB (INTELEN)
+MY.users = [{
+    "username":"telint",
+    "password":"123"
+},{
+    "username":"glimperop",
+    "password":"123"
+},{
+    "username":"hedno",
+    "password":"123"
+},{
+    "username":"sedini",
+    "password":"123"
+}];
+
+var vgwFile = localStorage.getItem("vgwFile");
+
+$(document).ready(function () {
+   console.log("addAppliances:::: container:: vgw file::"+vgwFile);
+   if(vgwFile.length=0){
+        window.location = "login.html";
+   }
+
+   //$('#alertLogin').on('closed.bs.alert', function () {
+   //$('#errorDiv').hide();
+  //})
+
+});
+
 function authenticate() {
     console.log("authenticate");
     var un = document.getElementById("i-username").value;
     // console.log(un.value);
     var pw = document.getElementById("i-password").value;
+    var currentObject = {
+        "username":un,
+        "password":pw 
+         };
 
     var springuser;
     var errorMsg;
 
-    // Store
-	localStorage.setItem("vgwFile", "js/vimsen/user/"+un+".json");
-   // MY.file = "js/vimsen/"+un+".json";
-    window.location = "dashboard.html";
+    //check credentials
+    console.log($.inArray(currentObject, MY.users));
+    //console.log(MY.users.some(function(item) { return item.username === un }) );
+
+    for (var i=0, l=MY.users.length; i<l; i++) {
+    if (typeof MY.users[i] == "object" && MY.users[i].username === un && MY.users[i].password === pw) {
+       console.log(MY.users[i]);
+        // Store
+        localStorage.setItem("vgwFile", "js/vimsen/user/"+un+".json");
+       // MY.file = "js/vimsen/"+un+".json";
+       window.location = "dashboard.html";
+    } else {
+       $('#errorDiv').show();      
+    }
+  }
+
+   
     /*$.ajax({
 
         // The 'type' property sets the HTTP method.

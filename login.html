@@ -22,6 +22,11 @@
  <form role="form" method="post" onsubmit="javascript: authenticate(); return false;">
         <div class="lc-block toggled" id="l-login">
             <img src="../../img/vimsen/vimsen_logo_small.png" height="100%" width="100%"></img>
+            
+            <div id="errorDiv" class="input-group m-b-20 m-t-20" style="display:none">
+               <span class="input-group-addon"><i class="zmdi zmdi-alert-circle"></i></span>
+               <div id="alertLogin" class="alert alert-danger" role="alert">Error Username or Password. Please try again.</div>              
+            </div>
             <div class="input-group m-b-20 m-t-20">
                 <span class="input-group-addon"><i class="zmdi zmdi-account"></i></span>
                 <div class="fg-line" id="l-username">
@@ -159,7 +164,6 @@
         <![endif]-->
         
         <!-- Javascript Libraries -->
-         <script src="js/vimsen/init.js"></script>
         <script src="vendors/bower_components/jquery/dist/jquery.min.js"></script>
         <script src="vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
         
@@ -169,7 +173,8 @@
         <!--[if IE 9 ]>
             <script src="vendors/bower_components/jquery-placeholder/jquery.placeholder.min.js"></script>
         <![endif]-->
-        
+          <script src="js/vimsen/init.js"></script>
+       
         <script src="js/functions.js"></script>
         
     </body>

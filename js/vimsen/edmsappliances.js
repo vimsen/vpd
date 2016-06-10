@@ -42,8 +42,8 @@ $(document).ready(function () {
     //initProsumptionChart("containerConsumptionHighcharts", "Consumption");
    // initProsumptionChart("containerProductionHighcharts", "Production");
 
-    var vgwFile = localStorage.getItem("vgwFile");
-    console.log("edmsAppliances:::: container:: vgw file::"+vgwFile);
+    //var vgwFile = localStorage.getItem("vgwFile");
+   // console.log("edmsAppliances:::: container:: vgw file::"+vgwFile);
      //get appliances for each controller
      var jqxhr = $.getJSON(vgwFile, function(data) {
      // console.log( "success:"+JSON.stringify(data));

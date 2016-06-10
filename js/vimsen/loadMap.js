@@ -1,6 +1,6 @@
 $(document).ready(function () {
-  var vgwFile = localStorage.getItem("vgwFile");
-    console.log("addAppliances:::: container:: vgw file::"+vgwFile);
+//  var vgwFile = localStorage.getItem("vgwFile");
+   // console.log("addAppliances:::: container:: vgw file::"+vgwFile);
    
      var topics = [];
     

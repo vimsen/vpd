@@ -1,7 +1,5 @@
 $(document).ready(function () {
-  var vgwFile = localStorage.getItem("vgwFile");
-    console.log("addAppliances:::: container:: vgw file::"+vgwFile);
-
+   
     /* var zone = 'Europe/Athens';
    MY.UTC = (-moment.tz(moment(), zone).utcOffset()) * 60 * 1000;
     console.log("---------------------------------------timezoneOffset" + MY.UTC);*/

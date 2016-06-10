@@ -1,6 +1,6 @@
 $(document).ready(function () {
-  var vgwFile = localStorage.getItem("vgwFile");
-    console.log(" VGW::::: vgw file::"+vgwFile);
+  //var vgwFile = localStorage.getItem("vgwFile");
+   // console.log(" VGW::::: vgw file::"+vgwFile);
    
      var topics = [];
     

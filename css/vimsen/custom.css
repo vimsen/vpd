@@ -312,6 +312,10 @@
   border-radius:5px !important;
 }
 
+#l-login {
+  padding:35px 55px 45px 35px;
+}
+
 #i-username, #i-password {
   background:  none !important;
   border-radius:5px !important;
@@ -479,4 +483,11 @@ html:not(.ismobile) .page-loader {
 .underconstruction{
    display: block;
     margin: 0 auto;
+}
+
+#alertLogin {
+  background-color:rgba(244, 67, 54, 0.6) !important;
+  padding-top: 10px !important;
+  border-radius:5px !important;
+  margin-bottom: 0px !important;
 }
