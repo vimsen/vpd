@@ -54,24 +54,30 @@ function authenticate() {
         "password":pw 
          };
 
-    var springuser;
     var errorMsg;
+    var userExists= false;
 
     //check credentials
     console.log($.inArray(currentObject, MY.users));
     //console.log(MY.users.some(function(item) { return item.username === un }) );
 
     for (var i=0, l=MY.users.length; i<l; i++) {
-    if (typeof MY.users[i] == "object" && MY.users[i].username === un && MY.users[i].password === pw) {
+     if (typeof MY.users[i] == "object" && MY.users[i].username === un && MY.users[i].password === pw) {
        console.log(MY.users[i]);
         // Store
+        userExists=true;
         localStorage.setItem("vgwFile", "js/vimsen/user/"+un+".json");
        // MY.file = "js/vimsen/"+un+".json";
-       window.location = "dashboard.html";
-    } else {
-       $('#errorDiv').show();      
-    }
-  }
+        window.location = "dashboard.html";
+     } 
+     //else {
+     //   console.log("error!!!!");
+     //  $('#errorDiv').show();      
+     //}
+    };
+
+    if(!userExists)
+         $('#errorDiv').show();    
 
    
     /*$.ajax({
