@@ -751,7 +751,7 @@ $(document).ready(function () {
     +' <div class="clearfix"></div> </div> <div class="bgm-lime p-20 text-right"> <div class="row"> '
     +'<div class="appliancesConsumptionDetails col-xs-6 m-t-30"> <small class="f-12">'+element.prosumption+' (W)</small> '
     +'<h3 id= "'+applianceName+'_power'+macaddress+'" topicid="'+topicMeasurementP+'" class="p-5 m-0 f-400 c-white power_value">'+powerState+'</h3> <br/> <small class="f-12">'+element.prosumption+' (Wh)</small>'
-    +' <h3 id= "'+applianceName+'_energy" topicid="'+topicMeasurementE+'" class="p-5 m-0 f-400 c-white energy_value">0.0000</h3> <br/>'
+    +' <h3 id= "'+applianceName+'_energy'+macaddress+'" topicid="'+topicMeasurementE+'" class="p-5 m-0 f-400 c-white energy_value">0.0000</h3> <br/>'
     +' <small class="f-12">STATE</small> <h3 id= "'+applianceName+'_state" topicid="'+topicON_OFF+'" class="p-5 m-0 f-400 c-white state_value">'+element.state+'</h3> </div> <div class="col-xs-6"> '
     +'<div class="p-t-20 p-b-20 text-center c-white"> <div class="easy-pie '+applianceName+macaddress+' m-b-10" id= "'+applianceName+'_power_pie_percent'+macaddress+'" data-percent="0">'
     +' <div class="percent" id= "'+applianceName+'_power_percent'+macaddress+'">0</div> <div class="pie-title">'+element.prosumption+' %</div> </div> '

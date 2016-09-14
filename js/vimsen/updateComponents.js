@@ -169,10 +169,11 @@ function updateComponents(applianceName, applianceValue){
         $("#"+phase).text(parseFloat(sum).toFixed(4));
         //
        } else {
-      //  console.log("update fibaro::"+newtextApplianceName+macAddress+" value:"+applianceValue);
+        console.log("update fibaro::"+newtextApplianceName+macAddress+" value:"+applianceValue);
 
          //update attributes
          $("#"+newtextApplianceName+macAddress).text(applianceValue);
+         $("#"+macAddress+'_'+newtextApplianceName).text(applianceValue);
          $('#ts-'+newtextApplianceName+'').prop('checked', checked);
          $("#"+newtextApplianceName+'_state').text(applianceValue);
 
@@ -211,8 +212,7 @@ function updateComponents(applianceName, applianceValue){
        	
          //update totals for each appliance
          $("#"+macAddress+"_totalPower").text((parseFloat($("#"+macAddress+"meter1_power").text())+parseFloat($("#"+macAddress+"meter2_power").text())+parseFloat($("#"+macAddress+"meter3_power").text())).toFixed(4));
-         $("#"+macAddress+"_totalEnergy").text((parseFloat($("#"+macAddress+"meter1_energy").text())+parseFloat($("#"+macAddress+"meter2_energy").text())+parseFloat($("#"+macAddress+"meter3_energy").text())).toFixed(4));
-                 
+         //$("#"+macAddress+"_totalEnergy").text((parseFloat($("#"+macAddress+"meter1_energy").text())+parseFloat($("#"+macAddress+"meter2_energy").text())+parseFloat($("#"+macAddress+"meter3_energy").text())).toFixed(4));                
 
          //update meterX totals
          var sum = 0;
