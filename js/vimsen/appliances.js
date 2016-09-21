@@ -334,8 +334,27 @@ $(document).ready(function () {
            //createAppliancesDiv(vgwObject.name, vgwObject.url, vgwObject.mac, objItem, objAttributes);
            createAppliancesDiv(vgwObject.name, vgwObject.mqtt+'/'+vgwObject.mac+'/LDRcommand', vgwObject.mac, vgwObject.ip,vgwObject.group, objItem, objAttributes);
 
-           
-       
+          // Called to check if charts are empty and hides them in such a case
+          // This is actually called twice, here and in the changeEvent.js to catch change events :)  
+          var c = $('#containerTotalPowerHighcharts').highcharts()
+          if(!c.hasData()){
+            $('#containerTotalPowerHighcharts').hide() 
+          } else {
+            $('#containerTotalPowerHighcharts').show() 
+          }
+          var c = $('#containerConsumptionHighcharts').highcharts()
+          if(!c.hasData()){
+            $('#containerConsumptionHighcharts').hide() 
+          } else {
+            $('#containerConsumptionHighcharts').show() 
+          }
+          var c = $('#containerProductionHighcharts').highcharts()
+          if(!c.hasData()){
+            $('#containerProductionHighcharts').hide() 
+          } else {
+            $('#containerProductionHighcharts').show() 
+          }
+             
 
      })
     .fail(function(message) {

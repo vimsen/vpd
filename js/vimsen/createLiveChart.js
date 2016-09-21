@@ -50,7 +50,6 @@ function createLiveChart(divId, object, parameterToCheck, prosumption, dateFrom,
    // console.log(":::::::::::::createLiveChart:object ::::::::::::"+JSON.stringify(object) );
     
 
-
 //create series
   $.each(object, function(index, element) {
     

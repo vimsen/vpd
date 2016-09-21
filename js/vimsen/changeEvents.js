@@ -59,6 +59,26 @@ function hideDivs(controllerId) {
         
      
    }
+
+    // Show/hide graphs based on whether or not have data inside them
+    var c = $('#containerTotalPowerHighcharts').highcharts()
+    if(!c.hasData()){
+      $('#containerTotalPowerHighcharts').hide() 
+    } else {
+      $('#containerTotalPowerHighcharts').show() 
+    }
+    var c = $('#containerConsumptionHighcharts').highcharts()
+    if(!c.hasData()){
+      $('#containerConsumptionHighcharts').hide() 
+    } else {
+      $('#containerConsumptionHighcharts').show() 
+    }
+    var c = $('#containerProductionHighcharts').highcharts()
+    if(!c.hasData()){
+      $('#containerProductionHighcharts').hide() 
+    } else {
+      $('#containerProductionHighcharts').show() 
+    }
 };
 
 function showLegends(chartObject, series) {
