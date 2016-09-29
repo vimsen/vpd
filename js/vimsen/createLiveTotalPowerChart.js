@@ -50,7 +50,7 @@ function initTotalPowerLiveChart(divId) {
 
 function createLiveTotalPowerChart(divId, object, dateFrom,dateTo) {
   // console.log(":::::::::::::createLiveTotalPowerChart:object ::::::::::::"+JSON.stringify(object) );   
-
+  
 //create series
  
      var data = [], dataProduction = [],time = (new Date()).getTime(),i;
@@ -106,13 +106,15 @@ function createLiveTotalPowerChart(divId, object, dateFrom,dateTo) {
          //change tooltip
          chart.tooltip.options.formatter = function() {
           var xyArr=[];
-          return  this.series.name + '</b> (VGW:<br/>' + this.series.options.vgw + ') value: ' + this.y+'(KW)' ;
+          //return  this.series.name + '</b> (VGW:<br/>' + this.series.options.vgw + ') value: ' + this.y+'(KW)' ;
+          return  this.series.name + ' value: ' + this.y+'(KW)' ;
          }
 
           //change legend  labels
          chart.legend.options.labelFormatter = function() {
           var xyArr=[];
-          return  this.name + '<br/>(' + this.options.vgw + ')' ;
+          //return  this.name + '<br/>(' + this.options.vgw + ')' ;
+          return  this.name;
          }
 
    

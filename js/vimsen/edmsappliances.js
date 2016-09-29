@@ -57,7 +57,7 @@ $(document).ready(function() {
                 //add option to selection of controllers dropdown
                 $('#controllerSelectionHistorical').append($('<option>', {
                     value: element.mac,
-                    text: element.name
+                    text: element.name + " (" + element.mac + ")"
                 }));
                 //$('#controllerSelectionHistorical').selectpicker('refresh');
             });
@@ -127,26 +127,42 @@ function getAllItemsEDMS(vgw, dateFrom, dateTo, interval) {
 xmlhttp.open("GET", "https://beta.intelen.com/vimsenapi/EDMS_DSS/index.php/intelen/dataVGWHistorical?prosumers=b827eb4c14af&startdate=2016-04-03T06:30:00.000+02:00&enddate=2016-04-22T07:15:00.000+02:00&interval=900", true);
 xmlhttp.send();
       */
-    $.ajax({
-        url: 'https://beta.intelen.com/vimsenapi/EDMS_DSS/index.php/intelen/dataVGWHistorical?prosumers=' + vgw + '&startdate=' + dateFrom + '&enddate=' + dateTo + '&interval=' + interval + '',
+      console.log('https://beta.intelen.com/vimsenapi/EDMS_DSS/index.php/intelen/dataVGWHistorical?prosumers=' + vgw + '&startdate=' + dateFrom + '&enddate=' + dateTo + '&interval=' + interval + '');    
+      if ($('#getOfflineData').is(':checked')) {
+        urlData = vgw+'.json'
+      } else {
+        urlData = 'https://beta.intelen.com/vimsenapi/EDMS_DSS/index.php/intelen/dataVGWHistorical?prosumers=' + vgw + '&startdate=' + dateFrom + '&enddate=' + dateTo + '&interval=' + interval + '';
+      } 
+
+      $.ajax({
+        url: urlData,
         type: 'GET',
         dataType: "json",
         success: function(result) {
-            // console.log(JSON.stringify(result[0].HistoricalData));
-            if (result[0].HistoricalData.length > 0) {
+
+            // If offline data are stored then present only those based on the requested start and end date
+            RequestedMin = Date.parse(dateFrom);
+            RequestedMax = Date.parse(dateTo);
+            historyResults = [];
+            if (result[0].HistoricalData.length > 0 && $('#getOfflineData').is(':checked')) {
                 $.each(result[0].HistoricalData, function(i, n) {
-                    // graphSeries = new Array();
-                    //get key for date 
+
+                    // Re
+                    if (!(Date.parse(Object.keys(n)[0]) < RequestedMin ||  Date.parse(Object.keys(n)[0]) > RequestedMax)) {
+                      historyResults.push(n)  
+                    }  
+                    // get key for date 
                     // console.log("n:"+JSON.stringify(n));
-                    //console.log("value:: i"+i+"::::" + Object.keys(n)[0]);
+                    //console.log("value:: i"+i+"::::" + Date.parse(Object.keys(n)[0]));                    
                     //get value for key date
                     //console.log("value:: i"+i+"::::" + n[Object.keys(n)[0]]);
-
                 });
+            } else {
+              historyResults = result[0].HistoricalData;
             }
 
             //underscore group by topic name
-            var groupByTopicName = _.groupBy(result[0].HistoricalData, 'TopicName');
+            var groupByTopicName = _.groupBy(historyResults, 'TopicName');
 
             /* //sum all values of same topic
              var out = _(groupByTopicName).map(function(g, key) {
@@ -181,11 +197,14 @@ xmlhttp.send();
 
             // Present and fill in graphs if data exist
             if(hasTotalPower == 0) {
-              $('#containerConsumptionHighcharts').hide();
+              $('#containerTotalVGWConsumptionHighcharts').hide();
               $('#pieTotalVGWConsumptionHighchart').hide();
             } else {
-              $('#containerConsumptionHighcharts').show();
               $('#pieTotalVGWConsumptionHighchart').show();
+              $('#containerTotalVGWConsumptionHighcharts').show();
+              // there was an issue with hide show that was causing the overlapping of charts. the below code seems to handle the issue
+              $('#pieTotalVGWConsumptionHighchart').highcharts().reflow();
+              $('#containerTotalVGWConsumptionHighcharts').highcharts().reflow();
               addToChart("containerTotalVGWConsumptionHighcharts", "pieTotalVGWConsumptionHighchart", groupByTopicName, "total_power", dateFrom, dateTo, "Total Consumption");
             }
 
@@ -193,8 +212,11 @@ xmlhttp.send();
               $('#containerConsumptionHighcharts').hide();
               $('#pieConsumptionHighchart').hide();
             } else {
-              $('#containerConsumptionHighcharts').show();
               $('#pieConsumptionHighchart').show();
+              $('#containerConsumptionHighcharts').show();
+              // there was an issue with hide show that was causing the overlapping of charts. the below code seems to handle the issue
+              $('#pieConsumptionHighchart').highcharts().reflow();
+              $('#containerConsumptionHighcharts').highcharts().reflow();
               //create Series for power consumption
               addToChart("containerConsumptionHighcharts", "pieConsumptionHighchart", groupByTopicName, "plug", dateFrom, dateTo, "Consumption per Device");
             }
@@ -208,10 +230,20 @@ xmlhttp.send();
               $('#containerProductionHighcharts').hide();
               $('#pieProductionHighchart').hide();
             } else {
-              $('#containerProductionHighcharts').show();
               $('#pieProductionHighchart').show();
+              $('#containerProductionHighcharts').show();
+              // there was an issue with hide show that was causing the overlapping of charts. the below code seems to handle the issue
+              $('#pieProductionHighchart').highcharts().reflow();
+              $('#containerProductionHighcharts').highcharts().reflow();
               //create Series for power production
               addToChart("containerProductionHighcharts", "pieProductionHighchart", groupByTopicName, "production", dateFrom, dateTo, "Production per Device");
+            }
+
+            // If no data then show respective message
+            if(hasTotalPower == 0 && hasDevicePower == 0 && hasDeviceProduction ==0  && hasDeviceState == 0) {
+              $('#noDataText').show(); 
+            } else {
+               $('#noDataText').hide();   
             }
 
         },

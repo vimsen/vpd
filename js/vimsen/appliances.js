@@ -302,12 +302,12 @@ $(document).ready(function () {
             addBuildingAttributesToList("BuildingItem",vgwObject.consumptionNaming,element,objAttributes, vgwObject.mac, vgwObject.group);
             //consumption
             addItemToList("SwitchItem",vgwObject.consumptionNaming,element,"Consumption",objItem, vgwObject.mac, vgwObject.url+':'+vgwObject.port, vgwObject.ip, vgwObject.group);
-            addAttributesToList("NumberItem",vgwObject.consumptionNaming,element,objAttributes, vgwObject.mac, vgwObject.group);
+            addAttributesToList("NumberItem",vgwObject.consumptionNaming,element,objAttributes, vgwObject.mac, vgwObject.group, vgwObject.name);
 
             //production
             //for porduction items check again with george
             addItemToList("NumberItem",vgwObject.productionNaming,element, "Production",objItem, vgwObject.mac, vgwObject.url+':'+vgwObject.port, vgwObject.ip, vgwObject.group);
-            addAttributesToList("NumberItem","production",element,objAttributes,vgwObject.mac, vgwObject.group);
+            addAttributesToList("NumberItem","production",element,objAttributes,vgwObject.mac, vgwObject.group, vgwObject.name);
 
            
             //get total power consumption
@@ -464,7 +464,7 @@ $(document).ready(function () {
 
   }
 
-   function addAttributesToList(parameterTocheck,typeOfControl, element,objAttributes, vgwMac, group) {
+   function addAttributesToList(parameterTocheck,typeOfControl, element,objAttributes, vgwMac, group, vgwName) {
      //console.log("addAttributesToList::"+JSON.stringify(objAttributes));
     if(element.type.search(parameterTocheck) != -1 && element.name.search(typeOfControl) != -1){
         //contains
@@ -488,6 +488,7 @@ $(document).ready(function () {
             itemType: parameterTocheck,
             state: parseFloat(element.state).toFixed(4),
             vgw: vgwMac,
+            vgwname: vgwName,
             group: group
            }
          } else  {
@@ -496,6 +497,7 @@ $(document).ready(function () {
             itemType: parameterTocheck,
             state: parseFloat(element.state).toFixed(4),
             vgw: vgwMac,
+            vgwname: vgwName,
             group: group   
          }
         }

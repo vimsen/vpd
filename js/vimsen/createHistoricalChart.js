@@ -2,6 +2,9 @@ function initProsumptionChart(divId, prosumption) {
     Highcharts.setOptions({
         global: {
             useUTC: false
+        },
+        series:{
+            turboThreshold:2000//larger threshold or set to 0 to disable
         }
     });
 
@@ -10,7 +13,7 @@ function initProsumptionChart(divId, prosumption) {
             zoomType: 'x',
             events: {
                 redraw: function() {
-                    this.hideLoading();
+                    this.hideLoading(); 
                 }
             }
             //  backgroundColor: 'rgba(4,5,2,0.2)'
@@ -45,6 +48,15 @@ function initProsumptionChart(divId, prosumption) {
                 fontSize: '18px',
                 color: '#fff'
             }
+        },
+        plotsOptions: {
+            series:{
+                turboThreshold:2000//larger threshold or set to 0 to disable
+            },
+            line:{
+                turboThreshold:2000//larger threshold or set to 0 to disable
+            }
+    
         }
     });
 
@@ -91,6 +103,7 @@ function initProsumptionChart(divId, prosumption) {
                     fontSize: '18px',
                     color: '#fff'
                 }
+
             }
         });
 
@@ -200,7 +213,8 @@ function addToChart(divId, pieDivId, object, prosumptionType, dateFrom, dateTo, 
                 id: index,
                 vgw: element[0].Prosumers,
                 name: index,
-                data: data
+                data: data,
+                turboThreshold: 0
             });
 
             //change tooltip
@@ -275,7 +289,8 @@ function addToChart(divId, pieDivId, object, prosumptionType, dateFrom, dateTo, 
                 id: index,
                 vgw: element[0].Prosumers,
                 name: index,
-                data: data
+                data: data,
+                turboThreshold: 0
             });
 
             //change tooltip

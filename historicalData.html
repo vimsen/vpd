@@ -159,6 +159,13 @@
                                <input id="totalPowerInput" class="showHide" />
                            </div> -->
                             <div class="row">
+                              <div class="pull-right p-10" >
+                                  <label class="checkbox-inline">
+                                    <input type="checkbox" id="getOfflineData"><font color="white">Get offline data</font>
+                                  </label>
+                              </div>
+                            </div>
+                            <div class="row">
                               <div class="m-b-25 p-5">                             
                                  <div class="pull-right p-10" >
                                    <button id="submitHistoricalData" class="btn bgm-teal">View results</button>
@@ -182,12 +189,14 @@
                             <div class="card-body card-padding-sm">
                                     <div id="containerTotalVGWConsumptionHighcharts" class="m-b-25"></div>
                                     <div id="containerProductionHighcharts" class="m-b-25"></div>
-                                    <div id="containerConsumptionHighcharts" class="m-b-25"></div>
-                                                                         
+                                    <div id="containerConsumptionHighcharts" class="m-b-25"></div>           
+                                    <div id="containerConsumptionHighchartsSTATE" class="m-b-25"></div>
                              </div>
                            </div>
                         </div>
-                        
+                         <div class="col-md-12 col-sm-12" id="noDataText" style="display: none;">
+                              <h2><font color="white">No data available for the requested parameters</font></h2>
+                         </div>
                         </div>
 
                      </div>

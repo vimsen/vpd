@@ -18,7 +18,7 @@ $(document).ready(function () {
 
        // console.log( "second success Length"+JSON.stringify(data.item.length));
          $.each(data, function(index, element) {
-             // console.log( "index:"+index);
+
              var topic = element.group+'/'+element.mac+'/VGW/#';
              topics.push(topic);
            

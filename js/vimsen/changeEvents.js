@@ -56,8 +56,6 @@ function hideDivs(controllerId) {
          hideLegends(chartC, allSeriesC, controllerId, 'Real Time Consumption (W) per Device for '+controllerId )
          hideLegends(chartP, allSeriesP, controllerId, 'Real Time Production (W) per Device for '+controllerId )
          hideLegends(chartTotalPower, alltotalPowerSeries, controllerId, 'Real Time Power (KW) for '+controllerId )
-        
-     
    }
 
     // Show/hide graphs based on whether or not have data inside them
@@ -175,28 +173,41 @@ function hideVGWDivs(controllerId) {
 $("#controllerSelectionHistorical").change(function () {
   //console.log("controllerSelectionHistorical:"+$("#controllerSelectionHistorical").val());
   MY.selectedVGWs= $("#controllerSelectionHistorical").val();
-   // console.log(MY.selectedVGWs);
-                
+   // console.log(MY.selectedVGWs);              
  });
 
+;
+
 $("#submitHistoricalData").click(function () {
-  console.log("submitHistoricalData controllerSelectionHistorical:"+$("#controllerSelectionHistorical").val());
 
-    initProsumptionChart("containerTotalVGWConsumptionHighcharts", "Total Consumption per VGW");
-    initProsumptionChart("containerConsumptionHighcharts", "Consumption");
-    initProsumptionChart("containerProductionHighcharts", "Production");
+    //console.log("submitHistoricalData controllerSelectionHistorical:"+$("#controllerSelectionHistorical").val());
+    $('#noDataText').hide(); 
+    
+    if ((MY.selectedVGWs != null && $("#intervalSelection").val() != null) || $('#getOfflineData').is(':checked')) {
 
-    initPieChart("pieTotalVGWConsumptionHighchart", "Total Consumption per VGW");
-    initPieChart("pieConsumptionHighchart", "Total Consumption per Appliance");
-    initPieChart("pieProductionHighchart", "Total Production per Appliance");
+      initProsumptionChart("containerTotalVGWConsumptionHighcharts", "Total Consumption per VGW");
+      initProsumptionChart("containerConsumptionHighcharts", "Consumption");
+      initProsumptionChart("containerProductionHighcharts", "Production");
 
-                
-  $.each(MY.selectedVGWs, function( index, value ) {
-  //console.log( index + ": " + value );
-  getAllItemsEDMS(value,MY.dateFrom,MY.dateTo, $("#intervalSelection").val());
-  });
+      initPieChart("pieTotalVGWConsumptionHighchart", "Total Consumption per VGW");
+      initPieChart("pieConsumptionHighchart", "Total Consumption per Appliance");
+      initPieChart("pieProductionHighchart", "Total Production per Appliance"); 
 
-  $(window).load(function () {
-   console.log("LOADED");
-});
+      if($('#getOfflineData').is(':checked') && MY.selectedVGWs == null) {
+        var VGWS = [];
+        $('#controllerSelectionHistorical').find('option').each(function() {
+          VGWS.push($(this).val());
+        })
+      } else {
+        VGWS = MY.selectedVGWs;
+      }              
+      $.each(VGWS, function( index, value ) {
+          getAllItemsEDMS(value,MY.dateFrom,MY.dateTo, $("#intervalSelection").val());
+        });
+      
+    }
+
+    $(window).load(function () {
+      console.log("LOADED");
+    });
 });
