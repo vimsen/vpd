@@ -193,6 +193,14 @@ $("#submitHistoricalData").click(function () {
       initPieChart("pieConsumptionHighchart", "Total Consumption per Appliance");
       initPieChart("pieProductionHighchart", "Total Production per Appliance"); 
 
+      $('#containerTotalVGWConsumptionHighcharts').hide();
+      $('#pieTotalVGWConsumptionHighchart').hide();
+      $('#containerConsumptionHighcharts').hide();
+      $('#pieConsumptionHighchart').hide();
+      $('#containerConsumptionHighchartsSTATE').hide();
+      $('#containerProductionHighcharts').hide();
+      $('#pieProductionHighchart').hide();
+
       if($('#getOfflineData').is(':checked') && MY.selectedVGWs == null) {
         var VGWS = [];
         $('#controllerSelectionHistorical').find('option').each(function() {

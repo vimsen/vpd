@@ -16,7 +16,7 @@ function addWeatherWidget(vgwObject, skycons) {
       var path = vgwObject.group+'/'+vgwObject.mac+'/weather';
 
             var html =  '<div class="col-sm-12 col-md-12 col-lg-12 p-0">';
-               
+                html += '<h3><font color="white">'+vgwObject.name+'</font></h3>' 
                 html += '<div class="col-sm-12 col-md-12 col-lg-4">';
                 html += '<div class="card weatherDiv weatherColor">';
                 html += '<div class="weather-status p-t-5"><span topicid="'+path+'/current/temperature" class="p-l-10">'+0+'</span><span>'+weatherMeasurement+'</span></div>';

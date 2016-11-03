@@ -17,8 +17,7 @@
     	"productionNaming":"production_power",
     	"meterNaming":"meter",
     	"powerNaming":"power",
-    	"energyNaming":"energy"
-
+    	"energyNaming":"energy"   
     },
       {
         "id":2,
@@ -39,6 +38,5 @@
         "meterNaming":"meter",
         "powerNaming":"power",
         "energyNaming":"energy"
-
     }     
 ]

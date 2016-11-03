@@ -59,8 +59,12 @@ function createLiveChart(divId, object, parameterToCheck, prosumption, dateFrom,
 
         //add serie to series
         var chart = $('#' + divId + '').highcharts();
-
-        if (element.itemType.search("BuildingItem") != -1 && element.name.search(prosumption) != -1 && $.isNumeric(element.state) != false) {
+        console.log(element.name, element.itemType, element.state);
+        console.log("parcheck: " + parameterToCheck + " - prosumption:" + prosumption);
+        if ((element.itemType.search("BuildingItem") != -1 && element.name.search(prosumption) != -1 && $.isNumeric(element.state) != false) 
+            || (element.name.search(parameterToCheck) != -1 && element.name.search(prosumption) != -1) 
+            || (element.name.search(prosumption) != -1 && element.name.search("energy") == -1)) {
+            
             for (i = -19; i <= 0; i += 1) {
                 data.push({
                     x: time + i * 1000,
@@ -79,6 +83,7 @@ function createLiveChart(divId, object, parameterToCheck, prosumption, dateFrom,
             //change tooltip
             chart.tooltip.options.formatter = function() {
                 var xyArr = [];
+
                 return this.series.name + '</b> (<br/>' + this.series.options.vgwname + ') value: ' + this.y + '(W)';
             }
 
@@ -87,41 +92,7 @@ function createLiveChart(divId, object, parameterToCheck, prosumption, dateFrom,
                 var xyArr = [];
                 return this.name + '<br/>(' + this.options.vgwname + ')';
             }
-        } else if (element.name.search(parameterToCheck) != -1 && element.name.search(prosumption) != -1 && $.isNumeric(element.state) != false) {
-
-            // $("#"+element.name+element.vgw).val(element.state);
-
-            //console.log(":::::::::::::createLiveChart:name ::::::::::::"+element.name+" element::"+element.vgw );
-            //add initiail points for real time
-            for (i = -19; i <= 0; i += 1) {
-                data.push({
-                    x: time + i * 1000,
-                    y: parseFloat(element.state)
-                });
-            }
-
-            chart.addSeries({
-                id: element.name,
-                vgw: element.vgw,
-                name: element.name,
-                vgwname: element.vgwname,
-                data: data
-            });
-
-            //change tooltip
-            chart.tooltip.options.formatter = function() {
-                var xyArr = [];
-                return this.series.name + '</b> (<br/>' + this.series.options.vgwname + ') value: ' + this.y + '(W)';
-            }
-
-            //change legend  labels
-            chart.legend.options.labelFormatter = function() {
-                var xyArr = [];
-                return this.name + '<br/>(' + this.options.vgwname + ')';
-            }
-
-        }
-
+        } 
     });
 
     //intervalFunction(object,parameterToCheck,divId);
@@ -153,7 +124,7 @@ function intervalFunction(objItem, parameterToCheck, chartContainer) {
 
             // console.log(':isnumeric:::::::::::'+$.isNumeric($("#"+element.name).text()));
             //parse only parametertocheck
-            if (element.name.search(parameterToCheck) != -1 && $.isNumeric($("#" + element.name).text()) != false) {
+            if (element.name.search(parameterToCheck) != -1 && ($.isNumeric($("#" + element.name).text()) != false || element.itemType.search("BuildingItem") != -1 )) {
 
                 // console.log(":::::::::::::update:index ::::::::::::"+element.name+" element::"+element.state );
                 //add initiail points for real time

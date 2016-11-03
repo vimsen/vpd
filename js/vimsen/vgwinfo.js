@@ -1,19 +1,23 @@
 // Docs at http://simpleweatherjs.com
 function addVGWInfoWidget(vgwObject) {
-  console.log("addVGWInfoWidget object:"+JSON.stringify(vgwObject));
+  //console.log("addVGWInfoWidget object:"+JSON.stringify(vgwObject));
   
  
       //for highcharts
       var data = [];
-       var path = vgwObject.group+'/'+vgwObject.mac+'/VGW';
+      if(vgwObject.group.indexOf("hedno") > - 1) {
+        var path = vgwObject.name+'/'+vgwObject.mac+'/VGW';  
+      } else {
+        var path = vgwObject.group+'/'+vgwObject.mac+'/VGW';
+      }
+            var html =  ''
 
-            var html =  '<div class="col-sm-12 col-md-12 col-lg-12 c-white">';
-               
-                 
+                html += '<div class="col-sm-12 col-md-12 col-lg-12 c-white">';     
                 html += '<div class="col-sm-12 col-md-12 col-lg-12 m-b-25 p-0">';
                 html += '<div class="card bgm-teal">';
                 html += '<div class="col-md-12 col-sm-12 col-lg-12 todayWeatherDiv bgm-teal weatherDivIn p-0">';
-                html += '<div class="vgw-header col-xs-12 p-b-10"><span  class="m-l-15 f-20" topicid="'+path+'/name/">Clear the </span></div>';
+                //html += '<div class="vgw-header col-xs-12 p-b-10"><span  class="m-l-15 f-20" topicid="'+path+'/name/">Clear the </span></div>';
+                html += '<div class="vgw-header col-xs-12 p-b-10"><span  class="m-l-15 f-20" >'+ vgwObject.name + '</span></div>';
                 html += '<div class="row">';
 
                 html += '<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 m-t-10">';

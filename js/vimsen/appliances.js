@@ -12,9 +12,6 @@ $(document).ready(function () {
     initLiveChart("containerConsumptionHighcharts", "Consumption");
     initLiveChart("containerProductionHighcharts", "Production");
     initTotalPowerLiveChart("containerTotalPowerHighcharts");
-           
-    
-   
 
     //add 3 phase meters
     var meter1_power=0;
@@ -62,7 +59,6 @@ $(document).ready(function () {
        // console.log( "second success Length"+JSON.stringify(data.item.length));
          $.each(data, function(index, element) {
              // console.log( "index:"+index);
-             //  console.log( "element:"+JSON.stringify(element));
               //  $.when( getAppliances(element) ).done(function() {
                //   console.log("objItem1::"+JSON.stringify(objItem));
               //  });
@@ -73,11 +69,18 @@ $(document).ready(function () {
             text: element.name
           }));*/
 
-          var topicMeasurement = element.group+'/'+element.mac+'/state/+/state/#';
-             topicsMeasurements.push(topicMeasurement);
+          // Create topics. 
+          // add an exception handling for the case of hedno due to the issue with the wrongly formatted topics
+          if(element.group.indexOf("hedno") > -1) {
+            var topicMeasurement = element.name+'/'+element.mac+'/state/+/state/#';
+            var topicON_OFF = element.name+'/'+element.mac+'/command/+/command/#';
+          } else {
+            var topicMeasurement = element.group+'/'+element.mac+'/state/+/state/#';
+            var topicON_OFF = element.group+'/'+element.mac+'/command/+/command/#';            
+          }
+          topicsMeasurements.push(topicMeasurement);
 
-          var topicON_OFF = element.group+'/'+element.mac+'/command/+/command/#';
-             topicsON_OFF.push(topicON_OFF);
+          topicsON_OFF.push(topicON_OFF);
 
 
           $('#controllerSelectionMap').append($('<option>', {
@@ -95,8 +98,6 @@ $(document).ready(function () {
           }
 
           markers.push(marker);
-
-          
 
           //create total power widget for each controller
            createControllerPowerEnergyDiv(element);
@@ -175,7 +176,6 @@ $(document).ready(function () {
          };
 
           jQuery(document).on('change','#controllerSelectionMap',function() {
-                    console.log("marker:"+$("#controllerSelectionMap").val());
                     findByMac(markers, $("#controllerSelectionMap").val(),map);
                    
           });
@@ -223,7 +223,6 @@ $(document).ready(function () {
 
      })
     .then(function() {
-      // console.log(" then objItem15555555555::"+JSON.stringify(objItem));
      })
     .fail(function(message) {
       console.log( "error:::" +message);
@@ -232,10 +231,6 @@ $(document).ready(function () {
      // console.log( "finished"+JSON.stringify(data));
     });
 
-   // getAppliances();
-    
-     //  console.log("objItem2::"+JSON.stringify(objItem));
-   
      /*
      * Easy Pie Charts - Used in widgets
      */
@@ -299,7 +294,7 @@ $(document).ready(function () {
             addBuildingItemToList("BuildingItem",vgwObject.powerNaming,element, "ActivePower",objItem, vgwObject.mac, vgwObject.url+':'+vgwObject.port, vgwObject.ip, vgwObject.group);
            // addAttributesToList("BuildingItem",vgwObject.consumptionNaming,element,objAttributes, vgwObject.mac);
 
-            addBuildingAttributesToList("BuildingItem",vgwObject.consumptionNaming,element,objAttributes, vgwObject.mac, vgwObject.group);
+            addBuildingAttributesToList("BuildingItem",vgwObject.consumptionNaming,element,objAttributes, vgwObject.mac, vgwObject.group, vgwObject.name);
             //consumption
             addItemToList("SwitchItem",vgwObject.consumptionNaming,element,"Consumption",objItem, vgwObject.mac, vgwObject.url+':'+vgwObject.port, vgwObject.ip, vgwObject.group);
             addAttributesToList("NumberItem",vgwObject.consumptionNaming,element,objAttributes, vgwObject.mac, vgwObject.group, vgwObject.name);
@@ -326,10 +321,10 @@ $(document).ready(function () {
            createLiveTotalPowerChart("containerTotalPowerHighcharts", vgwObject, moment().subtract(100 * 1000, 'ms'), moment());
            
            //create Series for power consumption
-           createLiveChart("containerConsumptionHighcharts",objAttributes, "_"+vgwObject.powerNaming, vgwObject.consumptionNaming, moment().subtract(100 * 1000, 'ms'), moment());
+           createLiveChart("containerConsumptionHighcharts",objAttributes, vgwObject.powerNaming, vgwObject.consumptionNaming, moment().subtract(100 * 1000, 'ms'), moment());
            
            //create Series for power consumption
-           createLiveChart("containerProductionHighcharts",objAttributes, "_"+vgwObject.powerNaming, vgwObject.productionNaming, moment().subtract(100 * 1000, 'ms'), moment());
+           createLiveChart("containerProductionHighcharts",objAttributes, vgwObject.powerNaming, vgwObject.productionNaming, moment().subtract(100 * 1000, 'ms'), moment());
            //create AppliancesDiv
            //createAppliancesDiv(vgwObject.name, vgwObject.url, vgwObject.mac, objItem, objAttributes);
            createAppliancesDiv(vgwObject.name, vgwObject.mqtt+'/'+vgwObject.mac+'/LDRcommand', vgwObject.mac, vgwObject.ip,vgwObject.group, objItem, objAttributes);
@@ -422,8 +417,9 @@ $(document).ready(function () {
 
          
   function addBuildingItemToList(parameterTocheck,powerNaming, element, prosumption,objItem, vgwMac, drUrl, ipaddress, group) {
-    // console.log("addBuildingItemToList element::"+JSON.stringify(element));
+
     if(element.type.search(parameterTocheck) != -1){
+
      // console.log("addBuildingItemToList element::"+JSON.stringify(element));
         //contains
         //create appliances items
@@ -508,9 +504,9 @@ $(document).ready(function () {
 
   }
 
-  function addBuildingAttributesToList(parameterTocheck,typeOfControl, element,objAttributes, vgwMac, group) {
+  function addBuildingAttributesToList(parameterTocheck,typeOfControl, element,objAttributes, vgwMac, group, vgwName) {
    // console.log("addItemToList::"+element);
-    if(element.type.toUpperCase()==="BUILDINGITEM" && element.name.search('GPXT')=== -1){
+    if(element.type.toUpperCase()==="BUILDINGITEM") { //&& element.name.search('GPXT')=== -1){
       
         
          var applianceAttributes = {
@@ -518,6 +514,7 @@ $(document).ready(function () {
             itemType: parameterTocheck,
             state: 0,
             vgw: vgwMac,
+            vgwname: vgwName,
             group: group    
          }
        
@@ -585,12 +582,12 @@ $(document).ready(function () {
           html += '<div class="clearfix">';
           html += '<div class="count col-sm-3 col-xs-6 col-md-3 consumptionCurrent">';
           html += '<small class="overFlowText">'+controllerObject.name+' Total Power Consumption(kW)</small>';
-          html += '<h2 id="GPXT_active_power_total" class="Tpower">0</h2>';
+          html += '<h2 id="'+controllerObject.mac+'_power_total" class="Tpower">0</h2>';
           html += '</div>';
           html += '<div class="count col-sm-3 col-md-3 consumptionCurrent">';
-          html += '<small class="Tpower">Phase 1 (kW): <div id="GPXT_active_power_phaseA" class="Tpower_value meter1_powerClass">0.0000</div></small>';
-          html += '<small class="Tpower">Phase 2 (kW): <div id="GPXT_active_power_phaseB" class="Tpower_value meter2_powerClass">0.0000</div></small>';
-          html += '<small class="Tpower">Phase 3 (kW): <div id="GPXT_active_power_phaseC" class="Tpower_value meter3_powerClass">0.0000</div></small>';
+          html += '<small class="Tpower">Phase 1 (kW): <div id="'+controllerObject.mac+'power_valueA" class="Tpower_value meter1_powerClass">0.0000</div></small>';
+          html += '<small class="Tpower">Phase 2 (kW): <div id="'+controllerObject.mac+'power_valueB" class="Tpower_value meter2_powerClass">0.0000</div></small>';
+          html += '<small class="Tpower">Phase 3 (kW): <div id="'+controllerObject.mac+'power_valueC" class="Tpower_value meter3_powerClass">0.0000</div></small>';
           html += '</div>';
           html += '<div class="count col-sm-3 col-xs-6 col-md-3 consumptionCurrent">';
           html += '<small class="overFlowText">'+controllerObject.name+' Total Energy Consumption(kWh)</small>';
@@ -625,9 +622,9 @@ $(document).ready(function () {
           html += '<h2 id="'+controllerObject.mac+'_totalPower" class="Tpower">0.0000</h2>';
           html += '</div>';
           html += '<div class="count col-sm-3 col-md-3 consumptionCurrent">';
-          html += '<small class="Tpower">Phase 1 (kW): <div id="'+controllerObject.mac+'meter1_power" class="Tpower_value meter1_powerClass">0.0000</div></small>';
-          html += '<small class="Tpower">Phase 2 (kW): <div id="'+controllerObject.mac+'meter2_power" class="Tpower_value meter2_powerClass">0.0000</div></small>';
-          html += '<small class="Tpower">Phase 3 (kW): <div id="'+controllerObject.mac+'meter3_power" class="Tpower_value meter3_powerClass">0.0000</div></small>';
+          html += '<small class="Tpower">Phase 1 (kW): <div id="'+controllerObject.mac+'meter1_power" class="Tpower_value vgw_power_valueA">0.0000</div></small>';
+          html += '<small class="Tpower">Phase 2 (kW): <div id="'+controllerObject.mac+'meter2_power" class="Tpower_value vgw_power_valueB">0.0000</div></small>';
+          html += '<small class="Tpower">Phase 3 (kW): <div id="'+controllerObject.mac+'meter3_power" class="Tpower_value vgw_power_valueC">0.0000</div></small>';
           html += '</div>';
           html += '<div class="count col-sm-3 col-xs-6 col-md-3 p-b-15 consumptionCurrent">';
           html += '<small class="overFlowText">'+controllerObject.name+' Total Energy Consumption(kWh)</small>';
@@ -668,11 +665,11 @@ $(document).ready(function () {
         var barColor = '#04A5BA';
 
         
-            //create different widgets for consumption and production items
+    //create different widgets for consumption and production items
     if(element.prosumption.toUpperCase() === "ACTIVEPOWER" ) {
     //production
     // console.log("ACTIVE applianceObject:"+JSON.stringify(applianceObject)+" objAttributes:"+JSON.stringify(objAttributes));
-   if(element.name.toUpperCase() != "GPXT") {
+    //if(element.name.toUpperCase() != "GPXT") {
 
      if(element.type.toUpperCase() === "BUILDINGITEMSWITCH") {
 
@@ -702,17 +699,17 @@ $(document).ready(function () {
     +' </div> </div>'
     +' <div class="clearfix"></div> </div> <div class="bgm-lime p-20 text-right"> <div class="row"> '
     +'<div class="appliancesBuildingDetails col-xs-6 m-t-30"> <small class="f-12">'+element.prosumption+' (W)</small> '
-    +'<h3 id= "'+applianceName+element.powerNaming+'total" class="p-5 m-0 f-400 c-white power_valueB" topicid="'+topicMeasurement+'">0.0000</h3> <br/> <small class="f-12">'+element.prosumption+' (Wh)</small>'
+    +'<h3 id= "'+applianceName+element.powerNaming+'total'+macaddress+'" class="p-5 m-0 f-400 c-white power_value" topicid="'+topicMeasurement+'">0.0000</h3> <br/> <small class="f-12">'+element.prosumption+' (Wh)</small>'
     +' <h3 id= "'+applianceName+'_energy"class="m-0 f-400 c-white energy_valueB">0.0000</h3> <br/>'
     +'<small class="f-12">STATE</small> <h3 id= "'+applianceName+'_state" class="p-5 m-0 f-400 c-white state_valueB">'+element.state+'</h3> </div> <div class="col-xs-6"> '
     +'<div class="p-t-20 p-b-20 text-center c-white"> <div id= "'+applianceName+'_active_power_total_pie_percent'+macaddress+'" class="easy-pie '+applianceName+macaddress+' m-b-10" data-percent="0">'
     +' <div class="percent" id= "'+applianceName+'_active_power_total_percent'+macaddress+'">0</div> <div class="pie-title">'+element.prosumption+' %</div> </div> '
-    +'<br/><small>Phase A (W)</small> <h5 id= "'+applianceName+element.powerNaming+'phaseA" class="p-5 m-0 f-400 c-white power_valueB">0.0000</h5>'
+    +'<br/><small>Phase A (W)</small> <h5 id= "'+applianceName+element.powerNaming+'phaseA" class="p-5 m-0 f-400 c-white power_valueA">0.0000</h5>'
     +'<small>Phase B (W)</small> <h5 id= "'+applianceName+element.powerNaming+'phaseB" class="p-5 m-0 f-400 c-white power_valueB">0.0000</h5>'
-    +'<small>Phase C (W)</small> <h5 id= "'+applianceName+element.powerNaming+'phaseC" class="p-5 m-0 f-400 c-white power_valueB">0.0000</h5>'
+    +'<small>Phase C (W)</small> <h5 id= "'+applianceName+element.powerNaming+'phaseC" class="p-5 m-0 f-400 c-white power_valueC">0.0000</h5>'
     +'</div> </div> </div> </div> </div>';
      }
-    } 
+    //} 
    
 
     } else if(element.prosumption.toUpperCase() === "PRODUCTION") {
@@ -731,7 +728,7 @@ $(document).ready(function () {
     +' <h3 id= "'+applianceName+'_energy"class="p-5 m-0 f-400 c-white energy_valueP">0.0000</h3> <br/>'
     +' <small class="f-12">STATE</small> <h3 id= "'+applianceName+'_state" topicid="'+topicON_OFF+'" class="p-5 m-0 f-400 c-white state_valueP">'+element.state+'</h3> </div> <div class="col-xs-6"> '
     +'<div class="p-t-20 p-b-20 text-center c-white"> <div id= "'+applianceName+'_power_pie_percent'+macaddress+'" class="easy-pie '+applianceName+macaddress+' m-b-10" data-percent="0">'
-    +' <div class="percent" id= "'+applianceName+'_power_percent'+macaddress+'">0.0000</div> <div class="pie-title">'+element.prosumption+' %</div> </div> '
+    +' <div class="percent percent_appliance_production" id= "'+applianceName+'_power_percent'+macaddress+'">0.0000</div> <div class="pie-title">'+element.prosumption+' %</div> </div> '
     +'<div  id= "'+applianceName+'_battery_percentage_pie'+macaddress+'" class="easy-pie '+batterypie+macaddress+'" data-percent="0"> '
     +'<div id= "'+applianceName+'_battery_percentage'+macaddress+'" class="percent">0</div> <div class="pie-title">Battery %</div> </div> </div> </div> </div> </div> </div>';
    

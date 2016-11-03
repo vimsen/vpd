@@ -1,6 +1,7 @@
 {
 	"item":
 	[
-		{"type":"BuildingItem","name":"socketsArchive","state":"ON","link":""}
+		{"type":"BuildingItem","name":"socketsArchive_active_power_total","state":"0","link":""},
+		{"type":"BuildingItem","name":"total_energy_consumption_300","state":"0","link":""},
 	]
 }

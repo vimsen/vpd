@@ -189,10 +189,11 @@ function addToChart(divId, pieDivId, object, prosumptionType, dateFrom, dateTo, 
     //iterate to each item in object
     $.each(object, function(index, element) {
         var yPie = 0;
-
+        console.log("ela" + prosumptionType + index + element)
         //for consumption devices iterate to each line inside array
-        if (index.toLowerCase().search(prosumptionType) != -1 && index.toLowerCase().search("power") != -1) {
+        if (index.toLowerCase().search(prosumptionType) != -1 && index.toLowerCase().search("power") != -1 && index.toLowerCase().search("phase") == -1) {
             var data = [];
+            console.log("ela@");
             $.each(element, function(i, n) {
                 //  console.log("value:: i"+i+"::::" + n.User);
                 //get key for date 
@@ -212,7 +213,7 @@ function addToChart(divId, pieDivId, object, prosumptionType, dateFrom, dateTo, 
             chart.addSeries({
                 id: index,
                 vgw: element[0].Prosumers,
-                name: index,
+                name: index + "@" + element[0].Prosumers,
                 data: data,
                 turboThreshold: 0
             });

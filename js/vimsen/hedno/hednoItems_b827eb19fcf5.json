@@ -1,9 +1,9 @@
 {
 	"item":
 	[
-		{"type":"BuildingItem","name":"GPXT","state":"ON","link":""},
-		{"type":"BuildingItem","name":"HEAT","state":"ON","link":""},
 		{"type":"BuildingItem","name":"UPS","state":"ON","link":""},
+		{"type":"BuildingItem","name":"HEAT","state":"ON","link":""},
+		{"type":"BuildingItem","name":"GPXT","state":"ON","link":""},
 		{"type":"BuildingItemSwitch","name":"HVAC1_plug","state":"ON","link":""},
 		{"type":"BuildingItemSwitch","name":"HVAC2_plug","state":"ON","link":""},
 		{"type":"BuildingItemSwitch","name":"HVAC3_plug","state":"ON","link":""},
@@ -11,3 +11,4 @@
 		{"type":"BuildingItemSwitch","name":"HVAC5_plug","state":"ON","link":""}
 	]
 }
+

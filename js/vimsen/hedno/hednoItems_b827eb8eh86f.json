@@ -1,0 +1,8 @@
+
+{
+	"item":
+	[
+		{"type":"NumberItem","name":"meter3_power","state":"0","link":""},
+		{"type":"NumberItem","name":"PV1_production_power","state":"0","link":""}
+	]
+}

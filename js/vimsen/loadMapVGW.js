@@ -19,8 +19,12 @@ $(document).ready(function () {
        // console.log( "second success Length"+JSON.stringify(data.item.length));
          $.each(data, function(index, element) {
 
-             var topic = element.group+'/'+element.mac+'/VGW/#';
-             topics.push(topic);
+          if(element.group.indexOf("hedno") > -1) {
+           var topic = element.name+'/'+element.mac+'/VGW/#';
+          } else {
+           var topic = element.group+'/'+element.mac+'/VGW/#';
+          }
+          topics.push(topic);
            
                console.log( "element:"+JSON.stringify(element));
               //  $.when( getAppliances(element) ).done(function() {
@@ -147,7 +151,7 @@ $(document).ready(function () {
                  onSuccess: function () {
                     console.log("Connected");
                       $.each(topics, function( index, value ) {
-                     console.log( "topic:"+value);
+                      console.log( "topic:"+value);
                       client.subscribe(value, {qos: 0})
                     });
 

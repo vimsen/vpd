@@ -94,7 +94,7 @@ $(document).ready(function () {
       //object list to keep appliances
     //var objItem = [];
    // var objAttributes = [];
-    console.log( "getAppliancesObj::::"+JSON.stringify(vgwObject));
+    //console.log( "getAppliancesObj::::"+JSON.stringify(vgwObject));
     // Assign handlers immediately after making the request,
     // and remember the jqxhr object for this request
     //this must be the ip of the VGW
@@ -121,7 +121,7 @@ $(document).ready(function () {
       //object list to keep appliances
     //var objItem = [];
    // var objAttributes = [];
-    console.log( "getAppliances::::"+JSON.stringify(appliancesObject));
+    //console.log( "getAppliances::::"+JSON.stringify(appliancesObject));
     // Assign handlers immediately after making the request,
     // and remember the jqxhr object for this request
     //this must be the ip of the VGW
@@ -205,7 +205,7 @@ $(document).ready(function () {
    // console.log("addItemToList::"+element);
     if(element.type.search(parameterTocheck) != -1 && element.name.search(typeOfControl) != -1){
         //contains
-       console.log("addAttributesToList::"+element.name+"::"+element.state);
+       //console.log("addAttributesToList::"+element.name+"::"+element.state);
 
         //create apliances attributes (power, energy)
         //we should ask geroge to change tthe production item to be like consumption.

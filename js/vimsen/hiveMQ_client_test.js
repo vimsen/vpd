@@ -1,9 +1,12 @@
  var client = new Messaging.Client("94.70.239.217", 8000, "myclientid_" + parseInt(Math.random() * 100, 10));
 
+ var clientConnected = false;
+
  //Gets  called if the websocket/mqtt connection gets disconnected for any reason
  client.onConnectionLost = function (responseObject) {
      //Depending on your scenario you could implement a reconnect logic here
      alert("connection lost: " + responseObject.errorMessage);
+     clientConnected = false;
  };
 
  //Gets called whenever you receive a message for your subscriptions
@@ -17,6 +20,8 @@
         updateWeatherComponents(message.destinationName, message.payloadString);
     } else if(window.location.pathname==='/vgwinfo.html') {
         updateVGWComponents(message.destinationName, message.payloadString);
+    } else if(window.location.pathname==='/vgw-settings.html') {
+        updateVGWSettings(message.destinationName, message.payloadString);
     } else {
         updateComponents(message.destinationName, message.payloadString);
     }
@@ -29,6 +34,7 @@
      //Gets Called if the connection has sucessfully been established
      onSuccess: function () {
          alert("Connected");
+         clientConnected = true;
      },
      //Gets Called if the connection could not be established
      onFailure: function (message) {
@@ -38,11 +44,14 @@
 
  //PUBLISH
  //Creates a new Messaging.Message Object and sends it to the HiveMQ MQTT Broker
- var publish = function (payload, topic, qos) {
+ var publish = function (payload, topic, qos, retain) {
      //Send your message (also possible to serialize it as JSON or protobuf or just use a string, no limitations)
-     console.log("publish Topic payload::"+payload+" topic::"+topic);
+     //console.log("publish Topic payload::"+payload+" topic::"+topic);
      var message = new Messaging.Message(payload);
      message.destinationName = topic;
      message.qos = qos;
+     if(retain != null) {
+         message.retained = retain;
+     }
      client.send(message);
  }

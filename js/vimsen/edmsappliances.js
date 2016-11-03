@@ -181,10 +181,14 @@ xmlhttp.send();
             var hasTotalPower = 0, hasDevicePower = 0, hasDeviceProduction = 0, hasDeviceState = 0;
             var arrayKeys = Object.keys(groupByTopicName)
             for (var i in arrayKeys) {
-              if (arrayKeys[i].indexOf("total_power")>-1) {
+              if (arrayKeys[i].indexOf("total_power")>-1 || arrayKeys[i].indexOf("power_total")>-1) {
                 hasTotalPower = 1
               }
               if (arrayKeys[i].indexOf("_plug") > -1 && arrayKeys[i].indexOf("power") > -1) {
+                hasDevicePower = 1
+              }
+              // this is specially for hedno stuff that are not formatted as agreed
+              if (arrayKeys[i].indexOf("active") > -1 && arrayKeys[i].indexOf("power") > -1 && arrayKeys[i].indexOf("phase") <= -1) {
                 hasDevicePower = 1
               }
               if (arrayKeys[i].indexOf("_plug") > -1 && arrayKeys[i].indexOf("power") <= -1) {
@@ -196,9 +200,8 @@ xmlhttp.send();
             }
 
             // Present and fill in graphs if data exist
-            if(hasTotalPower == 0) {
-              $('#containerTotalVGWConsumptionHighcharts').hide();
-              $('#pieTotalVGWConsumptionHighchart').hide();
+            if(hasTotalPower == 0 && ($('#containerTotalVGWConsumptionHighcharts').highcharts()).series.length <=0) {
+              ;
             } else {
               $('#pieTotalVGWConsumptionHighchart').show();
               $('#containerTotalVGWConsumptionHighcharts').show();
@@ -208,9 +211,8 @@ xmlhttp.send();
               addToChart("containerTotalVGWConsumptionHighcharts", "pieTotalVGWConsumptionHighchart", groupByTopicName, "total_power", dateFrom, dateTo, "Total Consumption");
             }
 
-            if(hasDevicePower == 0) {
-              $('#containerConsumptionHighcharts').hide();
-              $('#pieConsumptionHighchart').hide();
+            if(hasDevicePower == 0 && ($('#containerConsumptionHighcharts').highcharts()).series.length <=0) {
+              ;
             } else {
               $('#pieConsumptionHighchart').show();
               $('#containerConsumptionHighcharts').show();
@@ -219,16 +221,16 @@ xmlhttp.send();
               $('#containerConsumptionHighcharts').highcharts().reflow();
               //create Series for power consumption
               addToChart("containerConsumptionHighcharts", "pieConsumptionHighchart", groupByTopicName, "plug", dateFrom, dateTo, "Consumption per Device");
+              addToChart("containerConsumptionHighcharts", "pieConsumptionHighchart", groupByTopicName, "active", dateFrom, dateTo, "Consumption per Device");
             }
             if(hasDeviceState == 0) {
-              $('#containerConsumptionHighchartsSTATE').hide();
+              ;
             } else {
               $('#containerConsumptionHighchartsSTATE').show();
             }
 
-            if(hasDeviceProduction == 0) {
-              $('#containerProductionHighcharts').hide();
-              $('#pieProductionHighchart').hide();
+            if(hasDeviceProduction == 0 && ($('#containerProductionHighcharts').highcharts()).series.length <=0) {
+              ;
             } else {
               $('#pieProductionHighchart').show();
               $('#containerProductionHighcharts').show();
@@ -267,5 +269,5 @@ xmlhttp.send();
 }
 
 $(window).load(function() {
-    console.log("LOADED");
+    console.log("LOADED2");
 });
