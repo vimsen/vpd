@@ -1,5 +1,8 @@
 $(document).ready(function() {
-    console.log("edmsAppliances:::::");
+
+    // set profile name
+    document.getElementById("profile-name").innerHTML = localStorage.getItem('vpName');
+    document.getElementById("profile-name2").innerHTML = localStorage.getItem('vpName');
 
     //daterangepicker
     function cb(start, end) {
@@ -44,6 +47,7 @@ $(document).ready(function() {
     //var vgwFile = localStorage.getItem("vgwFile");
     // console.log("edmsAppliances:::: container:: vgw file::"+vgwFile);
     //get appliances for each controller
+    vgwFile = "js/vimsen/user/" + localStorage.getItem('vpName') + ".json";
     var jqxhr = $.getJSON(vgwFile, function(data) {
             // console.log( "success:"+JSON.stringify(data));
         })
@@ -127,14 +131,14 @@ function getAllItemsEDMS(vgw, dateFrom, dateTo, interval) {
 xmlhttp.open("GET", "https://beta.intelen.com/vimsenapi/EDMS_DSS/index.php/intelen/dataVGWHistorical?prosumers=b827eb4c14af&startdate=2016-04-03T06:30:00.000+02:00&enddate=2016-04-22T07:15:00.000+02:00&interval=900", true);
 xmlhttp.send();
       */
-      console.log('https://beta.intelen.com/vimsenapi/EDMS_DSS/index.php/intelen/dataVGWHistorical?prosumers=' + vgw + '&startdate=' + dateFrom + '&enddate=' + dateTo + '&interval=' + interval + '');    
-      if ($('#getOfflineData').is(':checked')) {
-        urlData = vgw+'.json'
-      } else {
+    console.log('https://beta.intelen.com/vimsenapi/EDMS_DSS/index.php/intelen/dataVGWHistorical?prosumers=' + vgw + '&startdate=' + dateFrom + '&enddate=' + dateTo + '&interval=' + interval + '');
+    if ($('#getOfflineData').is(':checked')) {
+        urlData = vgw + '.json'
+    } else {
         urlData = 'https://beta.intelen.com/vimsenapi/EDMS_DSS/index.php/intelen/dataVGWHistorical?prosumers=' + vgw + '&startdate=' + dateFrom + '&enddate=' + dateTo + '&interval=' + interval + '';
-      } 
+    }
 
-      $.ajax({
+    $.ajax({
         url: urlData,
         type: 'GET',
         dataType: "json",
@@ -148,9 +152,9 @@ xmlhttp.send();
                 $.each(result[0].HistoricalData, function(i, n) {
 
                     // Re
-                    if (!(Date.parse(Object.keys(n)[0]) < RequestedMin ||  Date.parse(Object.keys(n)[0]) > RequestedMax)) {
-                      historyResults.push(n)  
-                    }  
+                    if (!(Date.parse(Object.keys(n)[0]) < RequestedMin || Date.parse(Object.keys(n)[0]) > RequestedMax)) {
+                        historyResults.push(n)
+                    }
                     // get key for date 
                     // console.log("n:"+JSON.stringify(n));
                     //console.log("value:: i"+i+"::::" + Date.parse(Object.keys(n)[0]));                    
@@ -158,7 +162,7 @@ xmlhttp.send();
                     //console.log("value:: i"+i+"::::" + n[Object.keys(n)[0]]);
                 });
             } else {
-              historyResults = result[0].HistoricalData;
+                historyResults = result[0].HistoricalData;
             }
 
             //underscore group by topic name
@@ -178,74 +182,73 @@ xmlhttp.send();
             //create Series for power total consumption per VGW
 
             // Check whether or not to present graphs
-            var hasTotalPower = 0, hasDevicePower = 0, hasDeviceProduction = 0, hasDeviceState = 0;
+            var hasTotalPower = 0,
+                hasDevicePower = 0,
+                hasDeviceProduction = 0,
+                hasDeviceState = 0;
             var arrayKeys = Object.keys(groupByTopicName)
             for (var i in arrayKeys) {
-              if (arrayKeys[i].indexOf("total_power")>-1 || arrayKeys[i].indexOf("power_total")>-1) {
-                hasTotalPower = 1
-              }
-              if (arrayKeys[i].indexOf("_plug") > -1 && arrayKeys[i].indexOf("power") > -1) {
-                hasDevicePower = 1
-              }
-              // this is specially for hedno stuff that are not formatted as agreed
-              if (arrayKeys[i].indexOf("active") > -1 && arrayKeys[i].indexOf("power") > -1 && arrayKeys[i].indexOf("phase") <= -1) {
-                hasDevicePower = 1
-              }
-              if (arrayKeys[i].indexOf("_plug") > -1 && arrayKeys[i].indexOf("power") <= -1) {
-                hasDeviceState = 1
-              }              
-              if (arrayKeys[i].indexOf("production") > -1) {
-                hasDeviceProduction = 1
-              }
+                if (arrayKeys[i].indexOf("total_power") > -1 || arrayKeys[i].indexOf("power_total") > -1) {
+                    hasTotalPower = 1
+                }
+                if (arrayKeys[i].indexOf("_plug") > -1 && arrayKeys[i].indexOf("power") > -1) {
+                    hasDevicePower = 1
+                }
+                // this is specially for hedno stuff that are not formatted as agreed
+                if (arrayKeys[i].indexOf("active") > -1 && arrayKeys[i].indexOf("power") > -1 && arrayKeys[i].indexOf("phase") <= -1) {
+                    hasDevicePower = 1
+                }
+                if (arrayKeys[i].indexOf("_plug") > -1 && arrayKeys[i].indexOf("power") <= -1) {
+                    hasDeviceState = 1
+                }
+                if (arrayKeys[i].indexOf("production") > -1) {
+                    hasDeviceProduction = 1
+                }
             }
 
             // Present and fill in graphs if data exist
-            if(hasTotalPower == 0 && ($('#containerTotalVGWConsumptionHighcharts').highcharts()).series.length <=0) {
-              ;
+            if (hasTotalPower == 0 && ($('#containerTotalVGWConsumptionHighcharts').highcharts()).series.length <= 0) {;
             } else {
-              $('#pieTotalVGWConsumptionHighchart').show();
-              $('#containerTotalVGWConsumptionHighcharts').show();
-              // there was an issue with hide show that was causing the overlapping of charts. the below code seems to handle the issue
-              $('#pieTotalVGWConsumptionHighchart').highcharts().reflow();
-              $('#containerTotalVGWConsumptionHighcharts').highcharts().reflow();
-              addToChart("containerTotalVGWConsumptionHighcharts", "pieTotalVGWConsumptionHighchart", groupByTopicName, "total_power", dateFrom, dateTo, "Total Consumption");
+                $('#pieTotalVGWConsumptionHighchart').show();
+                $('#containerTotalVGWConsumptionHighcharts').show();
+                // there was an issue with hide show that was causing the overlapping of charts. the below code seems to handle the issue
+                $('#pieTotalVGWConsumptionHighchart').highcharts().reflow();
+                $('#containerTotalVGWConsumptionHighcharts').highcharts().reflow();
+                addToChart("containerTotalVGWConsumptionHighcharts", "pieTotalVGWConsumptionHighchart", groupByTopicName, "total_power", dateFrom, dateTo, "Total Consumption");
             }
 
-            if(hasDevicePower == 0 && ($('#containerConsumptionHighcharts').highcharts()).series.length <=0) {
-              ;
+            if (hasDevicePower == 0 && ($('#containerConsumptionHighcharts').highcharts()).series.length <= 0) {;
             } else {
-              $('#pieConsumptionHighchart').show();
-              $('#containerConsumptionHighcharts').show();
-              // there was an issue with hide show that was causing the overlapping of charts. the below code seems to handle the issue
-              $('#pieConsumptionHighchart').highcharts().reflow();
-              $('#containerConsumptionHighcharts').highcharts().reflow();
-              //create Series for power consumption
-              addToChart("containerConsumptionHighcharts", "pieConsumptionHighchart", groupByTopicName, "plug", dateFrom, dateTo, "Consumption per Device");
-              addToChart("containerConsumptionHighcharts", "pieConsumptionHighchart", groupByTopicName, "active", dateFrom, dateTo, "Consumption per Device");
+                $('#pieConsumptionHighchart').show();
+                $('#containerConsumptionHighcharts').show();
+                // there was an issue with hide show that was causing the overlapping of charts. the below code seems to handle the issue
+                $('#pieConsumptionHighchart').highcharts().reflow();
+                $('#containerConsumptionHighcharts').highcharts().reflow();
+                //create Series for power consumption
+                addToChart("containerConsumptionHighcharts", "pieConsumptionHighchart", groupByTopicName, "plug", dateFrom, dateTo, "Consumption per Device");
+                addToChart("containerConsumptionHighcharts", "pieConsumptionHighchart", groupByTopicName, "active", dateFrom, dateTo, "Consumption per Device");
             }
-            if(hasDeviceState == 0) {
-              ;
+            if (hasDeviceState == 0) {;
             } else {
-              $('#containerConsumptionHighchartsSTATE').show();
+                $('#containerConsumptionHighchartsSTATE').show();
             }
 
-            if(hasDeviceProduction == 0 && ($('#containerProductionHighcharts').highcharts()).series.length <=0) {
-              ;
+            if (hasDeviceProduction == 0 && ($('#containerProductionHighcharts').highcharts()).series.length <= 0) {;
             } else {
-              $('#pieProductionHighchart').show();
-              $('#containerProductionHighcharts').show();
-              // there was an issue with hide show that was causing the overlapping of charts. the below code seems to handle the issue
-              $('#pieProductionHighchart').highcharts().reflow();
-              $('#containerProductionHighcharts').highcharts().reflow();
-              //create Series for power production
-              addToChart("containerProductionHighcharts", "pieProductionHighchart", groupByTopicName, "production", dateFrom, dateTo, "Production per Device");
+                $('#pieProductionHighchart').show();
+                $('#containerProductionHighcharts').show();
+                // there was an issue with hide show that was causing the overlapping of charts. the below code seems to handle the issue
+                $('#pieProductionHighchart').highcharts().reflow();
+                $('#containerProductionHighcharts').highcharts().reflow();
+                //create Series for power production
+                addToChart("containerProductionHighcharts", "pieProductionHighchart", groupByTopicName, "production", dateFrom, dateTo, "Production per Device");
             }
 
             // If no data then show respective message
-            if(hasTotalPower == 0 && hasDevicePower == 0 && hasDeviceProduction ==0  && hasDeviceState == 0) {
-              $('#noDataText').show(); 
+            if (hasTotalPower == 0 && hasDevicePower == 0 && hasDeviceProduction == 0 && hasDeviceState == 0) {
+                $('#noDataText').show();
             } else {
-               $('#noDataText').hide();   
+                $('#noDataText').hide();
             }
 
         },
@@ -267,7 +270,3 @@ xmlhttp.send();
     });
 
 }
-
-$(window).load(function() {
-    console.log("LOADED2");
-});

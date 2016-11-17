@@ -97,7 +97,6 @@ function updateComponents(applianceName, applianceValue) {
                     $($("#" + this.id)).text(percentage.toFixed(0));
                 });
 
-
             }
         }
 
@@ -122,28 +121,27 @@ function updateComponents(applianceName, applianceValue) {
         var appliancename = '';
         if (newtextApplianceName.search("phaseA") != -1) {
             phase = 'power_valueA';
-            appliancename = newtextApplianceName.replace("phaseA","");
+            appliancename = newtextApplianceName.replace("phaseA", "");
         } else if (newtextApplianceName.search("phaseB") != -1) {
             phase = 'power_valueB';
-            appliancename = newtextApplianceName.replace("phaseB","");
+            appliancename = newtextApplianceName.replace("phaseB", "");
         } else if (newtextApplianceName.search("phaseC") != -1) {
             phase = 'power_valueC';
-            appliancename = newtextApplianceName.replace("phaseC","");
+            appliancename = newtextApplianceName.replace("phaseC", "");
         }
 
         //get all values for class eg meter1_powerClass
         sum = 0;
         if (newtextApplianceName.search("phase") != -1) {
             $('.' + phase).each(function() {
-                sum += parseFloat($(this).text()/1000);
+                sum += parseFloat($(this).text() / 1000);
             });
         }
 
         //put new sum value
         $("#" + macAddress + phase).text(parseFloat(sum).toFixed(4));
         $("#" + macAddress + "_power_total").text((parseFloat($("#" + macAddress + "power_valueA").text()) + parseFloat($("#" + macAddress + "power_valueB").text()) + parseFloat($("#" + macAddress + "power_valueC").text())).toFixed(4));
-        $("#" + appliancename +"total" + macAddress).text((parseFloat($("#" + appliancename + "phaseA").text()) + parseFloat($("#" + appliancename + "phaseB").text()) + parseFloat($("#" + appliancename + "phaseC").text())).toFixed(4));
-        
+        $("#" + appliancename + "total" + macAddress).text((parseFloat($("#" + appliancename + "phaseA").text()) + parseFloat($("#" + appliancename + "phaseB").text()) + parseFloat($("#" + appliancename + "phaseC").text())).toFixed(4));
 
         // update VP's power
         sum = 0;
@@ -165,7 +163,7 @@ function updateComponents(applianceName, applianceValue) {
         }
 
         //update pie charts inside appliance widget
-        var percentage = 100 * (parseFloat($("#" + appliancename +"total" + macAddress).text()).toFixed(4) / (1000*parseFloat($("#totalPower").text()).toFixed(4)));
+        var percentage = 100 * (parseFloat($("#" + appliancename + "total" + macAddress).text()).toFixed(4) / (1000 * parseFloat($("#totalPower").text()).toFixed(4)));
         if ($("#" + appliancename + "total_percent" + macAddress).length > 0) {
             // console.log("percentage()::"+ element.name );
             //update pie chart!!
@@ -273,7 +271,6 @@ $('body').on('change', '.toggle-switch input:checkbox', function() {
             } else {
                 publish(applianceName + ' OFF', drUrl, 0);
             }
-
 
         } else {
             //turn on

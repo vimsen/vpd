@@ -1,187 +1,239 @@
 <!DOCTYPE html>
-<!--[if IE 9 ]><html class="ie9"><![endif]-->
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>VP Settings</title>
+<!--[if IE 9 ]>
+<html class="ie9">
+    <![endif]-->
 
-        <!-- Vendor CSS -->
-        <link href="vendors/bower_components/fullcalendar/dist/fullcalendar.min.css" rel="stylesheet">
-        <link href="vendors/bower_components/animate.css/animate.min.css" rel="stylesheet">
-        <link href="vendors/bower_components/bootstrap-sweetalert/lib/sweet-alert.css" rel="stylesheet">
-        <link href="vendors/bower_components/material-design-iconic-font/dist/css/material-design-iconic-font.min.css" rel="stylesheet">
-        <link href="vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css" rel="stylesheet">        
-            
-        <!-- CSS -->
-        <link href="css/app.min.1.css" rel="stylesheet">
-        <link href="css/app.min.2.css" rel="stylesheet">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>VP Dashboard</title>
+    <!-- Vendor CSS -->
+    <link href="vendors/bower_components/fullcalendar/dist/fullcalendar.min.css" rel="stylesheet">
+    <link href="vendors/bower_components/animate.css/animate.min.css" rel="stylesheet">
+    <link href="vendors/bower_components/bootstrap-sweetalert/lib/sweet-alert.css" rel="stylesheet">
+    <link href="vendors/bower_components/material-design-iconic-font/dist/css/material-design-iconic-font.min.css" rel="stylesheet">
+    <link href="vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css" rel="stylesheet">
+    <!-- CSS -->
+    <link href="css/app.min.1.css" rel="stylesheet">
+    <link href="css/app.min.2.css" rel="stylesheet">
+    <!--custom css -->
+    <link href="css/vimsen/custom.css" rel="stylesheet">
+    <!--select css -->
+    <link href="vendors/bower_components/bootstrap-select/dist/css/bootstrap-select.css" rel="stylesheet">
+    <!--daterange puicker css -->
+    <link href="css/daterangepicker.css" rel="stylesheet">
+    <link href="css/timepicker.css" rel="stylesheet">
+</head>
 
-            <!--custom css -->
-         <link href="css/vimsen/custom.css" rel="stylesheet">
-         
-         <!--select css -->
-          <link href="vendors/bower_components/bootstrap-select/dist/css/bootstrap-select.css" rel="stylesheet">
+<body>
 
-       
-    </head>
+    <script src="//cdn.auth0.com/w2/auth0-7.0.3.min.js"></script>
+    <script src="js/vimsen/init.js"></script>
 
-
-    <body>
-        <header id="header" class="clearfix" data-current-skin="black">
-            <ul class="header-inner">
-                <li id="menu-trigger" data-trigger="#sidebar">
-                    <div class="line-wrap">
-                        <div class="line top"></div>
-                        <div class="line center"></div>
-                        <div class="line bottom"></div>
+    <header id="header" class="clearfix" data-current-skin="black">
+        <ul class="header-inner">
+            <li id="menu-trigger" data-trigger="#sidebar">
+                <div class="line-wrap">
+                    <div class="line top"></div>
+                    <div class="line center"></div>
+                    <div class="line bottom"></div>
+                </div>
+            </li>
+            <li class="logo">
+                <a href="#">VP Dashboard</a>
+            </li>
+            <li class="pull-right">
+                <ul class="top-menu">
+                    <li id="toggle-width">
+                        <div class="toggle-switch">
+                            <input id="tw-switch" type="checkbox" hidden="hidden">
+                            <label for="tw-switch" class="ts-helper"></label>
+                        </div>
+                    </li>
+                    <li class="dropdown">
+                        <a data-toggle="dropdown" href="">
+                            <i class="tm-icon zmdi zmdi-more-vert"></i>
+                        </a>
+                        <ul class="dropdown-menu dm-icon pull-right">
+                            <li class="skin-switch hidden-xs">
+                                <span class="ss-skin bgm-lightblue" data-skin="lightblue"></span>
+                                <span class="ss-skin bgm-bluegray" data-skin="bluegray"></span>
+                                <span class="ss-skin bgm-cyan" data-skin="cyan"></span>
+                                <span class="ss-skin bgm-teal" data-skin="teal"></span>
+                                <span class="ss-skin bgm-orange" data-skin="orange"></span>
+                                <span class="ss-skin bgm-blue" data-skin="blue"></span>
+                            </li>
+                            <li class="divider hidden-xs"></li>
+                            <li id="logout">
+                                <a href="" title="Log out" onclick="logoutRemoveItem()"><i class="zmdi zmdi-devices-off"></i> Logout</a>
+                            </li>
+                            <li class="hidden-xs">
+                                <a data-action="fullscreen" href="">
+                                    <i class="zmdi zmdi-fullscreen"></i> Toggle Fullscreen
+                                </a>
+                            </li>
+                            <li>
+                                <a data-action="clear-localstorage" href="">
+                                    <i class="zmdi zmdi-delete"></i> Clear Local Storage
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <!-- Top Search Content -->
+        <div id="top-search-wrap">
+            <div class="tsw-inner">
+                <i id="top-search-close" class="zmdi zmdi-arrow-left"></i>
+                <input type="text">
+            </div>
+        </div>
+    </header>
+    <section id="main" data-layout="layout-1">
+        <aside id="sidebar" class="sidebar c-overflow">
+            <div class="profile-menu">
+                <a href="">
+                    <div class="profile-pic">
+                        <img src="img/profile-pics/2.jpg" alt="">
                     </div>
+                    <div class="profile-info" id="profile-name">
+                    </div>
+                </a>
+                <ul class="main-menu">
+                    <li>
+                        <a href="vp-profile.html">
+                            <i class="zmdi zmdi-account"></i> View Profile
+                        </a>
+                    </li>
+                    <!--
+          <li>
+            <a href="vp-settings.html">
+              <i class="zmdi zmdi-settings"></i> Settings
+            </a>
+          </li> -->
+                    <li id="logout">
+                        <a href="" title="Log out" onclick="logoutRemoveItem()"><i class="zmdi zmdi-devices-off"></i> Logout</a>
+                    </li>
+                </ul>
+            </div>
+            <ul class="main-menu">
+                <li>
+                    <a href="dashboard.html">
+                        <i class="zmdi zmdi-view-dashboard"></i> Dashboard
+                    </a>
                 </li>
-
-                <li class="logo">
-                    <a href="#">VP Dashboard</a>
+                <li>
+                    <a href="historicalData.html">
+                        <i class="zmdi zmdi-time-restore"></i> Historical Data
+                    </a>
                 </li>
-
-                <li class="pull-right">
-                    <ul class="top-menu">
-                        <li id="toggle-width">
-                            <div class="toggle-switch">
-                                <input id="tw-switch" type="checkbox" hidden="hidden">
-                                <label for="tw-switch" class="ts-helper"></label>
-                            </div>
-                        </li>
-
-                       
-                       
-                        <li class="dropdown">
-                            <a data-toggle="dropdown" href=""><i class="tm-icon zmdi zmdi-more-vert"></i></a>
-                            <ul class="dropdown-menu dm-icon pull-right">
-                                <li class="skin-switch hidden-xs">
-                                    <span class="ss-skin bgm-lightblue" data-skin="lightblue"></span>
-                                    <span class="ss-skin bgm-bluegray" data-skin="bluegray"></span>
-                                    <span class="ss-skin bgm-cyan" data-skin="cyan"></span>
-                                    <span class="ss-skin bgm-teal" data-skin="teal"></span>
-                                    <span class="ss-skin bgm-orange" data-skin="orange"></span>
-                                    <span class="ss-skin bgm-blue" data-skin="blue"></span>
-                                </li>
-                                <li class="divider hidden-xs"></li>
-                                 <li id="logout">
-                                     <a href="login.html" title="Log out" onclick="logout();" target="_self"><i class="zmdi zmdi-devices-off"></i>Log out</a>
-                                 </li>
-                                <li class="hidden-xs">
-                                    <a data-action="fullscreen" href=""><i class="zmdi zmdi-fullscreen"></i> Toggle Fullscreen</a>
-                                </li>
-                                <li>
-                                    <a data-action="clear-localstorage" href=""><i class="zmdi zmdi-delete"></i> Clear Local Storage</a>
-                                </li>                                
-                            </ul>
-                        </li>                        
-                    </ul>
+                <li>
+                    <a href="weather.html">
+                        <i class="zmdi zmdi-sun"></i> Weather
+                    </a>
+                </li>
+                <li>
+                    <a href="vgwinfo.html">
+                        <i class="zmdi zmdi-cast-connected"></i> VGWs Info
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="vp-settings.html">
+                        <i class="zmdi zmdi-settings-square"></i> VP Settings
+                    </a>
                 </li>
             </ul>
-
-
-            <!-- Top Search Content -->
-            <div id="top-search-wrap">
-                <div class="tsw-inner">
-                    <i id="top-search-close" class="zmdi zmdi-arrow-left"></i>
-                    <input type="text">
+        </aside>
+        <section id="content">
+            <div class="container">
+                <div class="block-header p-5">
+                    <h2><i class="profile-info" id="profile-name2"></i> - VP Settings</h2>
+                    <div>
+                        <div class="row m-t-20">
+                            <!--  <div id="totalPowerEnergy"><input id="totalPowerInput" class="showHide" /></div> -->
+                            <div id="appliancesWidget" class="col-md-12 col-sm-6">
+                            </div>
+                            <div class="m-b-25 p-5">
+                                <div class="pull-left p-10">
+                                    <button id="submitVGWSettings" class="btn bgm-teal">Save Settings</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </header>
-        
-        <section id="main" data-layout="layout-1">
-            <aside id="sidebar" class="sidebar c-overflow">
-                <div class="profile-menu">
-                    <a href="">
-                        <div class="profile-pic">
-                            <img src="img/profile-pics/2.jpg" alt="">
-                        </div>
-
-                        <div class="profile-info">
-                            Administrator
-
-                            <i class="zmdi zmdi-caret-down"></i>
-                        </div>
-                    </a>
-
-                    <ul class="main-menu">
-                        <li>
-                            <a href="vp-profile.html"><i class="zmdi zmdi-account"></i> View Profile</a>
-                        </li>
-                        <li>
-                            <a href=""><i class="zmdi zmdi-settings"></i> Settings</a>
-                        </li>
-                        <li>
-                          <a href="login.html" title="Log out" onclick="logout();" target="_self"><i class="zmdi zmdi-time-restore"></i> Logout</a>
-                        </li>
-                    </ul>
-                </div>
-
-                <ul class="main-menu">
-                    <li><a href="dashboard.html"><i class="zmdi zmdi-view-dashboard"></i> Dashboard</a></li>
-                     <li><a href="historicalData.html"><i class="zmdi zmdi-time-restore"></i> Historical Data</a></li>
-                    <li><a href="weather.html"><i class="zmdi zmdi-sun"></i> Weather</a></li>
-                    <li><a href="vgwinfo.html"><i class="zmdi zmdi-cast-connected"></i> VGWs Info</a></li>
-                    
-                </ul>
-            </aside>           
-            
-          <img  class="m-t-30 underconstruction" src="img/underconstruction.png" alt="">
-            
-          
         </section>
-        
-        <footer id="footer">
-            Copyright &copy; 2016 TELINT
-            
-            <ul class="f-menu">
-                <li><a href="">Home</a></li>
-                <li><a href="">Dashboard</a></li>
-                <li><a href="">Reports</a></li>
-                <li><a href="">Support</a></li>
-                <li><a href="">Contact</a></li>
-            </ul>
-        </footer>
+    </section>
+    <footer id="footer">
+        Copyright &copy; 2016 TELINT
 
-      
-        
-       
-        
-           <!-- Javascript Libraries -->
-        <script src="vendors/bower_components/jquery/dist/jquery.min.js"></script>
-        <script src="vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-        
-        <script src="vendors/bower_components/flot/jquery.flot.js"></script>
-           <script src="vendors/bower_components/flot/jquery.flot.time.js"></script>
-           <script src="vendors/bower_components/flot/jquery.flot.resize.js"></script>
-            <script src="vendors/bower_components/flot/jquery.flot.symbol.js"></script>
-        <script src="vendors/bower_components/flot.curvedlines/curvedLines.js"></script>
-        <script src="vendors/sparklines/jquery.sparkline.min.js"></script>
-        <script src="vendors/bower_components/jquery.easy-pie-chart/dist/jquery.easypiechart.min.js"></script>
-        
-        <script src="vendors/bower_components/moment/min/moment.min.js"></script>
-        <script src="vendors/bower_components/bootstrap-select/dist/js/bootstrap-select.js"></script>
-        <script src="vendors/bower_components/fullcalendar/dist/fullcalendar.min.js "></script>
-        <script src="vendors/bower_components/simpleWeather/jquery.simpleWeather.min.js"></script>
-        <script src="vendors/bower_components/Waves/dist/waves.min.js"></script>
-        <script src="vendors/bootstrap-growl/bootstrap-growl.min.js"></script>
-        <script src="vendors/bower_components/bootstrap-sweetalert/lib/sweet-alert.min.js"></script>
-        <script src="vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
-        
-        <!-- Placeholder for IE9 -->
-        <!--[if IE 9 ]>
-            <script src="vendors/bower_components/jquery-placeholder/jquery.placeholder.min.js"></script>
-        <![endif]-->
 
-        
-        <script src="js/flot-charts/curved-line-chart.js"></script>
-        <script src="js/flot-charts/line-chart.js"></script>
-        <script src="js/charts.js"></script>
-        
-        <script src="js/charts.js"></script>
-        <script src="js/functions.js"></script>
-        <script src="js/demo.js"></script>
-      
-    </body>
-  </html>
+        <ul class="f-menu">
+            <li>
+                <a href="">Home</a>
+            </li>
+            <li>
+                <a href="">Dashboard</a>
+            </li>
+            <li>
+                <a href="">Reports</a>
+            </li>
+            <li>
+                <a href="">Support</a>
+            </li>
+            <li>
+                <a href="">Contact</a>
+            </li>
+        </ul>
+    </footer>
+
+    <!-- Page Loader -->
+    <div class="page-loader">
+        <div class="preloader pls-green">
+            <svg class="pl-circular" viewBox="25 25 50 50">
+        <circle class="plc-path" cx="50" cy="50" r="20" />
+      </svg>
+            <p>Please wait...</p>
+        </div>
+    </div>
+
+    <!-- Javascript Libraries -->
+    <script src="vendors/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="vendors/bower_components/flot/jquery.flot.js"></script>
+    <script src="vendors/bower_components/flot/jquery.flot.time.js"></script>
+    <script src="vendors/bower_components/flot/jquery.flot.resize.js"></script>
+    <script src="vendors/bower_components/flot/jquery.flot.symbol.js"></script>
+    <script src="vendors/bower_components/flot.curvedlines/curvedLines.js"></script>
+    <script src="vendors/sparklines/jquery.sparkline.min.js"></script>
+    <script src="vendors/bower_components/jquery.easy-pie-chart/dist/jquery.easypiechart.min.js"></script>
+    <script src="vendors/bower_components/moment/min/moment.min.js"></script>
+    <script src="vendors/bower_components/bootstrap-select/dist/js/bootstrap-select.js"></script>
+    <script src="vendors/bower_components/fullcalendar/dist/fullcalendar.min.js "></script>
+    <script src="vendors/bower_components/simpleWeather/jquery.simpleWeather.min.js"></script>
+    <script src="vendors/bower_components/Waves/dist/waves.min.js"></script>
+    <script src="vendors/bootstrap-growl/bootstrap-growl.min.js"></script>
+    <script src="vendors/bower_components/bootstrap-sweetalert/lib/sweet-alert.min.js"></script>
+    <script src="vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="js/vimsen/init.js"></script>
+    <script src="js/flot-charts/curved-line-chart.js"></script>
+    <script src="js/flot-charts/line-chart.js"></script>
+    <script src="js/charts.js"></script>
+    <script src="js/charts.js"></script>
+    <script src="js/functions.js"></script>
+    <script src="js/demo.js"></script>
+    <script src="js/vimsen/mqttws31.js"></script>
+    <script src="js/vimsen/updateVGWSettings.js"></script>
+    <script src="js/vimsen/hiveMQ_client_test.js"></script>
+
+    <!--date range and time picker -->
+    <script src="js/daterangepicker.js"></script>
+    <script src="js/timepicker.js"></script>
+
+    <script src="js/vimsen/vpSettings.js"></script>
+    <script src="js/underscore-min.js"></script>
+</body>
+
+</html>

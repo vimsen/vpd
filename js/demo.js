@@ -24,7 +24,7 @@ $(window).load(function(){
         });
     };
     
-    if (!$('.login-content')[0]) {
-        notify('Welcome back Administrator', 'inverse');
-    } 
+    // if (!$('.login-content')[0]) {
+    //     notify('Welcome back Administrator', 'inverse');
+    // } 
 });

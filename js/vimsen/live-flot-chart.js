@@ -1,4 +1,4 @@
-$(function () {
+$(function() {
     $('#containerHighcharts').highcharts({
         title: {
             text: 'Monthly Average Temperature',
@@ -10,7 +10,8 @@ $(function () {
         },
         xAxis: {
             categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-                'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+                'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
+            ]
         },
         yAxis: {
             title: {

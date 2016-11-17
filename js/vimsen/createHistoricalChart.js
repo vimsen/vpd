@@ -3,8 +3,8 @@ function initProsumptionChart(divId, prosumption) {
         global: {
             useUTC: false
         },
-        series:{
-            turboThreshold:2000//larger threshold or set to 0 to disable
+        series: {
+            turboThreshold: 2000 //larger threshold or set to 0 to disable
         }
     });
 
@@ -13,7 +13,7 @@ function initProsumptionChart(divId, prosumption) {
             zoomType: 'x',
             events: {
                 redraw: function() {
-                    this.hideLoading(); 
+                    this.hideLoading();
                 }
             }
             //  backgroundColor: 'rgba(4,5,2,0.2)'
@@ -50,13 +50,13 @@ function initProsumptionChart(divId, prosumption) {
             }
         },
         plotsOptions: {
-            series:{
-                turboThreshold:2000//larger threshold or set to 0 to disable
+            series: {
+                turboThreshold: 2000 //larger threshold or set to 0 to disable
             },
-            line:{
-                turboThreshold:2000//larger threshold or set to 0 to disable
+            line: {
+                turboThreshold: 2000 //larger threshold or set to 0 to disable
             }
-    
+
         }
     });
 
@@ -190,7 +190,7 @@ function addToChart(divId, pieDivId, object, prosumptionType, dateFrom, dateTo, 
     $.each(object, function(index, element) {
         var yPie = 0;
         console.log("ela" + prosumptionType + index + element)
-        //for consumption devices iterate to each line inside array
+            //for consumption devices iterate to each line inside array
         if (index.toLowerCase().search(prosumptionType) != -1 && index.toLowerCase().search("power") != -1 && index.toLowerCase().search("phase") == -1) {
             var data = [];
             console.log("ela@");
