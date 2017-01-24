@@ -532,7 +532,13 @@ $(document).ready(function() {
         var html;
         if (controllerObject.type.toUpperCase() === "BUILDING") {
 
-            html = '<div class="mini-charts-item m-b-15">';
+            //
+            html = '<div class="clearfix">';
+            html += '<div>' + controllerObject.name ;
+            html += '</div>';
+            html += '</div>';
+
+            html += '<div class="mini-charts-item m-b-15">';
             //
             html += '<div class="clearfix">';
             html += '<div class="count col-sm-6 col-xs-12 col-md-6 productionCurrent">';
@@ -569,7 +575,12 @@ $(document).ready(function() {
 
         } else {
 
-            html = '<div class="mini-charts-item m-b-15">';
+            html = '<div class="clearfix">';
+            html += '<div>' + controllerObject.name ;
+            html += '</div>';
+            html += '</div>';
+
+            html += '<div class="mini-charts-item m-b-15">';
             //
             html += '<div class="clearfix">';
             html += '<div class="count col-sm-6 col-xs-12 col-md-6 productionCurrent">';

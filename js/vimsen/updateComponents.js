@@ -174,10 +174,10 @@ function updateComponents(applianceName, applianceValue) {
         $("#" + appliancename + "total_percent" + macAddress).text(parseInt(percentage).toFixed(0));
 
     } else {
-        //console.log("update fibaro::"+newtextApplianceName+macAddress+" value:"+applianceValue);
-
         //update attributes
         $("#" + newtextApplianceName + macAddress).text(applianceValue);
+        $("#" + macAddress + newtextApplianceName).text((applianceValue/1000).toFixed(4));
+
         //$("#"+macAddress+'_'+newtextApplianceName).text(applianceValue);
         $('#ts-' + newtextApplianceName + '').prop('checked', checked);
         $("#" + newtextApplianceName + '_state').text(applianceValue);
@@ -193,6 +193,62 @@ function updateComponents(applianceName, applianceValue) {
             //update pie chart for consumption devices!!
             $("#" + newtextApplianceName + "_pie_percent" + macAddress).data('easyPieChart').update(percentage);
         }
+
+                //console.log("update fibaro::"+newtextApplianceName+"-"+macAddress+" value:"+applianceValue);
+        // update VP's power
+        sum = 0;
+        if (newtextApplianceName.search("meter1_power") != -1) {
+            $('.vgw_power_valueA').each(function() {
+                sum += parseFloat($(this).text());
+            });
+            $('.meter1_powerClass').each(function() {
+                sum += parseFloat($(this).text());
+            });
+            $("#"+ macAddress + "power_valueA").text(parseFloat(applianceValue).toFixed(4));
+            $("#meter1_power").text(parseFloat(sum).toFixed(4));
+        } else if (newtextApplianceName.search("meter2_power") != -1) {
+            $('.vgw_power_valueB').each(function() {
+                sum += parseFloat($(this).text());
+            });
+            $('.meter2_powerClass').each(function() {
+                sum += parseFloat($(this).text());
+            });
+            $("#"+ macAddress + "power_valueB").text(parseFloat(applianceValue).toFixed(4));
+            $("#meter2_power").text(parseFloat(sum).toFixed(4));
+        } else if (newtextApplianceName.search("meter3_power") != -1) {
+            $('.vgw_power_valueC').each(function() {
+                sum += parseFloat($(this).text());
+            });
+            $('.meter3_powerClass').each(function() {
+                sum += parseFloat($(this).text());
+            });
+            $("#"+ macAddress + "power_valueC").text(parseFloat(applianceValue).toFixed(4));
+            $("#meter3_power").text(parseFloat(sum).toFixed(4));
+        }
+
+       // update VP's energy
+        sum = 0;
+        if (newtextApplianceName.search("meter1_energy") != -1) {
+            $('.meter1_energyClass').each(function() {
+                sum += parseFloat($(this).text());
+            });
+            $("#meter1_energy").text(parseFloat(sum).toFixed(4));
+        } else if (newtextApplianceName.search("meter2_energy") != -1) {
+             $('.meter2_energyClass').each(function() {
+                sum += parseFloat($(this).text());
+            });
+            $("#meter2_energy").text(parseFloat(sum).toFixed(4));
+        } else if (newtextApplianceName.search("meter3_energy") != -1) {
+             $('.meter3_energyClass').each(function() {
+                sum += parseFloat($(this).text());
+            });
+            $("#meter3_energy").text(parseFloat(sum).toFixed(4));
+        }
+        
+        $("#" + macAddress + "_totalPower").text((parseFloat($("#" + macAddress + "meter1_power").text()) + parseFloat($("#" + macAddress + "meter2_power").text()) + parseFloat($("#" + macAddress + "meter3_power").text())).toFixed(4));
+        $("#" + macAddress + "_power_total").text((parseFloat($("#" + macAddress + "power_valueA").text()) + parseFloat($("#" + macAddress + "power_valueB").text()) + parseFloat($("#" + macAddress + "power_valueC").text())).toFixed(4));
+        $("#" + macAddress + "_totalEnergy").text((parseFloat($("#" + macAddress + "meter1_energy").text()) + parseFloat($("#" + macAddress + "meter2_energy").text()) + parseFloat($("#" + macAddress + "meter3_energy").text())).toFixed(4));
+
     }
     //add to chart
     //var chart = $('#containerHighcharts').highcharts();

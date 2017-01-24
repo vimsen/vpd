@@ -218,7 +218,7 @@ function findByMac(markers, mac, map) {
         map.setZoom(8);
      } else  if (markers[i].mac === mac) {
      //var mark = markers[i];
-      console.log('found marker::'+JSON.stringify(markers[i]));   
+      //console.log('found marker::'+JSON.stringify(markers[i]));   
       var myLatlng = new google.maps.LatLng(markers[i].lat, markers[i].lng);   
      // infoWindow.setContent("<div style = 'width:200px;min-height:40px'>" + markers[i].description +':'+markers[i].mac+ "</div>");
       //infoWindow.open(map, JSON.stringify(markers[i]));

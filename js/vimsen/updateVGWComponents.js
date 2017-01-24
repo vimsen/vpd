@@ -18,7 +18,7 @@ function updateVGWComponents(applianceName, applianceValue) {
         // console.log("CPUload: " + applianceName + " applianceValue:"+applianceValue);
         // want to change the icon? no problem:
         // convert value to percentage
-        var percentageValue = (parseFloat(applianceValue) * 100).toFixed(0);
+        var percentageValue = (parseFloat(applianceValue) ).toFixed(2);
         // console.log("applian################::"+applianceName+"::%"+percentageValue);
         $("[topicid='" + applianceName + "']").each(function() {
             $(this).text(percentageValue + '%');

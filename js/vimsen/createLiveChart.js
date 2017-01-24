@@ -43,7 +43,6 @@ function initLiveChart(divId, prosumption) {
     });
 
     intervalLive(divId);
-
 }
 
 function createLiveChart(divId, object, parameterToCheck, prosumption, dateFrom, dateTo) {
@@ -63,7 +62,7 @@ function createLiveChart(divId, object, parameterToCheck, prosumption, dateFrom,
         //console.log("parcheck: " + parameterToCheck + " - prosumption:" + prosumption);
         if ((element.itemType.search("BuildingItem") != -1 && element.name.search(prosumption) != -1 && $.isNumeric(element.state) != false) ||
             (element.name.search(parameterToCheck) != -1 && element.name.search(prosumption) != -1) ||
-            (element.name.search(prosumption) != -1 && element.name.search("energy") == -1)) {
+            (element.name.search(prosumption) != -1 && element.name.search("energy") == -1 && element.name.search("Period") == -1)) {
 
             for (i = -19; i <= 0; i += 1) {
                 data.push({
@@ -71,7 +70,7 @@ function createLiveChart(divId, object, parameterToCheck, prosumption, dateFrom,
                     y: parseFloat(element.state)
                 });
             }
-
+            console.log(element.name);
             chart.addSeries({
                 id: element.name,
                 vgw: element.vgw,
@@ -108,7 +107,9 @@ function intervalLive(chartContainer) {
             // console.log(serie.options.id);
             //get value for power
             var floatI = parseFloat($("#" + serie.options.id + serie.options.vgw).text());
-            serie.addPoint([time, floatI]);
+            if (serie.options.id.search("Period") == -1) {
+                serie.addPoint([time, floatI]);
+            }
         })
 
     }, 1000);

@@ -61,6 +61,7 @@ $(document).ready(function() {
                 //add option to selection of controllers dropdown
                 $('#controllerSelectionHistorical').append($('<option>', {
                     value: element.mac,
+                    name: element.name,
                     text: element.name + " (" + element.mac + ")"
                 }));
                 //$('#controllerSelectionHistorical').selectpicker('refresh');

@@ -210,10 +210,11 @@ function addToChart(divId, pieDivId, object, prosumptionType, dateFrom, dateTo, 
 
             });
             //console.log("data:: "+JSON.stringify(element[0].Prosumers));
+            vgw_name = $("#controllerSelectionHistorical").find("option[value='"+ element[0].Prosumers+"']").attr('name')
             chart.addSeries({
                 id: index,
                 vgw: element[0].Prosumers,
-                name: index + "@" + element[0].Prosumers,
+                name: index + "@" + vgw_name,
                 data: data,
                 turboThreshold: 0
             });
@@ -232,13 +233,17 @@ function addToChart(divId, pieDivId, object, prosumptionType, dateFrom, dateTo, 
                 var xyArr = [];
                 //replace _power for plugs only
                 var nameR = (this.name.toLowerCase().search("plug") != -1) ? this.name.replace('_power', '') : this.name;
-                return nameR + '<br/>(' + this.options.vgw + ')';
+                //return nameR + '<br/>(' + this.options.vgw + ')';
+
+                vgw_name = $("#controllerSelectionHistorical").find("option[value='"+ this.options.vgw+"']").attr('name')
+                return nameR + '<br/>(' + vgw_name + ')';
             };
 
             // console.log("index::::"+index+"ypie:::"+yPie);
-            //pieObj.push(index+"@"+element[0].Prosumers,yPie);  
+            //pieObj.push(index+"@"+element[0].Prosumers,yPie);
+            vgw_name = $("#controllerSelectionHistorical").find("option[value='"+ element[0].Prosumers+"']").attr('name')  
             var pieObj = {
-                name: index + "@" + element[0].Prosumers,
+                name: index + "@" + vgw_name,
                 y: yPie
             };
             //console.log("pieObj::::"+JSON.stringify(pieObj)); 
@@ -309,7 +314,9 @@ function addToChart(divId, pieDivId, object, prosumptionType, dateFrom, dateTo, 
             //change legend  labels
             chart2.legend.options.labelFormatter = function() {
                 var xyArr = [];
-                return this.name + '<br/>(' + this.options.vgw + ')';
+                //return this.name + '<br/>(' + this.options.vgw + ')';
+                vgw_name = $("#controllerSelectionHistorical").find("option[value='"+ this.options.vgw+"']").attr('name')
+                return this.name + '<br/>(' + vgw_name + ')';
             };
 
         };

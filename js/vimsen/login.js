@@ -4,7 +4,7 @@ $(document).ready(function() {
         domain: AUTH0_DOMAIN,
         clientID: AUTH0_CLIENT_ID,
         callbackOnLocationHash: true,
-        callbackURL: 'http://127.0.0.1:8080/dashboard.html',
+        callbackURL: "http://" + window.location.hostname + ":" + window.location.port + "/dashboard.html",
     });
 
     $('#btn-login').on('click', function(ev) {

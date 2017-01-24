@@ -152,13 +152,43 @@
                     <div>
                         <div class="row m-t-20">
                             <!--  <div id="totalPowerEnergy"><input id="totalPowerInput" class="showHide" /></div> -->
-                            <div class="col-md-12 col-sm-6">
+                            <div class="col-md-12 col-sm-6" id="form-profile">
                                 <img alt="" id="avatar">
+                                <font color="white" size="2"> <p></p>
                                 <p><strong>Name: </strong> <span id="name"></span></p>
                                 <p><strong>Email: </strong> <span id="email"></span></p>
                                 <p><strong>Nickname: </strong> <span id="nickname"></span></p>
+                                <p><strong>Contact Person: </strong> <span id="contact"></span></p>
+                                <p><strong>Address: </strong> <span id="address"></span></p>
                                 <p><strong>Created At: </strong> <span id="created_at"></span></p>
                                 <p><strong>Updated At: </strong> <span id="updated_at"></span></p>
+                                </font>
+
+                                <button id="editProfile" class="btn bgm-teal">Edit</button>
+                            </div>
+
+                            <div id="form-edit-profile" style="display: none">
+                                <font color="white">
+                                <div class="row">
+                                    <div class="col-md-2 m-b-5 m-t-5">
+                                    Contact Person
+                                    </div>
+                                    <div class="col-md-3 m-b-5 m-t-5">
+                                        <input type="text" class="form-control" id="edit_Contact" placeholder="Enter contact">
+                                    </div>
+                                </div>    
+                                <div class="row">
+                                    <div class="col-md-2 m-b-5 m-t-5">
+                                    Address
+                                    </div>
+                                    <div class="col-md-3 m-b-5 m-t-5">
+                                        <input type="text" class="form-control" id="edit_Address" placeholder="Enter address">
+                                    </div>
+                                </div>
+                                </font> 
+
+                                <button id="saveProfile" class="btn bgm-teal">Save</button>
+                                <button id="cancelProfile" class="btn bgm-teal">Cancel</button>
                             </div>
                         </div>
                     </div>
@@ -234,7 +264,9 @@
     <!--date range and time picker -->
     <script src="js/daterangepicker.js"></script>
     <script src="js/timepicker.js"></script>
+<script>   
 
+  </script>
     <script src="js/vimsen/vpprofile.js"></script>
     <script src="js/underscore-min.js"></script>
 </body>

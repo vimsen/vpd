@@ -2,7 +2,6 @@
 {
 	"item":
 	[
-		{"type":"NumberItem","name":"PV1_production_battery_percentage","state":"0","link":""},
 		{"type":"NumberItem","name":"PV1_production_power","state":"0","link":""}
 	]
 }
