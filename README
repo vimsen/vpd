@@ -1,8 +1,5 @@
-The Virtual Prosumers’ (VP) Dashboard (VPD) is the Graphical User Interface of the VPs and of their Virtual Gateways, 
-and also the control panel of VP-related activities. 
+The Virtual Prosumers’ (VP) Dashboard (VPD) is the Graphical User Interface of the VPs and of their Virtual Gateways, and also the control panel of VP-related activities. 
 
-Since, VPD is a client-side application, it does not have specific requirements in order to be installed. It just needs 
-a web server, where the VPD files (html, css, js) will be located. 
+Since, VPD is a client-side application, it does not have specific requirements in order to be installed. It just needs a web server, where the VPD files (html, css, js) will be located. 
 
-For testing purposes one can use live-server (https://www.npmjs.com/package/live-server), which is a lightweight development 
-server with live reload capabilities.
+For testing purposes one can use live-server (https://www.npmjs.com/package/live-server), which is a lightweight development server with live reload capabilities.
